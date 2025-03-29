@@ -6,7 +6,7 @@ import {
 } from "@apollo/experimental-nextjs-app-support";
 
 const getBaseUrl = () => {
-  return "http://example.com/api/graphql";
+  return "https://studio.apollographql.com/public/SpaceX-pxxbxen/variant/current/explorer";
 };
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
@@ -15,8 +15,11 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     link: new HttpLink({
       // this needs to be an absolute url, as relative urls cannot be used in SSR
       uri: getBaseUrl(),
-      fetchOptions: { cache: "no-store" },
+      fetchOptions: {
+        next: { revalidate: 30 },
+      },
 
+      // fetchOptions: { cache: "no-store" },
       // you can disable result caching here if you want to
       // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
       // fetchOptions: { cache: "no-store" },

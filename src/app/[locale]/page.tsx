@@ -1,24 +1,42 @@
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Usable, use } from "react";
+import { getClient } from "@/libs/graphql/apolloClient";
+import { gql } from "@apollo/client";
 
 type THomePage = {
-  params: Usable<{
+  params: Promise<{
     locale: string;
   }>;
 };
 
-export default function HomePage({ params }: THomePage) {
-  const t = useTranslations("HomePage");
+export default async function HomePage({ params }: THomePage) {
+  const { locale } = await params;
 
-  const { locale } = use(params);
+  const query = gql`
+    query ExampleQuery {
+      company {
+        ceo
+      }
+      roadster {
+        apoapsis_au
+      }
+    }
+  `;
 
-  console.log("LOCALE: ", locale);
+  //   const { data } = await getClient().query({
+  //     query,
+  //     context: {
+  //       fetchOptions: {
+  //         next: { revalidate: 30 },
+  //       },
+  //     },
+  //   });
+
+  //   console.log("LOCALE: ", locale, data);
 
   return (
     <div>
-      <h1>{t("title")}</h1>
-      <Link href="/about">{t("about")}</Link>
+      <h1>{"title"}</h1>
+      <Link href="/about">{"about"}</Link>
     </div>
   );
 }

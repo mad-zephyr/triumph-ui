@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'DIN 2014 Narrow Extra';
+    src: local('DIN 2014 Narrow Extra Light'), local('DIN2014-NarrowExtraLight'),
+        url('DIN2014-NarrowExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN 2014 Narrow Demi';
+    src: local('DIN 2014 Narrow Demi'), local('DIN2014-NarrowDemi'),
+        url('DIN2014-NarrowDemi.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN 2014 Narrow Extra';
+    src: local('DIN 2014 Narrow Extra Bold'), local('DIN2014-NarrowExtraBold'),
+        url('DIN2014-NarrowExtraBold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN 2014 Narrow';
+    src: local('DIN 2014 Narrow'), local('DIN2014-Narrow'),
+        url('DIN2014-Narrow.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN 2014 Narrow';
+    src: local('DIN 2014 Narrow Bold'), local('DIN2014-NarrowBold'),
+        url('DIN2014-NarrowBold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN 2014 Narrow';
+    src: local('DIN 2014 Narrow Light'), local('DIN2014-NarrowLight'),
+        url('DIN2014-NarrowLight.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { mainFont } from "@/assets/fonts/fonts";
 
 export default async function LocaleLayout({
   children,
@@ -11,12 +12,13 @@ export default async function LocaleLayout({
 }) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={mainFont.variable}>
       <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
