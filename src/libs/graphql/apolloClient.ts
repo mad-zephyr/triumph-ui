@@ -6,7 +6,7 @@ import {
 } from "@apollo/experimental-nextjs-app-support";
 
 const getBaseUrl = () => {
-  return "https://studio.apollographql.com/public/SpaceX-pxxbxen/variant/current/explorer";
+  return "https://swapi-graphql.netlify.app/graphql";
 };
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
