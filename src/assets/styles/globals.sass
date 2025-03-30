@@ -1,6 +1,14 @@
+@use "./index" as *
+// $var-color-background: --background
+// $var-color-foreground: --foreground
+// $var-color-accent: --color-accent
+// $var-color-text: --color-text
+
 :root
-  --background: #ffffff
-  --foreground: #171717
+  #{$color-background}: #ffffff
+  #{$color-foreground}: #171717
+  #{$color-accent}: #c00913
+  #{$color-text}: #ffffff
 
 // @media (prefers-color-scheme: dark)
 //   :root
