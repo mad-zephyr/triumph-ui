@@ -1,33 +1,33 @@
-import { Link } from "@/i18n/navigation";
-import classes from "./header.module.sass";
+import Logo from '@/assets/images/logo.svg';
+import { Button } from '@/common';
+import { Link } from '@/i18n/navigation';
 
-import Logo from "@/assets/images/logo.svg";
-import { Button } from "@/common";
-import { HeaderLink } from "./components";
+import { HeaderLink } from './components';
+import classes from './header.module.sass';
 
 const links = [
   {
-    title: "Motocycles",
-    path: "/motocycles",
+    title: 'Motocycles',
+    path: '/motocycles',
   },
   {
-    title: "Accessorii",
-    path: "/accessorii",
+    title: 'Accessorii',
+    path: '/accessorii',
   },
   {
-    title: "Imbracominte",
-    path: "/Imbracominte",
+    title: 'Imbracominte',
+    path: '/Imbracominte',
   },
   {
-    title: "Inside triumph",
-    path: "/about-triumph",
+    title: 'Inside triumph',
+    path: '/about-triumph',
   },
 ];
 
 export const Header = () => {
   return (
     <header className={classes.header}>
-      <Link href={"/"} className={classes.logo}>
+      <Link href={'/'} className={classes.logo}>
         <Logo />
       </Link>
 

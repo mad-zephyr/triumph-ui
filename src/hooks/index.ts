@@ -1,1 +1,1 @@
-export * from "./useTextAnimator";
+export * from './useTextAnimator';

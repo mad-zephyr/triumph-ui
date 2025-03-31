@@ -1,2 +1,3 @@
-export { Header } from "./header/header";
-export * from "./ui";
+export { Header } from './header/header';
+export * from './ui';
+export * from './sections';
