@@ -9,10 +9,10 @@ import classes from "./styles.module.sass";
 type THeaderLink = {} & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const HeaderLink: FC<THeaderLink> = ({ href, title }) => {
-  const target = useRef<HTMLSpanElement>(null);
-  const { animateV4 } = useTextAnimator(target);
-
-  const [animateIn, animateOut] = animateV4;
+  const target = useRef<HTMLAnchorElement>(null);
+  const {
+    animateV4: [animateIn, animateOut],
+  } = useTextAnimator(target);
 
   useEffect(() => {
     const currentTarget = target.current;
@@ -26,11 +26,11 @@ export const HeaderLink: FC<THeaderLink> = ({ href, title }) => {
     };
   }, [animateIn, animateOut, target]);
 
-  return (
-    href && (
-      <Link href={href} className={classes.link}>
-        <span ref={target}>{title}</span>
-      </Link>
-    )
+  return href ? (
+    <Link href={href} ref={target} className={classes.link}>
+      <span>{title}</span>
+    </Link>
+  ) : (
+    <></>
   );
 };

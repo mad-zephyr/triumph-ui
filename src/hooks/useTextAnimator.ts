@@ -1,57 +1,58 @@
 // Import the TextSplitter class for handling text splitting.
-'use client';
+"use client";
 
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { RefObject, useEffect, useState } from 'react';
-import SplitType from 'split-type';
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { RefObject, useEffect, useState } from "react";
+import SplitType from "split-type";
 
-const lettersAndSymbols = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  '!',
-  '@',
-  '#',
-  '$',
-  '%',
-  '^',
-  '&',
-  '*',
-  '-',
-  '_',
-  '+',
-  '=',
-  ';',
-  ':',
-  '<',
-  '>',
-  ',',
-];
-const randomColors = ['#22a3a9', '#4ca922', '#a99222', '#1d2619']; // Example colors
+const lettersAndSymbols = ["t", "r", "i", "u", "m", "p", "h", "-", ">"];
+// const lettersAndSymbols = [
+//   'a',
+//   'b',
+//   'c',
+//   'd',
+//   'e',
+//   'f',
+//   'g',
+//   'h',
+//   'i',
+//   'j',
+//   'k',
+//   'l',
+//   'm',
+//   'n',
+//   'o',
+//   'p',
+//   'q',
+//   'r',
+//   's',
+//   't',
+//   'u',
+//   'v',
+//   'w',
+//   'x',
+//   'y',
+//   'z',
+//   '!',
+//   '@',
+//   '#',
+//   '$',
+//   '%',
+//   '^',
+//   '&',
+//   '*',
+//   '-',
+//   '_',
+//   '+',
+//   '=',
+//   ';',
+//   ':',
+//   '<',
+//   '>',
+//   ',',
+// ];
+const randomColors = ["#22a3a9", "#4ca922", "#a99222", "#1d2619"]; // Example colors
 
 export function useTextAnimator(
   textElement: RefObject<HTMLSpanElement | null>
@@ -66,7 +67,7 @@ export function useTextAnimator(
     }
 
     const splitter = new SplitType(textElement.current, {
-      split: 'chars,words',
+      split: "chars,words",
     });
 
     const chars = splitter.chars?.map((char) => char.innerHTML);
@@ -106,11 +107,11 @@ export function useTextAnimator(
         char,
         {
           opacity: 0,
-          transformOrigin: '50% 0%',
+          transformOrigin: "50% 0%",
         },
         {
           duration: 0.03,
-          ease: 'none',
+          ease: "none",
           onComplete: () => {
             gsap.set(char, {
               innerHTML: initialHTML,
@@ -175,12 +176,12 @@ export function useTextAnimator(
     gsap.fromTo(
       textElement.current,
       {
-        '--anim': 0,
+        "--anim": 0,
       },
       {
         duration: 1,
-        ease: 'expo',
-        '--anim': 1,
+        ease: "expo",
+        "--anim": 1,
         width: `${width}px`,
       }
     );
@@ -192,8 +193,8 @@ export function useTextAnimator(
     gsap.killTweensOf(textElement.current); // Ensure no ongoing animations
     gsap.to(textElement.current, {
       duration: 0.6,
-      ease: 'power4',
-      '--anim': 0,
+      ease: "power4",
+      "--anim": 0,
       width: `${width}px`,
     });
   });
