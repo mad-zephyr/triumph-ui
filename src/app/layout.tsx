@@ -1,4 +1,4 @@
-import "@/assets/styles/globals.sass";
+import '@/assets/styles/globals.sass';
 
 export default function RootLayout({
   children,

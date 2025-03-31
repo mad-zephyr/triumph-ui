@@ -1,6 +1,6 @@
-import { FC, HTMLAttributes, PropsWithChildren, Ref } from "react";
+import { FC, HTMLAttributes, PropsWithChildren, Ref } from 'react';
 
-type TTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+type TTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 
 export type TagMap = {
   h1: HTMLHeadingElement;
@@ -18,6 +18,8 @@ export type TText = {
   ref?: Ref<TagMap[TTag]> | null;
 } & HTMLAttributes<TagMap[TTag]>;
 
+import classes from './styles.module.sass';
+
 export const Text: FC<PropsWithChildren<TText>> = ({
   tag,
   children,
@@ -25,51 +27,51 @@ export const Text: FC<PropsWithChildren<TText>> = ({
   ...props
 }) => {
   switch (tag) {
-    case "h1": {
+    case 'h1': {
       return (
-        <h1 ref={ref as Ref<TagMap["h1"]>} {...props}>
+        <h1 ref={ref as Ref<TagMap['h1']>} {...props} className={classes[tag]}>
           {children}
         </h1>
       );
     }
-    case "h2": {
+    case 'h2': {
       return (
-        <h1 ref={ref as Ref<TagMap["h2"]>} {...props}>
+        <h2 ref={ref as Ref<TagMap['h2']>} {...props} className={classes[tag]}>
           {children}
-        </h1>
+        </h2>
       );
     }
-    case "h3": {
+    case 'h3': {
       return (
-        <h1 ref={ref as Ref<TagMap["h3"]>} {...props}>
+        <h3 ref={ref as Ref<TagMap['h3']>} {...props} className={classes[tag]}>
           {children}
-        </h1>
+        </h3>
       );
     }
-    case "h4": {
+    case 'h4': {
       return (
-        <h1 ref={ref as Ref<TagMap["h4"]>} {...props}>
+        <h4 ref={ref as Ref<TagMap['h4']>} {...props} className={classes[tag]}>
           {children}
-        </h1>
+        </h4>
       );
     }
-    case "h5": {
+    case 'h5': {
       return (
-        <h1 ref={ref as Ref<TagMap["h5"]>} {...props}>
+        <h5 ref={ref as Ref<TagMap['h5']>} {...props} className={classes[tag]}>
           {children}
-        </h1>
+        </h5>
       );
     }
-    case "h6": {
+    case 'h6': {
       return (
-        <h1 ref={ref as Ref<TagMap["h6"]>} {...props}>
+        <h5 ref={ref as Ref<TagMap['h6']>} {...props} className={classes[tag]}>
           {children}
-        </h1>
+        </h5>
       );
     }
-    case "span": {
+    case 'span': {
       return (
-        <span ref={ref} {...props}>
+        <span ref={ref} {...props} className={classes[tag]}>
           {children}
         </span>
       );
@@ -77,7 +79,7 @@ export const Text: FC<PropsWithChildren<TText>> = ({
 
     default: {
       return (
-        <p ref={ref as Ref<TagMap["p"]>} {...props}>
+        <p ref={ref as Ref<TagMap['p']>} {...props} className={classes[tag]}>
           {children}
         </p>
       );

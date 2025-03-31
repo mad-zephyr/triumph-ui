@@ -1,4 +1,5 @@
-import { Link } from "@/i18n/navigation";
+import { Link } from '@/i18n/navigation';
+import { HeroSection } from '@/common';
 
 type THomePage = {
   params: Promise<{
@@ -11,9 +12,7 @@ export default async function HomePage({ params }: THomePage) {
 
   return (
     <main>
-      <h1>{"title"}</h1>
-      <Link href="/about">{"about"}</Link>
-      <div>Lang: {locale}</div>
+      <HeroSection />
     </main>
   );
 }
