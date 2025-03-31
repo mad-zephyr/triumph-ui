@@ -5,26 +5,26 @@ import Logo from "@/assets/images/logo.svg";
 import { Button } from "@/common";
 import { HeaderLink } from "./components";
 
-export const Header = () => {
-  const links = [
-    {
-      title: "Motocycles",
-      path: "/motocycles",
-    },
-    {
-      title: "Accessorii",
-      path: "/accessorii",
-    },
-    {
-      title: "Imbracominte",
-      path: "/Imbracominte",
-    },
-    {
-      title: "Inside triumph",
-      path: "/about-triumph",
-    },
-  ];
+const links = [
+  {
+    title: "Motocycles",
+    path: "/motocycles",
+  },
+  {
+    title: "Accessorii",
+    path: "/accessorii",
+  },
+  {
+    title: "Imbracominte",
+    path: "/Imbracominte",
+  },
+  {
+    title: "Inside triumph",
+    path: "/about-triumph",
+  },
+];
 
+export const Header = () => {
   return (
     <header className={classes.header}>
       <Link href={"/"} className={classes.logo}>
