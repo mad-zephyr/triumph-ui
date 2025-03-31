@@ -2,8 +2,8 @@ type Nullable<T> = T | null;
 
 type Func = () => unknown;
 type Deps = Array<unknown>;
-type TCache = Record<"deps", Nullable<Deps>> &
-  Record<"value", Nullable<unknown>>;
+type TCache = Record<'deps', Nullable<Deps>> &
+  Record<'value', Nullable<unknown>>;
 
 export function createMemo() {
   const cache: TCache = {

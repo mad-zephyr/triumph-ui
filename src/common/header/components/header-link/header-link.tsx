@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useTextAnimator } from "@/hooks";
-import { Link } from "@/i18n/navigation";
-import { AnchorHTMLAttributes, FC, useEffect, useRef } from "react";
+import { useTextAnimator } from '@/hooks';
+import { Link } from '@/i18n/navigation';
+import { AnchorHTMLAttributes, FC, useEffect, useRef } from 'react';
 
-import classes from "./styles.module.sass";
+import classes from './styles.module.sass';
 
 type THeaderLink = {} & AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -17,12 +17,12 @@ export const HeaderLink: FC<THeaderLink> = ({ href, title }) => {
   useEffect(() => {
     const currentTarget = target.current;
 
-    currentTarget?.addEventListener("mouseenter", animateIn);
-    currentTarget?.addEventListener("mouseleave", animateOut);
+    currentTarget?.addEventListener('mouseenter', animateIn);
+    currentTarget?.addEventListener('mouseleave', animateOut);
 
     return () => {
-      currentTarget?.removeEventListener("mouseenter", animateIn);
-      currentTarget?.removeEventListener("mouseleave", animateOut);
+      currentTarget?.removeEventListener('mouseenter', animateIn);
+      currentTarget?.removeEventListener('mouseleave', animateOut);
     };
   }, [animateIn, animateOut, target]);
 
