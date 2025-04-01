@@ -1,0 +1,24 @@
+.section
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 3.75rem
+    background: var(--color-gray)
+
+.btn
+    display: flex
+    align-items: center
+    column-gap: 0.625rem
+    justify-content: center
+    width: auto
+    height: calc( 100% - 12px )
+    background: none
+    border: none
+    cursor: pointer
+    font-weight: 500
+    font-size: var(--font-size-md)
+    line-height: 1.3
+    color: var(--color-white)
+
+    &:not(:last-of-type)
+        border-right: 1px solid rgba(255, 255, 255, 0.3)
