@@ -1,4 +1,3 @@
-import { Link } from '@/i18n/navigation';
 import { HeroSection } from '@/common';
 
 type THomePage = {
@@ -9,6 +8,8 @@ type THomePage = {
 
 export default async function HomePage({ params }: THomePage) {
   const { locale } = await params;
+
+  console.log(locale);
 
   return (
     <main>
