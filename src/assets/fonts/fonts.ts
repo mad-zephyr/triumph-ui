@@ -19,17 +19,17 @@ export const mainFont = localFont({
     },
     {
       path: './DIN2014-Demi.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: './DIN2014-Bold.woff2',
       weight: '600',
       style: 'normal',
     },
     {
-      path: './DIN2014-ExtraBold.woff2',
+      path: './DIN2014-Bold.woff2',
       weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './DIN2014-ExtraBold.woff2',
+      weight: '800',
       style: 'normal',
     },
   ],
