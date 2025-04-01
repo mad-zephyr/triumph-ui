@@ -5,7 +5,7 @@ import 'react-splide-ts/css';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Splide, SplideTrack } from 'react-splide-ts';
 
 import ArrorLeft from '@/assets/icons/arrow-left.svg';
@@ -17,46 +17,105 @@ import imageThree from '@/assets/images/scrambler-400-x-my24-family-multi-conten
 import { Slide } from './components';
 import classes from './styles.module.sass';
 
+const DURATION = 8;
+
+const sliderData = [
+  {
+    image: imageOne.src,
+    title: 'LATEST OFFERS',
+    navTitle: 'LATEST OFFERS',
+    subtitle:
+      'Take advantage of incredible Triumph Cash or Low Rate Financing offers during The Rev Up & Ride Sales Event',
+  },
+  {
+    image: imageTwo.src,
+    title: '2 NEW ENDURO RANGE',
+    navTitle: 'hello 2',
+    subtitle: 'The tougher the ride, the better it gets.',
+  },
+  {
+    image: imageThree.src,
+    title: '3 THE NEW SPEED TRIPLE 1200 RS',
+    navTitle: 'NEW SPEED TWIN 1200 & ALL-NEW SPEED TWIN 1200 RS',
+    subtitle:
+      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
+  },
+  {
+    image: imageThree.src,
+    title: '4 THE NEW SPEED TRIPLE 1200 RS',
+    navTitle: 'hello 4',
+    subtitle:
+      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
+  },
+  {
+    image: imageThree.src,
+    title: '5 THE NEW SPEED TRIPLE 1200 RS',
+    navTitle: 'hello 5',
+    subtitle:
+      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
+  },
+];
+
 export const HeroSlider: FC = () => {
   const progressRef = useRef<HTMLDivElement>(null);
-  const [slideIndex, setSlideIndex] = useState<number>();
 
-  useEffect(() => {
-    setSlideIndex(0);
-  }, []);
+  const [navIndexes, setNavIndxes] = useState({
+    prev: sliderData.length - 1,
+    next: 1,
+  });
 
-  const handleMoved = () => {
-    setSlideIndex((prev) => (prev || 0) + 1);
+  const { contextSafe } = useGSAP({ dependencies: [progressRef] });
+  const handleRun = contextSafe(() => {
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      progressRef.current,
+      { y: '-50%', height: 0 },
+      {
+        height: '100dvh',
+        duration: DURATION,
+        ease: 'power1.inOut',
+      }
+    );
+  });
+
+  const getPrevAndNext = (active: number) => {
+    if (active === 0) {
+      setNavIndxes({ prev: sliderData.length - 1, next: 1 });
+    } else if (active === sliderData.length - 1) {
+      setNavIndxes({ prev: active - 1, next: 0 });
+    } else {
+      setNavIndxes({ prev: active - 1, next: active + 1 });
+    }
   };
-
-  useGSAP(() => {
-    gsap.set(progressRef.current, { y: '-50%', height: 0 });
-
-    gsap.to(progressRef.current, {
-      height: '100dvh',
-      duration: 5,
-      ease: 'power1.inOut',
-    });
-  }, [progressRef, slideIndex]);
 
   return (
     <div className={classes.section}>
       <Splide
         className={classes.slider}
         hasTrack={false}
-        onMoved={handleMoved}
+        onMove={(splide) => {
+          getPrevAndNext(splide.index);
+          handleRun();
+        }}
+        onReady={handleRun}
         options={{
           type: 'loop',
           autoplay: true,
-          interval: 5000,
+          interval: DURATION * 1000,
           pauseOnHover: false,
           pagination: false,
         }}
       >
         <SplideTrack>
-          <Slide image={imageOne.src} />
-          <Slide image={imageTwo.src} />
-          <Slide image={imageThree.src} />
+          {sliderData.map((slide, i) => (
+            <Slide
+              key={i}
+              image={slide.image}
+              title={slide.title}
+              subtitle={slide.subtitle}
+            />
+          ))}
         </SplideTrack>
 
         <div className={clsx('splide__arrows', classes.controls)}>
@@ -67,9 +126,10 @@ export const HeroSlider: FC = () => {
               classes.controlBase
             )}
           >
-            <span>
-              <ArrorRight />
-            </span>
+            <div className={classes.navText}>
+              <span>{sliderData[navIndexes.next]?.navTitle}</span>
+            </div>
+            <ArrorRight />
           </button>
           <div className={classes.progress} ref={progressRef} />
           <button
@@ -79,9 +139,10 @@ export const HeroSlider: FC = () => {
               classes.controlBase
             )}
           >
-            <span>
-              <ArrorLeft />
-            </span>
+            <div className={classes.navText}>
+              <span>{sliderData[navIndexes.prev]?.navTitle}</span>
+            </div>
+            <ArrorLeft />
           </button>
         </div>
       </Splide>
