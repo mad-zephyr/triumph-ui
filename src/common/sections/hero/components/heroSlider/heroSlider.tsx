@@ -36,7 +36,7 @@ const sliderData = [
   {
     image: imageThree.src,
     title: '3 THE NEW SPEED TRIPLE 1200 RS',
-    navTitle: 'NEW SPEED TWIN 1200 & ALL-NEW SPEED TWIN 1200 RS',
+    navTitle: 'New speed twin 1200 & all-new speed twin 1200 RS',
     subtitle:
       'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
   },
@@ -58,17 +58,20 @@ const sliderData = [
 
 export const HeroSlider: FC = () => {
   const progressRef = useRef<HTMLDivElement>(null);
+  const splideInstanceRef = useRef<Splide | null>(null);
+  const [timeLine] = useState<gsap.core.Timeline>(gsap.timeline());
 
   const [navIndexes, setNavIndxes] = useState({
     prev: sliderData.length - 1,
     next: 1,
   });
 
-  const { contextSafe } = useGSAP({ dependencies: [progressRef] });
-  const handleRun = contextSafe(() => {
-    const tl = gsap.timeline();
+  const { contextSafe } = useGSAP({
+    dependencies: [progressRef, timeLine],
+  });
 
-    tl.fromTo(
+  const handleRun = contextSafe(() => {
+    timeLine?.addLabel('progress').fromTo(
       progressRef.current,
       { y: '-50%', height: 0 },
       {
@@ -77,6 +80,16 @@ export const HeroSlider: FC = () => {
         ease: 'power1.inOut',
       }
     );
+  });
+
+  const handlePause = contextSafe(() => {
+    timeLine.pause();
+    splideInstanceRef.current?.splide?.Components.Autoplay?.pause();
+  });
+
+  const handlePlay = contextSafe(() => {
+    timeLine.play();
+    splideInstanceRef.current?.splide?.Components.Autoplay?.play();
   });
 
   const getPrevAndNext = (active: number) => {
@@ -92,18 +105,23 @@ export const HeroSlider: FC = () => {
   return (
     <div className={classes.section}>
       <Splide
+        ref={splideInstanceRef}
         className={classes.slider}
         hasTrack={false}
         onMove={(splide) => {
           getPrevAndNext(splide.index);
           handleRun();
         }}
-        onReady={handleRun}
+        onReady={(splide) => {
+          splide.Components.Autoplay.play();
+          handleRun();
+        }}
         options={{
           type: 'loop',
-          autoplay: true,
+          autoplay: 'pause',
           interval: DURATION * 1000,
-          pauseOnHover: false,
+          pauseOnHover: false, // must be false
+          pauseOnFocus: false, // must be false
           pagination: false,
         }}
       >
@@ -118,10 +136,15 @@ export const HeroSlider: FC = () => {
           ))}
         </SplideTrack>
 
-        <div className={clsx('splide__arrows', classes.controls)}>
+        <div
+          className={clsx('splide__arrows', classes.controls)}
+          onMouseEnter={handlePause}
+          onMouseLeave={handlePlay}
+        >
           <button
             className={clsx(
               'splide__arrow--next',
+              'splide__toggle__pause',
               classes.right,
               classes.controlBase
             )}
@@ -135,6 +158,7 @@ export const HeroSlider: FC = () => {
           <button
             className={clsx(
               ' splide__arrow--prev',
+              'splide__toggle__play',
               classes.left,
               classes.controlBase
             )}
