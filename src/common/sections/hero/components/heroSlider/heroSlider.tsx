@@ -29,8 +29,8 @@ const sliderData = [
   },
   {
     image: imageTwo.src,
-    title: '2 NEW ENDURO RANGE',
-    navTitle: 'hello 2',
+    title: 'NEW ENDURO RANGE',
+    navTitle: 'The tougher the ride, the better it get',
     subtitle: 'The tougher the ride, the better it gets.',
   },
   {
