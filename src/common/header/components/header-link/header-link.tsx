@@ -1,8 +1,9 @@
 'use client';
 
+import { AnchorHTMLAttributes, FC, useEffect, useRef } from 'react';
+
 import { useTextAnimator } from '@/hooks';
 import { Link } from '@/i18n/navigation';
-import { AnchorHTMLAttributes, FC, useEffect, useRef } from 'react';
 
 import classes from './styles.module.sass';
 
