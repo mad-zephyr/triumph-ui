@@ -1,6 +1,6 @@
 .slide
     display: grid
-    grid-template-columns: auto 11.25rem
+    grid-template-columns: calc(100% - 11.25rem) 11.25rem
     grid-template-rows: 100%
 
 .content
@@ -16,14 +16,19 @@
     h2
         color: var(--color-gray-light)
         margin-bottom: 1rem
+        font-weight: 600
 
     p
         color: var(--color-gray-light)
         font-size: var(--font-size-xl)
+        font-weight: 400
+
+.controls
+    margin-top: 2rem
 
 .image
     position: relative
-    grid-row: 1 / span 2
+    grid-row: 1 / span 1
     grid-column: 1 / span 2
     height: 100dvh
     width: 100%
