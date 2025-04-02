@@ -1,4 +1,9 @@
-import { CategoryAccordion, HeroSection, QuickNavigation } from '@/common';
+import {
+  BigThumbnailSection,
+  CategoryAccordion,
+  HeroSection,
+  QuickNavigation,
+} from '@/common';
 
 type THomePage = {
   params: Promise<{
@@ -16,6 +21,7 @@ export default async function HomePage({ params }: THomePage) {
       <HeroSection />
       <QuickNavigation />
       <CategoryAccordion />
+      <BigThumbnailSection />
     </main>
   );
 }
