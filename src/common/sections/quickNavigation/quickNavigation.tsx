@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import Configurator from '@/assets/icons/configurator.svg';
 import Rocket from '@/assets/icons/rocket.svg';
 import Settings from '@/assets/icons/settings.svg';
@@ -10,7 +12,7 @@ const links = [
   { title: 'SERVICE', icon: <Settings /> },
 ];
 
-export const QuickNavigation = () => {
+export const QuickNavigation: FC = () => {
   return (
     <section className={classes.section}>
       {links.map((item, i) => (

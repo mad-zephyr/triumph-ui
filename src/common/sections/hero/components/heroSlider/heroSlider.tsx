@@ -123,6 +123,7 @@ export const HeroSlider: FC = () => {
           pauseOnHover: false, // must be false
           pauseOnFocus: false, // must be false
           pagination: false,
+          easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
         }}
       >
         <SplideTrack>

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FC } from 'react';
 
 import imageShowroom from '@/assets/images/showroom-service.webp';
 import imageService from '@/assets/images/showroom-service-2.webp';
@@ -38,7 +39,7 @@ const data = {
   ],
 };
 
-export const BigThumbnailSection = () => {
+export const BigThumbnailSection: FC = () => {
   return (
     <SectionWrapper title={<Text tag={'h3'}>{data.title}</Text>}>
       <div className={classes.wrapper}>

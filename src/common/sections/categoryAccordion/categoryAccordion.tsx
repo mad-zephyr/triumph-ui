@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FC } from 'react';
 
 import img3 from '@/assets/images/hero.webp';
 import img1 from '@/assets/images/my26-enduro-fam-01-v2-1920x1080.avif';
@@ -8,7 +9,7 @@ import { Button, Text } from '@/common/ui';
 import { SectionWrapper } from '../components';
 import classes from './styles.module.sass';
 
-export const CategoryAccordion = () => {
+export const CategoryAccordion: FC = () => {
   const items = [
     { title: 'Adventure', image: img1.src },
     { title: 'Modern Classics', image: img2.src },
