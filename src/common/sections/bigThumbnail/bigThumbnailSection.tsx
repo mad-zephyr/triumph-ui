@@ -41,7 +41,13 @@ const data = {
 
 export const BigThumbnailSection: FC = () => {
   return (
-    <SectionWrapper title={<Text tag={'h3'}>{data.title}</Text>}>
+    <SectionWrapper
+      title={
+        <Text tag={'h3'} align="center">
+          {data.title}
+        </Text>
+      }
+    >
       <div className={classes.wrapper}>
         {data.card.map((card, i) => (
           <div key={i} className={classes.card}>

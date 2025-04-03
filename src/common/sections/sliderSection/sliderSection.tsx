@@ -15,7 +15,13 @@ export const SliderSection: FC<PropsWithChildren<TSliderSection>> = ({
   options,
 }) => {
   return (
-    <SectionWrapper title={<Text tag="h3">PROMOȚII</Text>}>
+    <SectionWrapper
+      title={
+        <Text tag="h3" align={'center'}>
+          PROMOȚII
+        </Text>
+      }
+    >
       <Slider options={options}>{children}</Slider>
     </SectionWrapper>
   );
