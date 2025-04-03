@@ -21,8 +21,8 @@ const data = {
 export const BigPromoSection: FC = () => {
   return (
     <section className={classes.section}>
-      <div className={classes.content}>
-        <div className={classes.wrapper}>
+      <div className={classes.wrapper}>
+        <div className={classes.content}>
           <Text tag="h2">{data.title}</Text>
           <Text tag="p">{data.subtitle}</Text>
 

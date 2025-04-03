@@ -5,6 +5,7 @@ import {
   BigThumbnailSection,
   CategoryAccordion,
   HeroSection,
+  NewsListSection,
   QuickNavigation,
   SliderSection,
 } from '@/common';
@@ -61,6 +62,7 @@ export default async function HomePage({ params }: THomePage) {
         ))}
       </SliderSection>
       <BigPromoSection />
+      <NewsListSection />
     </main>
   );
 }

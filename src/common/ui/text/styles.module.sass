@@ -2,7 +2,7 @@
 @mixin fontFamily
     font-family: var(--font-din)
     font-weight: 600
-    color: var(--color-text)
+    color: var(--color-text-black)
 
 .h1
     @include fontFamily
@@ -17,6 +17,7 @@
 .h3
     @include fontFamily
     line-height: 0.8
+    font-size: var(--font-size-xxl)
 
 .h4
     @include fontFamily
@@ -24,6 +25,7 @@
 
 .h5
     @include fontFamily
+    font-size: var(--font-size-md)
 
 .h6
     @include fontFamily
@@ -33,6 +35,12 @@
 
 .p
     @include fontFamily
-    font-size: var(--font-size-lg)
+    font-size: var(--font-size-regular)
     font-weight: 500
     line-height: 1.2
+
+.center
+    text-align: center
+
+.right
+    text-align: right

@@ -19,7 +19,13 @@ export const CategoryAccordion: FC = () => {
     { title: 'Sport', image: img2.src },
   ];
   return (
-    <SectionWrapper title={<Text tag="h3">Categorii de motociclete</Text>}>
+    <SectionWrapper
+      title={
+        <Text tag="h3" align="center">
+          Categorii de motociclete
+        </Text>
+      }
+    >
       <div className={classes.wrapper}>
         {items.map((item, i) => (
           <div key={i} className={classes.item}>
