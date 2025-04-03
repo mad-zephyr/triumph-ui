@@ -5,3 +5,4 @@ export { HeroSection } from './hero/hero';
 export { NewsListSection } from './newsList/newsListSection';
 export { QuickNavigation } from './quickNavigation/quickNavigation';
 export { SliderSection } from './sliderSection/sliderSection';
+export { TitleSection } from './titleSection/titleSection';

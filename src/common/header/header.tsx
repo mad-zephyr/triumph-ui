@@ -26,20 +26,23 @@ const links = [
 
 export const Header = () => {
   return (
-    <header className={classes.header}>
-      <Link href={'/'} className={classes.logo}>
-        <Logo />
-      </Link>
+    <>
+      <header className={classes.header}>
+        <Link href={'/'} className={classes.logo}>
+          <Logo />
+        </Link>
 
-      <nav className={classes.nav}>
-        {links.map((link, i) => (
-          <HeaderLink key={i} title={link.title} href={link.path} />
-        ))}
-      </nav>
+        <nav className={classes.nav}>
+          {links.map((link, i) => (
+            <HeaderLink key={i} title={link.title} href={link.path} />
+          ))}
+        </nav>
 
-      <div className={classes.right}>
-        <Button title="Contact" />
-      </div>
-    </header>
+        <div className={classes.right}>
+          <Button title="Contact" />
+        </div>
+      </header>
+      <div className={classes.margin} />
+    </>
   );
 };

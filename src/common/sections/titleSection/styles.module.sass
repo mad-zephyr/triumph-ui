@@ -1,0 +1,53 @@
+.section
+    position: relative
+    display: grid
+    grid-template-columns: repeat(12, 1fr)
+    grid-template-rows: 6.75rem auto 6.75rem
+    column-gap: 1.25rem
+    justify-content: flex-start
+    align-items: center
+    min-height: 20rem
+
+.title
+    position: relative
+    z-index: 2
+    color: var(--color-text-white)
+
+.content
+    grid-column: 2 / span 10
+    grid-row: 2 / span 1
+    position: relative
+    z-index: 1
+    display: flex
+    flex-direction: column
+    row-gap: 1rem
+
+    *
+        color: var(--color-text-white)
+
+    h1
+        text-transform: uppercase
+
+    p
+        font-size: var(--font-size-lg)
+        max-width: 80%
+
+.cover
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 0
+
+    &::after
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background: rgba(0, 0, 0, 0.6)
+
+    img
+        object-fit: cover

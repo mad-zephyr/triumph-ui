@@ -17,7 +17,7 @@ import imageThree from '@/assets/images/scrambler-400-x-my24-family-multi-conten
 import { Slide } from './components';
 import classes from './styles.module.sass';
 
-const DURATION = 8;
+const DURATION = 6;
 
 const sliderData = [
   {
@@ -75,7 +75,7 @@ export const HeroSlider: FC = () => {
       progressRef.current,
       { y: '-50%', height: 0 },
       {
-        height: '100dvh',
+        height: '100%',
         duration: DURATION,
         ease: 'power1.inOut',
       }
@@ -156,6 +156,8 @@ export const HeroSlider: FC = () => {
             <ArrorRight />
           </button>
           <div className={classes.progress} ref={progressRef} />
+          {/* <div className={classes.progress_wrapper}>
+          </div> */}
           <button
             className={clsx(
               ' splide__arrow--prev',
