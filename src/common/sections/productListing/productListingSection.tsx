@@ -71,12 +71,12 @@ const items = [
 
 export const ProductListingSection: FC = () => {
   return (
-    <section className={classes.main} data-lenis-prevent>
+    <section className={classes.main}>
       <Navigator />
 
-      <div className={classes.content_wrapper} data-lenis-prevent>
+      <div className={classes.content_wrapper}>
         <div id={'Adventure'} className={classes.snapPoint} />
-        <div className={classes.content} data-lenis-prevent>
+        <div className={classes.content}>
           <div className={classes.title}>
             <Text tag="h4">ADVENTURE</Text>
           </div>
@@ -96,7 +96,7 @@ export const ProductListingSection: FC = () => {
         </div>
 
         <div id={'Roadsters'} className={classes.snapPoint} />
-        <div className={classes.content} data-lenis-prevent>
+        <div className={classes.content}>
           <div className={classes.title}>
             <Text tag="h4">ROADSTERS</Text>
           </div>
