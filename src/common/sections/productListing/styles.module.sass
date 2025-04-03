@@ -3,13 +3,15 @@
     display: flex
     padding: 0 1.875rem 2.25rem 1.875rem
     gap: 1rem
-    margin-bottom: 8rem
     height: min-content
-    margin-top: 5rem
+    margin: 5rem 0 8rem
     overscroll-behavior: auto contain
 
 .snapPoint
     height: 4rem
+
+    &:first-of-type
+        height: 0rem
 
 .content_wrapper
     display: flex
@@ -23,7 +25,7 @@
 
 .title
     position: sticky
-    top: 10rem
+    top: 6rem
     text-transform: uppercase
     border-bottom: 1px solid var(--color-red)
     margin-bottom: 3.5rem
