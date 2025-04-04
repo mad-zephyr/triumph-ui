@@ -23,7 +23,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={mainFont.variable}>
-      <body style={{ overscrollBehaviorY: 'contain' }}>
+      <body>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

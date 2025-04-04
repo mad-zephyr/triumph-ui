@@ -4,8 +4,7 @@
     padding: 0 1.875rem 2.25rem 1.875rem
     gap: 1rem
     height: min-content
-    margin: 5rem 0 8rem
-    overscroll-behavior: auto contain
+    margin-bottom: 8rem
 
 .snapPoint
     height: 4rem
@@ -25,11 +24,17 @@
 
 .title
     position: sticky
-    top: 6rem
+    display: flex
+    align-items: flex-end
+    top: 3.6rem
+    height: 5rem
     text-transform: uppercase
     border-bottom: 1px solid var(--color-red)
     margin-bottom: 3.5rem
+    padding: 12px
     z-index: 2
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(3px)
 
 .grid
     display: grid

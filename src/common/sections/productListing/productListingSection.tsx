@@ -81,17 +81,15 @@ export const ProductListingSection: FC = () => {
             <Text tag="h4">ADVENTURE</Text>
           </div>
           <div className={classes.grid}>
-            {items.map((item, i) => {
-              return (
-                <div key={i} className={classes.product}>
-                  <ProductCardPreview
-                    image={item.image.src}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                  />
-                </div>
-              );
-            })}
+            {items.map((item, i) => (
+              <div key={i} className={classes.product}>
+                <ProductCardPreview
+                  image={item.image.src}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
