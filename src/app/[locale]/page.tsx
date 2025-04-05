@@ -57,7 +57,9 @@ export default async function HomePage({ params }: THomePage) {
       <QuickNavigation />
       <CategoryAccordion />
       <BigThumbnailSection />
-      <SliderSection>
+      <SliderSection
+        options={{ type: 'loop', autoplay: true, perPage: 2, pagination: true }}
+      >
         {products.map((card, i) => (
           <ProductCardBig key={i} data={card} />
         ))}

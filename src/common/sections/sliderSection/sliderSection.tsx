@@ -1,13 +1,12 @@
 import { FC, PropsWithChildren } from 'react';
-import { Options } from 'react-splide-ts';
 
 import { Text } from '@/common/ui';
-import { Slider } from '@/common/ui/slider/slider';
+import { Slider, TSlider } from '@/common/ui/slider/slider';
 
 import { SectionWrapper } from '../components';
 
 type TSliderSection = {
-  options?: Options;
+  options?: TSlider['options'];
 };
 
 export const SliderSection: FC<PropsWithChildren<TSliderSection>> = ({
@@ -22,7 +21,9 @@ export const SliderSection: FC<PropsWithChildren<TSliderSection>> = ({
         </Text>
       }
     >
-      <Slider options={options}>{children}</Slider>
+      <Slider pagination={true} options={options}>
+        {children}
+      </Slider>
     </SectionWrapper>
   );
 };

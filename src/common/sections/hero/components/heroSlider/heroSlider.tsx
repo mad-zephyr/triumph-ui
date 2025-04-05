@@ -145,7 +145,6 @@ export const HeroSlider: FC = () => {
           <button
             className={clsx(
               'splide__arrow--next',
-              'splide__toggle__pause',
               classes.right,
               classes.controlBase
             )}
@@ -156,12 +155,9 @@ export const HeroSlider: FC = () => {
             <ArrorRight />
           </button>
           <div className={classes.progress} ref={progressRef} />
-          {/* <div className={classes.progress_wrapper}>
-          </div> */}
           <button
             className={clsx(
               ' splide__arrow--prev',
-              'splide__toggle__play',
               classes.left,
               classes.controlBase
             )}
