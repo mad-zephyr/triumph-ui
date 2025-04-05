@@ -27,7 +27,7 @@ export const CategoryAccordion: FC = () => {
       }
     >
       <div className={classes.wrapper}>
-        {items.map((item, i) => (
+        {items.reverse().map((item, i) => (
           <div key={i} className={classes.item}>
             <div className={classes.content}>
               <Text tag={'h4'}>{item.title}</Text>
@@ -40,22 +40,5 @@ export const CategoryAccordion: FC = () => {
         ))}
       </div>
     </SectionWrapper>
-    // <section className={classes.section}>
-    //   <Text tag="h3">Categorii de motociclete</Text>
-
-    //   <div className={classes.wrapper}>
-    //     {items.map((item, i) => (
-    //       <div key={i} className={classes.item}>
-    //         <div className={classes.content}>
-    //           <Text tag={'h4'}>{item.title}</Text>
-    //           <Button variant="outline" title={'DESCOPERA'} />
-    //         </div>
-    //         <figure className={classes.cover}>
-    //           <Image src={item.image} fill alt={item.title} />
-    //         </figure>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </section>
   );
 };

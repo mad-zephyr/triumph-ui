@@ -2,7 +2,7 @@ import Logo from '@/assets/images/logo.svg';
 import { Button } from '@/common';
 import { Link } from '@/i18n/navigation';
 
-import { HeaderLink } from './components';
+import { HeaderLink, LocaleLink } from './components';
 import classes from './header.module.sass';
 
 const links = [
@@ -39,6 +39,7 @@ export const Header = () => {
         </nav>
 
         <div className={classes.right}>
+          <LocaleLink />
           <Button title="Contact" />
         </div>
       </header>
