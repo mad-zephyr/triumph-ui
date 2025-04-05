@@ -1,3 +1,5 @@
+.title
+    text-align: center
 
 .wrapper
     display: flex
@@ -54,3 +56,17 @@
 
     img
         object-fit: cover
+
+@media screen and (max-width: 40rem)
+    .title
+        text-align: left
+
+    .wrapper
+        flex-direction: column
+
+    .card
+        aspect-ratio: 373 / 294
+        height: auto
+
+        &:not(:only-child)
+            width: 100%

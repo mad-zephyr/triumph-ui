@@ -5,8 +5,9 @@ import 'react-splide-ts/css';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Splide, SplideTrack } from 'react-splide-ts';
+import { useMediaQuery } from 'usehooks-ts';
 
 import ArrorLeft from '@/assets/icons/arrow-left.svg';
 import ArrorRight from '@/assets/icons/arrow-left.svg';
@@ -58,6 +59,8 @@ const sliderData = [
 
 export const HeroSlider: FC = () => {
   const progressRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery('(max-width: 40rem)');
+
   const splideInstanceRef = useRef<Splide | null>(null);
   const [timeLine] = useState<gsap.core.Timeline>(gsap.timeline());
 
@@ -67,19 +70,36 @@ export const HeroSlider: FC = () => {
   });
 
   const { contextSafe } = useGSAP({
-    dependencies: [progressRef, timeLine],
+    dependencies: [timeLine, isMobile],
+    scope: progressRef,
   });
 
+  useEffect(() => {
+    timeLine.restart();
+  }, [isMobile, timeLine]);
+
   const handleRun = contextSafe(() => {
-    timeLine?.addLabel('progress').fromTo(
-      progressRef.current,
-      { y: '-50%', height: 0 },
-      {
-        height: '100%',
-        duration: DURATION,
-        ease: 'power1.inOut',
-      }
-    );
+    const progresBarSettings: [gsap.TweenVars, gsap.TweenVars] = isMobile
+      ? [
+          { y: '0%', x: '50%', width: '0dvw', height: '0.375rem' },
+          {
+            width: '100dvw',
+            duration: DURATION,
+            ease: 'power1.inOut',
+          },
+        ]
+      : [
+          { y: '-50%', height: 0 },
+          {
+            height: '100%',
+            duration: DURATION,
+            ease: 'power1.inOut',
+          },
+        ];
+
+    timeLine
+      ?.addLabel('progress')
+      .fromTo(progressRef.current, ...progresBarSettings);
   });
 
   const handlePause = contextSafe(() => {
@@ -155,6 +175,7 @@ export const HeroSlider: FC = () => {
             <ArrorRight />
           </button>
           <div className={classes.progress} ref={progressRef} />
+
           <button
             className={clsx(
               ' splide__arrow--prev',

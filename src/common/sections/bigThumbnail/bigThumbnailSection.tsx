@@ -43,7 +43,7 @@ export const BigThumbnailSection: FC = () => {
   return (
     <SectionWrapper
       title={
-        <Text tag={'h3'} align="center">
+        <Text tag={'h3'} className={classes.title}>
           {data.title}
         </Text>
       }

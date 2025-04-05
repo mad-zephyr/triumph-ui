@@ -5,8 +5,8 @@
     grid-template-columns: auto
     grid-template-rows: 16.5rem auto
     row-gap: 1rem
-    padding: 0 0.75rem
     width: auto
+    align-content: flex-start
 
 .cover
     position: relative
@@ -22,6 +22,10 @@
     display: -webkit-box
     overflow-y: hidden
     text-overflow: ellipsis
-    -webkit-line-clamp: 3
-    line-clamp: 3
+    -webkit-line-clamp: 4
+    line-clamp: 4
     -webkit-box-orient: vertical
+
+@media screen and (max-width: 40rem)
+    .card
+        padding: 0rem

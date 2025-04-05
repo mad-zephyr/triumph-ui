@@ -21,7 +21,7 @@ export const CategoryAccordion: FC = () => {
   return (
     <SectionWrapper
       title={
-        <Text tag="h3" align="center">
+        <Text tag="h3" className={classes.title}>
           Categorii de motociclete
         </Text>
       }

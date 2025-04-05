@@ -14,7 +14,7 @@ type TSlide = {
 
 export const Slide: FC<TSlide> = ({ image, subtitle, title }) => {
   return (
-    <SplideSlide style={{ width: 'calc(100% - 5.625rem)' }}>
+    <SplideSlide className={classes.wrapper}>
       <div className={classes.slide}>
         <div className={classes.content}>
           <Text tag="h2" className={classes.title}>

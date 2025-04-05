@@ -8,7 +8,6 @@ import {
   NewsListSection,
   QuickNavigation,
   SliderSection,
-  TitleSection,
 } from '@/common';
 import { ProductCardBig } from '@/common/components';
 
@@ -66,7 +65,6 @@ export default async function HomePage({ params }: THomePage) {
       </SliderSection>
       <BigPromoSection />
       <NewsListSection />
-      <TitleSection />
     </main>
   );
 }

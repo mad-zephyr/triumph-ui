@@ -32,9 +32,11 @@
     align-items: flex-end
     justify-content: center
     cursor: pointer
+    position: relative
     border: none
     width: 5.625rem
     padding: 1rem 0
+    left: 0
     transition: background 0.2s ease-in-out
 
     &:hover
@@ -52,8 +54,6 @@
         z-index: 2
 
 .right
-    position: relative
-    left: 0
     background: rgba(0,0,0, 0)
 
     &::after
@@ -67,8 +67,6 @@
         background: linear-gradient(270deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%)
 
 .left
-    left: 0
-    position: relative
     background: rgba(0,0,0, .2)
 
 .navText
@@ -91,3 +89,36 @@
         font-size: 1.4rem
         text-align: right
         white-space: nowrap
+
+@media screen and (max-width: 40rem)
+
+    .slider
+
+        & li
+            width: 100dvw!important
+
+    .controls
+        width: 100dvw
+        justify-content: flex-end
+        height: 5.625rem
+        align-items: center
+
+    .navText
+        display: none
+
+    .progress
+        position: absolute
+        right: 50%
+        top: 0
+        width: 0.375rem
+        height: 100px
+
+    .left
+        display: none
+
+    .right
+        display: grid
+        place-items: center
+        right: 0
+        left: unset
+        height: 5.625rem

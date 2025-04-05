@@ -3,9 +3,7 @@
     grid-template-columns: repeat(12, 1fr)
     padding: 0rem 2rem
     width: 100%
-
-.wrapper
-    grid-column: 2 / span 10
+    margin-bottom: 3.5rem
 
 .header
     display: flex
@@ -47,3 +45,10 @@
 
     &:nth-of-type(2n)
         background: var(--color-white)
+
+@media screen and (max-width: 40rem)
+    .main
+        padding: 0rem 1rem
+
+    .wrapper
+        grid-column: 1 / span 10

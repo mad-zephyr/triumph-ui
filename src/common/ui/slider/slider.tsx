@@ -3,8 +3,9 @@
 import 'react-splide-ts/css';
 
 import cn from 'clsx';
-import { FC, ReactElement, ReactNode, useRef } from 'react';
+import { FC, ReactElement, ReactNode, useMemo, useRef } from 'react';
 import { Options, Splide, SplideTrack } from 'react-splide-ts';
+import { useMediaQuery } from 'usehooks-ts';
 
 import classes from './styles.module.sass';
 
@@ -37,7 +38,14 @@ export const Slider: FC<WithChildren<TSlider>> = ({
 }) => {
   const splideRef = useRef<Splide>(null);
 
-  console.log(navigation);
+  const isMobile = useMediaQuery('(max-width: 40rem)');
+
+  const updetedOptions = useMemo(() => {
+    return {
+      ...options,
+      perPage: isMobile ? 1 : options.perPage || 1,
+    };
+  }, [options, isMobile]);
 
   return (
     <Splide
@@ -46,7 +54,7 @@ export const Slider: FC<WithChildren<TSlider>> = ({
       hasTrack={false}
       options={
         {
-          ...options,
+          ...updetedOptions,
           pagination: pagination ? classes['splide__pagination--custom'] : '',
         } as unknown as Options
       }

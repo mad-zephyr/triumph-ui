@@ -38,6 +38,7 @@ export const ProductDetailsSection: FC = () => {
       </button>
     </div>
   );
+
   return (
     <section className={classes.main}>
       <div className={classes.intro}>

@@ -24,6 +24,7 @@
     p
         margin-bottom: 3.75rem
         color: var(--color-text-white)
+        text-transform: uppercase
 
     button
         width: fit-content
@@ -50,3 +51,23 @@
         object-fit: cover
         top: 0
         left: 0
+
+@media screen and (max-width: 40rem)
+    .section
+        height: 100vh
+        grid-template-rows: 1fr 1fr
+
+    .wrapper
+        padding: 0 1rem
+        grid-row: 2 / span 1
+
+    .content
+        padding-bottom: 5rem
+
+        p
+            font-size: 1.25rem
+            margin-bottom: 1.25rem
+
+    .cover
+        grid-column: 1 / span 1
+        grid-row: 1 / span 2

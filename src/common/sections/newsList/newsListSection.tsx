@@ -67,7 +67,7 @@ export const NewsListSection: FC = () => {
   return (
     <SectionWrapper
       title={
-        <Text tag="h4" align="center">
+        <Text tag="h4" className={classes.title}>
           {data.title}
         </Text>
       }

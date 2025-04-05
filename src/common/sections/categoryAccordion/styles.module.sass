@@ -1,3 +1,7 @@
+
+.title
+    text-align: center
+
 .wrapper
     display: flex
     width: 100%
@@ -35,6 +39,7 @@
             flex: 1
 
         .content
+
             button
                 display: flex
 
@@ -70,3 +75,38 @@
         object-fit: cover
 
 @media screen and (max-width: 40rem)
+    .title
+        text-align: left
+
+    .wrapper
+        flex-direction: column-reverse
+        height: auto
+        row-gap: 1rem
+
+    .item
+        aspect-ratio: 1
+        width: 100%
+        height: auto
+        flex: 1 0 auto
+        aspect-ratio: 400 / 300
+        padding: 2.25rem 1.5rem
+
+        &::after
+            background: rgba(0, 0, 0, 0.4)
+
+        &:last-of-type
+            flex: 1 0 auto
+
+        &:hover
+            flex: 1 0 auto
+
+            & ~ .item
+                flex: 1 0 auto
+
+            .content
+                button
+                    display: flex
+
+    .content
+        button
+            display: flex

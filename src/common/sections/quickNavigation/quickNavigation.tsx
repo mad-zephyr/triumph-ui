@@ -16,11 +16,7 @@ export const QuickNavigation: FC = () => {
   return (
     <section className={classes.section}>
       {links.map((item, i) => (
-        <button
-          key={i}
-          className={classes.btn}
-          style={{ width: `${100 / links.length}%` }}
-        >
+        <button key={i} className={classes.btn}>
           {item.icon}
           {item.title}
         </button>

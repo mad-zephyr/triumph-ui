@@ -4,6 +4,7 @@ import { Text } from '@/common/ui';
 import { Slider, TSlider } from '@/common/ui/slider/slider';
 
 import { SectionWrapper } from '../components';
+import classes from './styles.module.sass';
 
 type TSliderSection = {
   options?: TSlider['options'];
@@ -16,7 +17,7 @@ export const SliderSection: FC<PropsWithChildren<TSliderSection>> = ({
   return (
     <SectionWrapper
       title={
-        <Text tag="h3" align={'center'}>
+        <Text tag="h3" className={classes.title}>
           PROMOȚII
         </Text>
       }
