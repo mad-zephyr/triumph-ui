@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Triumph Moldova',
       images: [
         {
-          url: '/og-image.jpg',
+          url: 'https://triumph.nx.md/og-image.jpg',
           height: 600,
           width: 1200,
         },
@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Triumph Motocycle Club',
       description:
         'Join Triumph Motocycle Club for a premium fitness experience.',
-      images: '/og-image.jpg',
+      images: 'https://triumph.nx.md/og-image.jpg',
     },
   };
 }
