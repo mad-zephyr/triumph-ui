@@ -9,6 +9,8 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+import OGimage from '@/assets/images/og-image.jpg';
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Triumph Motocycle Moldova',
@@ -16,7 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
       'Join Triumph Motocycle Club for a premium fitness experience.',
     openGraph: {
       title: 'Triumph Moldova',
-      images: [{ url: '/public/og-image.jpg', height: 630, width: 1200 }],
+      images: [
+        { url: OGimage.src, height: OGimage.height, width: OGimage.width },
+      ],
       type: 'website',
     },
     twitter: {
@@ -24,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Triumph Motocycle Club',
       description:
         'Join Triumph Motocycle Club for a premium fitness experience.',
-      images: '/public/og-image.jpg',
+      images: OGimage.src,
     },
   };
 }
