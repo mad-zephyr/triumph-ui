@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 
 import img1 from '@/assets/images/moto/image-1.webp';
@@ -10,6 +12,7 @@ import { ProductCardPreview } from '@/common/components';
 import { Text } from '@/common/ui';
 
 import { Navigator } from './components';
+import { ListSection } from './components/listSection/listSection';
 import classes from './styles.module.sass';
 
 const items = [
@@ -75,23 +78,7 @@ export const ProductListingSection: FC = () => {
       <Navigator />
 
       <div className={classes.content_wrapper}>
-        <div id={'Adventure'} className={classes.snapPoint} />
-        <div className={classes.content}>
-          <div className={classes.title}>
-            <Text tag="h4">ADVENTURE</Text>
-          </div>
-          <div className={classes.grid}>
-            {items.map((item, i) => (
-              <div key={i} className={classes.product}>
-                <ProductCardPreview
-                  image={item.image.src}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <ListSection />
 
         <div id={'Roadsters'} className={classes.snapPoint} />
         <div className={classes.content}>

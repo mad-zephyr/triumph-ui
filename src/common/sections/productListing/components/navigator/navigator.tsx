@@ -38,9 +38,6 @@ export const Navigator: FC<TNavigator> = () => {
       `#${id.replaceAll(' ', '-')}`
     );
     if (element) {
-      //   lenis.scrollTo(element, { offset: 100 });
-      console.log(element);
-
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
