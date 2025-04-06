@@ -22,8 +22,7 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Triumph Motocycle Moldova',
-    description:
-      'Join Triumph Motocycle Club for a premium fitness experience.',
+    description: 'Join Triumph Motocycle Club for a premium moto experience.',
     openGraph: {
       title: 'Triumph Moldova',
       images: [
@@ -38,8 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: 'Triumph Motocycle Club',
-      description:
-        'Join Triumph Motocycle Club for a premium fitness experience.',
+      description: 'Join Triumph Motocycle Club for a premium moto experience.',
       images: 'https://triumph.nx.md/og-image.jpg',
     },
   };
