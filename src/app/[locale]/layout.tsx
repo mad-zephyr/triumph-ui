@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 
@@ -9,7 +9,15 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-import OGimage from '@/assets/images/og-image.jpg';
+export const viewport: Viewport = {
+  themeColor: '#a1021a',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  colorScheme: 'only light',
+  viewportFit: 'cover',
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -19,7 +27,11 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: 'Triumph Moldova',
       images: [
-        { url: OGimage.src, height: OGimage.height, width: OGimage.width },
+        {
+          url: '/public/og-image.jpg',
+          height: 600,
+          width: 1200,
+        },
       ],
       type: 'website',
     },
@@ -28,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Triumph Motocycle Club',
       description:
         'Join Triumph Motocycle Club for a premium fitness experience.',
-      images: OGimage.src,
+      images: '/public/og-image.jpg',
     },
   };
 }
