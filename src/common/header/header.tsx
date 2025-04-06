@@ -43,6 +43,7 @@ export const Header = () => {
           <Button title="Contact" />
         </div>
       </header>
+      <div className={classes.margin} />
     </>
   );
 };
