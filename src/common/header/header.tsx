@@ -2,7 +2,7 @@ import Logo from '@/assets/images/logo.svg';
 import { Button } from '@/common';
 import { Link } from '@/i18n/navigation';
 
-import { HeaderLink, LocaleLink } from './components';
+import { HeaderLink, LocaleLink, MenuOpener } from './components';
 import classes from './header.module.sass';
 
 const links = [
@@ -41,6 +41,7 @@ export const Header = () => {
         <div className={classes.right}>
           <LocaleLink />
           <Button title="Contact" />
+          <MenuOpener />
         </div>
       </header>
       <div className={classes.margin} />
