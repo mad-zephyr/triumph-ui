@@ -5,16 +5,18 @@ import {
   registerApolloClient,
 } from '@apollo/experimental-nextjs-app-support';
 
-const getBaseUrl = () => {
-  return 'http://localhost:1337/graphql';
-};
+import { getBasePath } from '../helpers';
+
+// const getBaseUrl = () => {
+//   return 'http://localhost:1337/graphql';
+// };
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
       // this needs to be an absolute url, as relative urls cannot be used in SSR
-      uri: getBaseUrl(),
+      uri: getBasePath(),
       fetchOptions: {
         next: { revalidate: 30 },
       },
