@@ -16,7 +16,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     cache: new InMemoryCache(),
     link: new HttpLink({
       // this needs to be an absolute url, as relative urls cannot be used in SSR
-      uri: getBasePath(),
+      uri: `${getBasePath()}/graphql`,
       fetchOptions: {
         next: { revalidate: 30 },
       },

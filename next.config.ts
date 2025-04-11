@@ -4,13 +4,11 @@ import path from 'path';
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  config: {
-    turbopack: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
@@ -21,6 +19,13 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '1337',
         pathname: '/uploads/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'triumphmotorcycles.nx.md',
+        port: '',
+        pathname: '/strapi/**',
         search: '',
       },
       {
