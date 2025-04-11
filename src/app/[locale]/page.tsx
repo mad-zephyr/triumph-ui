@@ -19,6 +19,7 @@ export default async function HomePage({ params }: THomePage) {
   const { data } = await getClient().query<{ pages: GPage[] }>({
     query: GetPage,
     variables: { locale },
+    fetchPolicy: 'no-cache',
   });
 
   const { sections } = getPageModel(data.pages[0]);
