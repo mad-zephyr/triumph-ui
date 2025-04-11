@@ -2,12 +2,14 @@ import Image from 'next/image';
 import { FC } from 'react';
 
 import { Text } from '@/common/ui';
+import { TUploadFile } from '@/models/uiUploadfile';
 
 import classes from './styles.module.sass';
-type TProductCardPreview = {
+
+export type TProductCardPreview = {
   title: string;
-  image: string;
   subtitle: string;
+  image?: TUploadFile;
 };
 
 export const ProductCardPreview: FC<TProductCardPreview> = ({
@@ -18,7 +20,7 @@ export const ProductCardPreview: FC<TProductCardPreview> = ({
   return (
     <div className={classes.card}>
       <figure className={classes.cover}>
-        <Image src={image} alt={title} fill />
+        {image && <Image src={image.url} alt={title} fill />}
       </figure>
       <div className={classes.content}>
         <Text tag={'h5'}>{title}</Text>

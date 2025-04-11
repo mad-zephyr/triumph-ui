@@ -20,13 +20,7 @@ export const CardPreview: FC<TCardPreview> = ({
   return (
     <div className={classes.card} {...props}>
       <figure className={classes.cover}>
-        <Image
-          src={img.src}
-          alt={img.alt}
-          fill
-          quality={50}
-          objectFit={'cover'}
-        />
+        <Image src={img.src} alt={img.alt} fill />
       </figure>
       <Text tag="h5" className={classes.title}>
         {title}

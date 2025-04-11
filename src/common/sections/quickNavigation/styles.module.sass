@@ -11,7 +11,7 @@
     column-gap: 0.625rem
     justify-content: center
     width: auto
-    height: calc( 100% - 12px )
+    height: 100%
     background: none
     border: none
     cursor: pointer
@@ -22,12 +22,20 @@
     color: var(--color-white)
     flex-grow: 1
 
-    &:first-of-type
-        opacity: 0.5
-        cursor: not-allowed
-
     &:not(:last-of-type)
         border-right: 1px solid rgba(255, 255, 255, 0.3)
+
+    a
+        display: flex
+        align-items: center
+        flex-grow: 1
+        height: calc( 100% - 12px )
+        justify-content: center
+        column-gap: 0.625rem
+
+.inActive
+    opacity: 0.5
+    cursor: not-allowed
 
 @media screen and (max-width: 40rem)
     .section

@@ -1,7 +1,6 @@
 
 .main
     overflow: visible
-    height: min-content
 
 .snapPoint
     height: 4rem
@@ -11,7 +10,6 @@
 
 .content
     width: 100%
-    overflow: visible
 
 .title
     position: sticky
@@ -30,7 +28,7 @@
 
 .grid
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(20rem, clamp(20rem, 330px, 32rem)))
     grid-template-rows: auto
     column-gap: 1rem
     row-gap: 2.25rem
@@ -38,6 +36,8 @@
 
 .product
     display: flex
-    min-width: 33.33%
     min-height: 300px
     width: 100%
+
+    &:only-child
+        width: 20.625rem

@@ -1,62 +1,60 @@
 import Image from 'next/image';
 import { FC } from 'react';
 
-import imageShowroom from '@/assets/images/showroom-service.webp';
-import imageService from '@/assets/images/showroom-service-2.webp';
 import { Button, Text } from '@/common/ui';
+import { TButton } from '@/common/ui/button/button';
+import { TUploadFile } from '@/models/uiUploadfile';
 
 import { SectionWrapper } from '../components';
 import classes from './styles.module.sass';
 
-const data = {
-  title: 'LOCAȚII & Service TRIUMPH',
-
-  card: [
-    {
-      title: 'SERVICE',
-      image: imageService.src,
-      url: {
-        title: 'VIZITEAZĂ',
-        url: '/',
-      },
-    },
-    {
-      title: 'SHOW ROOM',
-      image: imageShowroom.src,
-      url: {
-        title: 'VIZITEAZĂ',
-        url: '/',
-      },
-    },
-    {
-      title: 'SERVICE',
-      image: imageService.src,
-      url: {
-        title: 'VIZITEAZĂ',
-        url: '/',
-      },
-    },
-  ],
+export type TBigThumbnailCard = {
+  title?: string;
+  image?: TUploadFile;
+  button: TButton;
 };
 
-export const BigThumbnailSection: FC = () => {
+type TBigThumbnailSection = {
+  title: string;
+  cards: TBigThumbnailCard[];
+};
+
+export const BigThumbnailSection: FC<TBigThumbnailSection> = ({
+  title,
+  cards,
+}) => {
   return (
     <SectionWrapper
       title={
-        <Text tag={'h3'} className={classes.title}>
-          {data.title}
-        </Text>
+        <>
+          {title && (
+            <Text tag={'h3'} className={classes.title}>
+              {title}
+            </Text>
+          )}
+        </>
       }
     >
       <div className={classes.wrapper}>
-        {data.card.map((card, i) => (
+        {cards.map((card, i) => (
           <div key={i} className={classes.card}>
             <div className={classes.content}>
               <Text tag={'h4'}>{card.title}</Text>
-              <Button variant="prime" title={card.url.title} />
+              {card.button && (
+                <Button
+                  variant={card.button.variant}
+                  title={card.button.title}
+                />
+              )}
             </div>
             <figure className={classes.cover}>
-              <Image src={card.image} fill alt={card.title} />
+              {card.image && (
+                <Image
+                  src={card.image.url}
+                  fill
+                  alt={card.image.alternativeText || ''}
+                />
+              )}
             </figure>
           </div>
         ))}

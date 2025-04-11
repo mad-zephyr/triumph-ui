@@ -3,36 +3,40 @@
 import { FC, useCallback } from 'react';
 
 import { Text } from '@/common/ui';
-const data = {
-  title: 'Categorii de motociclete',
-  list: [
-    {
-      title: 'Adventure',
-    },
-    {
-      title: 'Roadsters',
-    },
-    {
-      title: 'Modern Classics',
-    },
-    {
-      title: 'Rocket 3',
-    },
-    {
-      title: 'Special edition',
-    },
-    {
-      title: 'Sport',
-    },
-  ],
-};
+// const data = {
+//   title: 'Categorii de motociclete',
+//   list: [
+//     {
+//       title: 'Adventure',
+//     },
+//     {
+//       title: 'Roadsters',
+//     },
+//     {
+//       title: 'Modern Classics',
+//     },
+//     {
+//       title: 'Rocket 3',
+//     },
+//     {
+//       title: 'Special edition',
+//     },
+//     {
+//       title: 'Sport',
+//     },
+//   ],
+// };
 
-type TNavigator = {
-  scrolled?: number | null;
+export type TNavigator = {
+  title?: string;
+  navItems: {
+    title: string;
+    navId: string;
+  }[];
 };
 
 import classes from './styles.module.sass';
-export const Navigator: FC<TNavigator> = () => {
+export const Navigator: FC<TNavigator> = ({ navItems }) => {
   const hendleScroll = useCallback((id: string) => {
     const element = window.document.querySelector(
       `#${id.replaceAll(' ', '-')}`
@@ -47,13 +51,12 @@ export const Navigator: FC<TNavigator> = () => {
 
   return (
     <aside className={classes.wrapper}>
-      {/* <div style={{ height: '2.25rem' }} /> */}
       <Text tag="p" className={classes.title}>
-        {data.title}
+        {'Categorii de motociclete'}
       </Text>
       <div className={classes.content}>
-        {data.list.map((item, i) => (
-          <div key={i} role="button" onClick={() => hendleScroll(item.title)}>
+        {navItems.map((item, i) => (
+          <div key={i} role="button" onClick={() => hendleScroll(item.navId)}>
             <Text tag={'p'}>{item.title}</Text>
           </div>
         ))}

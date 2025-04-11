@@ -2,5 +2,14 @@
   "HomePage": {
     "title": "Salut",
     "about": "despre"
+  },
+  "technical": {
+    "404title": "404 PAGE",
+    "404decription": "Ne pare rău, dar nu putem găsi ceea ce cauți. Poate că întoarcerea la pagina principală va ajuta?",
+    "goMain": "Go to main page",
+    "error": {
+      "title": "Hopa, ceva a mers prost",
+      "subtitle": "Îmi pare rău pentru neplăcerile create! Lucrăm deja la remedierea problemei și o vom rezolva cât mai curând posibil. Încercați să reîmprospătați pagina sau reveniți mai târziu."
+    }
   }
 }

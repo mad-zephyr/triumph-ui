@@ -13,6 +13,7 @@ export const MenuOpener: FC = () => {
   };
   return (
     <button
+      name={'side menu opener'}
       onClick={handleClick}
       className={clsx(classes.main, { [classes.open]: isOpen })}
     >

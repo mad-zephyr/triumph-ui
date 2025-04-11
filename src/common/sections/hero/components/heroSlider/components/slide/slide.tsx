@@ -3,16 +3,19 @@ import { FC } from 'react';
 import { SplideSlide } from 'react-splide-ts';
 
 import { Button, Text } from '@/common/ui';
+import { TButton } from '@/common/ui/button/button';
+import { TUploadFile } from '@/models/uiUploadfile';
 
 import classes from './styles.module.sass';
 
-type TSlide = {
-  image: string;
-  title: string;
-  subtitle: string;
+export type TSlide = {
+  title?: string;
+  subtitle?: string;
+  buttons: TButton[];
+  image?: TUploadFile;
 };
 
-export const Slide: FC<TSlide> = ({ image, subtitle, title }) => {
+export const Slide: FC<TSlide> = ({ image, subtitle, title, buttons }) => {
   return (
     <SplideSlide className={classes.wrapper}>
       <div className={classes.slide}>
@@ -24,11 +27,18 @@ export const Slide: FC<TSlide> = ({ image, subtitle, title }) => {
             {subtitle}
           </Text>
           <div className={classes.controls}>
-            <Button title="Discover more" />
+            {buttons.map((btn, i) => (
+              <Button key={i} title={btn.title} variant={btn.variant} />
+            ))}
           </div>
         </div>
         <figure className={classes.image}>
-          <Image src={image} alt="" fill />
+          <Image
+            src={image?.url || ''}
+            alt={image?.alternativeText || ''}
+            fill
+            placeholder={image?.placeholder}
+          />
         </figure>
       </div>
     </SplideSlide>

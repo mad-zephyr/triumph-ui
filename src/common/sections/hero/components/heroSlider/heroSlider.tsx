@@ -14,6 +14,7 @@ import imageTwo from '@/assets/images/my26-enduro-fam-01-v2-1920x1080.avif';
 import imageThree from '@/assets/images/scrambler-400-x-my24-family-multi-content-block-2-1920x1080.avif';
 
 import { Slide } from './components';
+import { TSlide } from './components/slide/slide';
 import classes from './styles.module.sass';
 
 const DURATION = 6;
@@ -55,7 +56,11 @@ const sliderData = [
   },
 ];
 
-export const HeroSlider: FC = () => {
+export type THeroSlider = {
+  slides: TSlide[];
+};
+
+export const HeroSlider: FC<THeroSlider> = ({ slides }) => {
   const progressRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery('(max-width: 40rem)');
 
@@ -156,13 +161,8 @@ export const HeroSlider: FC = () => {
         }}
       >
         <SplideTrack>
-          {sliderData.map((slide, i) => (
-            <Slide
-              key={i}
-              image={slide.image}
-              title={slide.title}
-              subtitle={slide.subtitle}
-            />
+          {slides.map((slide, i) => (
+            <Slide key={i} {...slide} />
           ))}
         </SplideTrack>
 

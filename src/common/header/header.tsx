@@ -1,40 +1,46 @@
+import { FC } from 'react';
+
 import Logo from '@/assets/images/logo.svg';
 import { Button } from '@/common';
 import { Link } from '@/i18n/navigation';
 
-import { HeaderLink, LocaleLink, MenuOpener } from './components';
+import { HeaderLink, LocaleLink, MenuOpener, THeaderLink } from './components';
 import classes from './header.module.sass';
 
-const links = [
-  {
-    title: 'Motocycles',
-    path: '/motocycles',
-  },
-  {
-    title: 'Accessorii',
-    path: '/accessorii',
-  },
-  {
-    title: 'Imbracominte',
-    path: '/Imbracominte',
-  },
-  {
-    title: 'Inside triumph',
-    path: '/about-triumph',
-  },
-];
+// const links = [
+//   {
+//     title: 'Motocycles',
+//     path: '/motocycles',
+//   },
+//   {
+//     title: 'Accessorii',
+//     path: '/accessorii',
+//   },
+//   {
+//     title: 'Imbracominte',
+//     path: '/Imbracominte',
+//   },
+//   {
+//     title: 'Inside triumph',
+//     path: '/about-triumph',
+//   },
+// ];
 
-export const Header = () => {
+type THeader = {
+  links: THeaderLink[];
+};
+
+export const Header: FC<THeader> = ({ links }) => {
   return (
     <>
       <header className={classes.header}>
-        <Link href={'/'} className={classes.logo}>
+        <Link href={'/'} className={classes.logo} aria-label="Twitter">
           <Logo />
         </Link>
 
         <nav className={classes.nav}>
           {links.map((link, i) => (
-            <HeaderLink key={i} title={link.title} href={link.path} />
+            <HeaderLink key={i} title={link.title} href={link.href} />
           ))}
         </nav>
 

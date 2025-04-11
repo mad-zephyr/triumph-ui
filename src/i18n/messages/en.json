@@ -2,5 +2,14 @@
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "technical": {
+    "404title": "404 PAGE",
+    "404decription": "Sorry, but we can't find what you're looking for. Perhaps returning to the main page will help?",
+    "goMain": "Go to main page",
+    "error": {
+      "title": "Oops, something went wrong",
+      "subtitle": "Sorry for the inconvenience! We are already working on fixing the issue and will resolve it as soon as possible. Please try refreshing the page or come back later."
+    }
   }
 }

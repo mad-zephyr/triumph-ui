@@ -1,15 +1,11 @@
 import moto1 from '@/assets/images/moto-1.webp';
 import moto3 from '@/assets/images/moto-2.webp';
-import {
-  BigPromoSection,
-  BigThumbnailSection,
-  CategoryAccordion,
-  HeroSection,
-  NewsListSection,
-  QuickNavigation,
-  SliderSection,
-} from '@/common';
+import { BigPromoSection, NewsListSection, SliderSection } from '@/common';
 import { ProductCardBig } from '@/common/components';
+import { getClient } from '@/libs/apollo/apolloClient';
+import { GetPage } from '@/libs/graphql/page.query';
+import { getPageModel } from '@/models';
+import { GPage } from '@/types/types';
 
 type THomePage = {
   params: Promise<{
@@ -20,7 +16,12 @@ type THomePage = {
 export default async function HomePage({ params }: THomePage) {
   const { locale } = await params;
 
-  console.log(locale);
+  const { data } = await getClient().query<{ pages: GPage[] }>({
+    query: GetPage,
+    variables: { locale },
+  });
+
+  const { sections } = getPageModel(data.pages[0]);
 
   const products = [
     {
@@ -52,10 +53,7 @@ export default async function HomePage({ params }: THomePage) {
 
   return (
     <main>
-      <HeroSection />
-      <QuickNavigation />
-      <CategoryAccordion />
-      <BigThumbnailSection />
+      {sections}
       <SliderSection
         options={{ type: 'loop', autoplay: true, perPage: 2, pagination: true }}
       >

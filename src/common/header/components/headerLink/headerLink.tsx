@@ -7,7 +7,7 @@ import { Link } from '@/i18n/navigation';
 
 import classes from './styles.module.sass';
 
-type THeaderLink = {} & AnchorHTMLAttributes<HTMLAnchorElement>;
+export type THeaderLink = {} & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const HeaderLink: FC<THeaderLink> = ({ href, title }) => {
   const target = useRef<HTMLAnchorElement>(null);

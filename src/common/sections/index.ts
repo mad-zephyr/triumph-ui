@@ -1,4 +1,4 @@
-export { BigPromoSection } from './bigPromo/BigPromoSection';
+export { BigPromoSection } from './bigPromo/bigPromoSection';
 export { BigThumbnailSection } from './bigThumbnail/bigThumbnailSection';
 export { CategoryAccordion } from './categoryAccordion/categoryAccordion';
 export { HeroSection } from './hero/hero';
