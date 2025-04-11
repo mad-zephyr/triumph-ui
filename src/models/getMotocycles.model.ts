@@ -58,8 +58,6 @@ export const getMotocycles = (moto: GMotorcycle[]): TProductListingSection => {
     return acc;
   }, []);
 
-  console.log('motoSections', sectionsMoto);
-
   return {
     nav: [...sectionsNav.values()],
     sections: motoSections,

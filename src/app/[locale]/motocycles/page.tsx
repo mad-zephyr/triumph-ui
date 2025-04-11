@@ -20,8 +20,6 @@ export default async function Page({ params }: TPage) {
 
   const listing = getMotocycles(data.motorcycles);
 
-  console.log('MOTO: ', data);
-
   return (
     <main>
       <ProductListingSection nav={listing.nav} sections={listing.sections} />

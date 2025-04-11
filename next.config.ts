@@ -4,8 +4,8 @@ import path from 'path';
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  experimental: {
-    turbo: {
+  config: {
+    turbopack: {
       rules: {
         '*.svg': {
           loaders: ['@svgr/webpack'],
