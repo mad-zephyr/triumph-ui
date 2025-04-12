@@ -1,49 +1,50 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { FC } from 'react';
-
-import moto1 from '@/assets/images/prod/moto-side-1.webp';
-import moto2 from '@/assets/images/prod/moto-side-2.webp';
-import moto3 from '@/assets/images/prod/moto-side-3.webp';
-import moto4 from '@/assets/images/prod/moto-side-4.webp';
-import moto5 from '@/assets/images/prod/moto-side-5.webp';
-
-const images = [moto1, moto2, moto3, moto4, moto5];
-
 import clsx from 'clsx';
 import Image from 'next/image';
+import { FC, useMemo } from 'react';
 import { SplideSlide } from 'react-splide-ts';
 
 import ArrowRight from '@/assets/icons/arrow_thin_right.svg';
 import { Text } from '@/common/ui';
 import { Slider } from '@/common/ui/slider/slider';
+import { TUploadFile } from '@/models/uiUploadfile';
 
-import mockContent from './mockText';
 import classes from './styles.module.sass';
 
-const data = {
-  title: 'TIGER SPORT 660 MY2024',
-  subtitle: 'PROMOȚIE 8.790 EURO',
+export type TProductDetailsSection = {
+  title: string;
+  subtitile: string;
+  description: any;
+  images: TUploadFile[];
 };
 
-export const ProductDetailsSection: FC = () => {
-  const navigation = (
-    <div className={clsx('splide__arrows', classes.controls)}>
-      <button className={clsx('splide__arrow--prev', classes.nav)}>
-        <ArrowRight />
-      </button>
-      <button className={clsx('splide__arrow--next', classes.nav)}>
-        <ArrowRight />
-      </button>
-    </div>
-  );
+export const ProductDetailsSection: FC<TProductDetailsSection> = ({
+  title,
+  subtitile,
+  description,
+  images,
+}) => {
+  const navigation = useMemo(() => {
+    return (
+      <div className={clsx('splide__arrows', classes.controls)}>
+        <button className={clsx('splide__arrow--prev', classes.nav)}>
+          <ArrowRight />
+        </button>
+        <button className={clsx('splide__arrow--next', classes.nav)}>
+          <ArrowRight />
+        </button>
+      </div>
+    );
+  }, []);
 
   return (
     <section className={classes.main}>
       <div className={classes.intro}>
-        <Text tag="h4">{data.title}</Text>
-        <Text tag="p">{data.subtitle}</Text>
+        <Text tag="h4">{title}</Text>
+        <Text tag="p">{subtitile}</Text>
       </div>
       <div className={classes.slider}>
         <Slider
@@ -59,7 +60,11 @@ export const ProductDetailsSection: FC = () => {
           {images.map((item, i) => (
             <SplideSlide key={i}>
               <div className={classes.image}>
-                <Image src={item} alt={''} fill />
+                <Image
+                  src={item.url}
+                  alt={item.alternativeText || title}
+                  fill
+                />
               </div>
             </SplideSlide>
           ))}
@@ -67,7 +72,7 @@ export const ProductDetailsSection: FC = () => {
       </div>
 
       <article className={classes.article}>
-        <BlocksRenderer content={mockContent} />
+        <BlocksRenderer content={description} />
       </article>
     </section>
   );

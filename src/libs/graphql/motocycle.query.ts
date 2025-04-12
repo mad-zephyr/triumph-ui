@@ -3,11 +3,11 @@ import { gql } from '@apollo/client';
 import { ProductDetails } from './fragments';
 import { UploadFileFragment } from './fragments/uploadFile.fragment';
 
-export const GetMotocycles = gql`
+export const GetMotocycle = gql`
   ${UploadFileFragment}
   ${ProductDetails}
-  query GET_MOTOCYCLES($locale: I18NLocaleCode!) {
-    motorcycles(locale: $locale) {
+  query GET_MOTOCYCLE($locale: I18NLocaleCode!, $sku: String) {
+    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {
       __typename
       category
       model_name
@@ -39,6 +39,11 @@ export const GetMotocycles = gql`
       }
       details {
         ...ProductDetails
+      }
+      banner {
+        active
+        title
+        description
       }
     }
   }

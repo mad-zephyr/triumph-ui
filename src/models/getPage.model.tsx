@@ -5,14 +5,17 @@ import {
   CategoryAccordion,
   HeroSection,
   QuickNavigation,
+  SliderSection,
 } from '@/common';
+import { ProductCardBig } from '@/common/components';
 import { TBigThumbnailCard } from '@/common/sections/bigThumbnail/bigThumbnailSection';
 import { TTCategoryAccordionCard } from '@/common/sections/categoryAccordion/categoryAccordion';
 import { TSlide } from '@/common/sections/hero/components/heroSlider/components/slide/slide';
-import { GPage } from '@/types/types';
+import { TProduct } from '@/types/entity';
+import { GMotorcycle, GPage, Maybe } from '@/types/types';
 
 import { getButtons } from './getButtons.model';
-import { uiUploadfile } from './uiUploadfile';
+import { TUploadFile, uiUploadfile } from './uiUploadfile';
 
 export const getPageModel = (page: GPage) => {
   const sections: ReactNode[] = [];
@@ -90,9 +93,75 @@ export const getPageModel = (page: GPage) => {
         />
       );
     }
+
+    if (section?.__typename === 'ComponentSectionPromoSliderSection') {
+      if (section.motocycles) {
+        const motos = MaybeMotocycleToMotocycle(section.motocycles);
+
+        sections.push(
+          <SliderSection
+            key={i}
+            options={{
+              type: 'loop',
+              autoplay: true,
+              perPage: 2,
+              pagination: true,
+            }}
+          >
+            {motos.map((card, k) => (
+              <ProductCardBig
+                key={k}
+                data={{
+                  image: card.listing_image,
+                  title: card.model_name,
+                  cta: {
+                    title: section.cta_title || 'more',
+                    url: `/${card.productType?.toLowerCase()}/${card.sku}`,
+                  },
+                }}
+              />
+            ))}
+          </SliderSection>
+        );
+      }
+    }
   });
 
   return {
     sections,
   };
 };
+
+function MaybeMotocycleToMotocycle(motos: Maybe<GMotorcycle>[]) {
+  if (!motos) {
+    return [];
+  }
+
+  return (
+    motos
+      .filter<GMotorcycle>((moto): moto is GMotorcycle => !!moto)
+      .map<TProduct>((moto) => {
+        return {
+          sku: moto.sku,
+          productType: moto.__typename,
+          model_name: moto.model_name,
+          status: moto.availability_status,
+          base_price: moto.base_price,
+          year: moto.year,
+          main_image: uiUploadfile(moto.main_image),
+          listing_image: uiUploadfile(moto.listing_image),
+          gallery: moto.gallery
+            .map((image) => uiUploadfile(image))
+            .filter((image): image is TUploadFile => !image),
+          description: moto.description,
+          ...(moto.bikes_type && { bikes_type: moto.bikes_type }),
+          ...(moto?.details && { details: moto.details }),
+          ...(moto.availability_status && {
+            availability_status: moto.availability_status,
+          }),
+          ...(moto.description && { description: moto.description }),
+          ...(moto.banner && moto.banner.active && { banner: moto.banner }),
+        };
+      }) || []
+  );
+}

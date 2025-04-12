@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -209,6 +208,80 @@ export type GComponentComponentAccordionCardFiltersInput = {
   title?: InputMaybe<GStringFilterInput>;
 };
 
+export type GComponentComponentAttribute = {
+  __typename?: 'ComponentComponentAttribute';
+  attribute?: Maybe<Array<Maybe<GComponentComponentDetail>>>;
+  id: Scalars['ID']['output'];
+};
+
+export type GComponentComponentAttributeGAttributeArgs = {
+  filters?: InputMaybe<GComponentComponentDetailFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GComponentComponentAttributeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GComponentComponentAttributeFiltersInput>>>;
+  attribute?: InputMaybe<GComponentComponentDetailFiltersInput>;
+  not?: InputMaybe<GComponentComponentAttributeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentComponentAttributeFiltersInput>>>;
+};
+
+export type GComponentComponentAttributeInput = {
+  attribute?: InputMaybe<Array<InputMaybe<GComponentComponentDetailInput>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type GComponentComponentDetail = {
+  __typename?: 'ComponentComponentDetail';
+  group_name: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  item?: Maybe<Array<Maybe<GComponentComponentDetailItem>>>;
+};
+
+export type GComponentComponentDetailGItemArgs = {
+  filters?: InputMaybe<GComponentComponentDetailItemFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GComponentComponentDetailFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GComponentComponentDetailFiltersInput>>>;
+  group_name?: InputMaybe<GStringFilterInput>;
+  item?: InputMaybe<GComponentComponentDetailItemFiltersInput>;
+  not?: InputMaybe<GComponentComponentDetailFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentComponentDetailFiltersInput>>>;
+};
+
+export type GComponentComponentDetailInput = {
+  group_name?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  item?: InputMaybe<Array<InputMaybe<GComponentComponentDetailItemInput>>>;
+};
+
+export type GComponentComponentDetailItem = {
+  __typename?: 'ComponentComponentDetailItem';
+  id: Scalars['ID']['output'];
+  key?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+export type GComponentComponentDetailItemFiltersInput = {
+  and?: InputMaybe<
+    Array<InputMaybe<GComponentComponentDetailItemFiltersInput>>
+  >;
+  key?: InputMaybe<GStringFilterInput>;
+  not?: InputMaybe<GComponentComponentDetailItemFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentComponentDetailItemFiltersInput>>>;
+  value?: InputMaybe<GStringFilterInput>;
+};
+
+export type GComponentComponentDetailItemInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type GComponentComponentHeroSlide = {
   __typename?: 'ComponentComponentHeroSlide';
   button?: Maybe<Array<Maybe<GComponentUiButton>>>;
@@ -235,6 +308,34 @@ export type GComponentComponentHeroSlideFiltersInput = {
   show?: InputMaybe<GBooleanFilterInput>;
   subtitle?: InputMaybe<GStringFilterInput>;
   title?: InputMaybe<GStringFilterInput>;
+};
+
+export type GComponentComponentPromoBaner = {
+  __typename?: 'ComponentComponentPromoBaner';
+  active: Scalars['Boolean']['output'];
+  description?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<GUploadFile>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type GComponentComponentPromoBanerFiltersInput = {
+  active?: InputMaybe<GBooleanFilterInput>;
+  and?: InputMaybe<
+    Array<InputMaybe<GComponentComponentPromoBanerFiltersInput>>
+  >;
+  description?: InputMaybe<GJSONFilterInput>;
+  not?: InputMaybe<GComponentComponentPromoBanerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentComponentPromoBanerFiltersInput>>>;
+  title?: InputMaybe<GStringFilterInput>;
+};
+
+export type GComponentComponentPromoBanerInput = {
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GComponentMotorcycleMotorcycle = {
@@ -295,6 +396,28 @@ export type GComponentSectionHeroSlider = {
 
 export type GComponentSectionHeroSliderGSlideArgs = {
   filters?: InputMaybe<GComponentComponentHeroSlideFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GComponentSectionPromoSliderSection = {
+  __typename?: 'ComponentSectionPromoSliderSection';
+  active: Scalars['Boolean']['output'];
+  cta_title?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  motocycles: Array<Maybe<GMotorcycle>>;
+  motocycles_connection?: Maybe<GMotorcycleRelationResponseCollection>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type GComponentSectionPromoSliderSectionGMotocyclesArgs = {
+  filters?: InputMaybe<GMotorcycleFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GComponentSectionPromoSliderSectionGMotocycles_connectionArgs = {
+  filters?: InputMaybe<GMotorcycleFiltersInput>;
   pagination?: InputMaybe<GPaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
@@ -468,11 +591,16 @@ export type GGenericMorph =
   | GBikeColor
   | GBikesType
   | GComponentComponentAccordionCard
+  | GComponentComponentAttribute
+  | GComponentComponentDetail
+  | GComponentComponentDetailItem
   | GComponentComponentHeroSlide
+  | GComponentComponentPromoBaner
   | GComponentMotorcycleMotorcycle
   | GComponentSectionAccordionSection
   | GComponentSectionBigThumbnailSection
   | GComponentSectionHeroSlider
+  | GComponentSectionPromoSliderSection
   | GComponentSectionQuickNavigation
   | GComponentUiButton
   | GComponentUiLink
@@ -620,11 +748,13 @@ export type GMotorcycle = {
   availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
   available_colors: Array<Maybe<GBikeColor>>;
   available_colors_connection?: Maybe<GBikeColorRelationResponseCollection>;
+  banner?: Maybe<GComponentComponentPromoBaner>;
   base_price: Scalars['Int']['output'];
   bikes_type?: Maybe<GBikesType>;
   category: GENUM_MOTORCYCLE_CATEGORY;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['JSON']['output']>;
+  details?: Maybe<GComponentComponentAttribute>;
   documentId: Scalars['ID']['output'];
   gallery: Array<Maybe<GUploadFile>>;
   gallery_connection?: Maybe<GUploadFileRelationResponseCollection>;
@@ -686,11 +816,13 @@ export type GMotorcycleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<GMotorcycleFiltersInput>>>;
   availability_status?: InputMaybe<GStringFilterInput>;
   available_colors?: InputMaybe<GBikeColorFiltersInput>;
+  banner?: InputMaybe<GComponentComponentPromoBanerFiltersInput>;
   base_price?: InputMaybe<GIntFilterInput>;
   bikes_type?: InputMaybe<GBikesTypeFiltersInput>;
   category?: InputMaybe<GStringFilterInput>;
   createdAt?: InputMaybe<GDateTimeFilterInput>;
   description?: InputMaybe<GJSONFilterInput>;
+  details?: InputMaybe<GComponentComponentAttributeFiltersInput>;
   documentId?: InputMaybe<GIDFilterInput>;
   locale?: InputMaybe<GStringFilterInput>;
   localizations?: InputMaybe<GMotorcycleFiltersInput>;
@@ -706,10 +838,12 @@ export type GMotorcycleFiltersInput = {
 export type GMotorcycleInput = {
   availability_status?: InputMaybe<GENUM_MOTORCYCLE_AVAILABILITY_STATUS>;
   available_colors?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  banner?: InputMaybe<GComponentComponentPromoBanerInput>;
   base_price?: InputMaybe<Scalars['Int']['input']>;
   bikes_type?: InputMaybe<Scalars['ID']['input']>;
   category?: InputMaybe<GENUM_MOTORCYCLE_CATEGORY>;
   description?: InputMaybe<Scalars['JSON']['input']>;
+  details?: InputMaybe<GComponentComponentAttributeInput>;
   gallery?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   listing_image?: InputMaybe<Scalars['ID']['input']>;
   main_image?: InputMaybe<Scalars['ID']['input']>;
@@ -1009,6 +1143,7 @@ export type GPageSectionsDynamicZone =
   | GComponentSectionAccordionSection
   | GComponentSectionBigThumbnailSection
   | GComponentSectionHeroSlider
+  | GComponentSectionPromoSliderSection
   | GComponentSectionQuickNavigation
   | GError;
 
@@ -1778,6 +1913,104 @@ export type GHeroSectionFragentFragment = {
   } | null>;
 };
 
+export type GProductDetailsFragment = {
+  __typename: 'ComponentComponentAttribute';
+  attribute?: Array<{
+    __typename: 'ComponentComponentDetail';
+    group_name: string;
+    item?: Array<{
+      __typename: 'ComponentComponentDetailItem';
+      key?: string | null;
+      value?: string | null;
+    } | null> | null;
+  } | null> | null;
+};
+
+export type GPromoSliderSectionFragmentFragment = {
+  __typename: 'ComponentSectionPromoSliderSection';
+  title?: string | null;
+  cta_title?: string | null;
+  active: boolean;
+  motocycles: Array<{
+    __typename: 'Motorcycle';
+    documentId: string;
+    sku: string;
+    availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
+    year: any;
+    base_price: number;
+    model_name: string;
+    description?: any | null;
+    bikes_type?: {
+      __typename?: 'BikesType';
+      title: string;
+      type: string;
+    } | null;
+    listing_image?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+    main_image: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    };
+    gallery: Array<{
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null>;
+  } | null>;
+};
+
 export type GQuickNavigationFragmentFragment = {
   __typename: 'ComponentSectionQuickNavigation';
   active: boolean;
@@ -1838,6 +2071,133 @@ export type GUploadFileFragmentFragment = {
   createdAt?: any | null;
   updatedAt?: any | null;
   publishedAt?: any | null;
+};
+
+export type GGGET_MOTOCYCLEQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  sku?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GGGET_MOTOCYCLEQuery = {
+  __typename?: 'Query';
+  motorcycles: Array<{
+    __typename: 'Motorcycle';
+    category: GENUM_MOTORCYCLE_CATEGORY;
+    model_name: string;
+    sku: string;
+    year: any;
+    availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
+    base_price: number;
+    description?: any | null;
+    available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
+    bikes_type?: {
+      __typename?: 'BikesType';
+      type: string;
+      title: string;
+    } | null;
+    listing_image?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+    main_image: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    };
+    gallery: Array<{
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null>;
+    details?: {
+      __typename: 'ComponentComponentAttribute';
+      attribute?: Array<{
+        __typename: 'ComponentComponentDetail';
+        group_name: string;
+        item?: Array<{
+          __typename: 'ComponentComponentDetailItem';
+          key?: string | null;
+          value?: string | null;
+        } | null> | null;
+      } | null> | null;
+    } | null;
+    banner?: {
+      __typename?: 'ComponentComponentPromoBaner';
+      active: boolean;
+      title?: string | null;
+      description?: any | null;
+      image?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null;
+  } | null>;
 };
 
 export type GGGET_MOTOCYCLESQueryVariables = Exact<{
@@ -1924,6 +2284,18 @@ export type GGGET_MOTOCYCLESQuery = {
       updatedAt?: any | null;
       publishedAt?: any | null;
     } | null>;
+    details?: {
+      __typename: 'ComponentComponentAttribute';
+      attribute?: Array<{
+        __typename: 'ComponentComponentDetail';
+        group_name: string;
+        item?: Array<{
+          __typename: 'ComponentComponentDetailItem';
+          key?: string | null;
+          value?: string | null;
+        } | null> | null;
+      } | null> | null;
+    } | null;
   } | null>;
 };
 
@@ -2044,6 +2416,90 @@ export type GGGET_PAGEQuery = {
               updatedAt?: any | null;
               publishedAt?: any | null;
             };
+          } | null>;
+        }
+      | {
+          __typename: 'ComponentSectionPromoSliderSection';
+          title?: string | null;
+          cta_title?: string | null;
+          active: boolean;
+          motocycles: Array<{
+            __typename: 'Motorcycle';
+            documentId: string;
+            sku: string;
+            availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
+            year: any;
+            base_price: number;
+            model_name: string;
+            description?: any | null;
+            bikes_type?: {
+              __typename?: 'BikesType';
+              title: string;
+              type: string;
+            } | null;
+            listing_image?: {
+              __typename: 'UploadFile';
+              documentId: string;
+              name: string;
+              alternativeText?: string | null;
+              caption?: string | null;
+              width?: number | null;
+              height?: number | null;
+              formats?: any | null;
+              hash: string;
+              ext?: string | null;
+              mime: string;
+              size: number;
+              url: string;
+              previewUrl?: string | null;
+              provider: string;
+              provider_metadata?: any | null;
+              createdAt?: any | null;
+              updatedAt?: any | null;
+              publishedAt?: any | null;
+            } | null;
+            main_image: {
+              __typename: 'UploadFile';
+              documentId: string;
+              name: string;
+              alternativeText?: string | null;
+              caption?: string | null;
+              width?: number | null;
+              height?: number | null;
+              formats?: any | null;
+              hash: string;
+              ext?: string | null;
+              mime: string;
+              size: number;
+              url: string;
+              previewUrl?: string | null;
+              provider: string;
+              provider_metadata?: any | null;
+              createdAt?: any | null;
+              updatedAt?: any | null;
+              publishedAt?: any | null;
+            };
+            gallery: Array<{
+              __typename: 'UploadFile';
+              documentId: string;
+              name: string;
+              alternativeText?: string | null;
+              caption?: string | null;
+              width?: number | null;
+              height?: number | null;
+              formats?: any | null;
+              hash: string;
+              ext?: string | null;
+              mime: string;
+              size: number;
+              url: string;
+              previewUrl?: string | null;
+              provider: string;
+              provider_metadata?: any | null;
+              createdAt?: any | null;
+              updatedAt?: any | null;
+              publishedAt?: any | null;
+            } | null>;
           } | null>;
         }
       | {
