@@ -1,4 +1,4 @@
-import { ProductListingSection, TitleSection } from '@/common';
+import { ProductListingSection } from '@/common';
 import { getClient } from '@/libs/apollo/apolloClient';
 import { GetMotocycles } from '@/libs/graphql';
 import { getMotocycles } from '@/models';
@@ -23,7 +23,6 @@ export default async function Page({ params }: TPage) {
   return (
     <main>
       <ProductListingSection nav={listing.nav} sections={listing.sections} />
-      <TitleSection />
     </main>
   );
 }
