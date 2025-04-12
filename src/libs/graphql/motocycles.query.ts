@@ -24,6 +24,7 @@ export const GetMotocycles = gql`
       }
       bikes_type {
         ... on BikesType {
+          __typename
           type
           title
         }

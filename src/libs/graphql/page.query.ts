@@ -14,8 +14,8 @@ export const GetPage = gql`
   ${CategoryAccordionFragment}
   ${BigThumbnailSectionFragment}
   ${PromoSliderSectionFragment}
-  query GET_PAGE($locale: I18NLocaleCode!) {
-    pages(locale: $locale) {
+  query GET_PAGE($locale: I18NLocaleCode!, $url: String!) {
+    pages(locale: $locale, filters: { url: { eq: $url } }) {
       __typename
       sections {
         ...HeroSectionFragent

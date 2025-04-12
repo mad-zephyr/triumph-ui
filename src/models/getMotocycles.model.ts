@@ -1,44 +1,46 @@
 import { TProductCardPreview } from '@/common/components/productPreview/productCardPreview';
 import { TProductListingSection } from '@/common/sections/productListing/productListingSection';
+import { TProduct } from '@/types/entity';
 import { GMotorcycle } from '@/types/types';
 
-import { uiUploadfile } from './uiUploadfile';
-
-const getMotoPreview = (moto: GMotorcycle): TProductCardPreview => {
+import { getMotocycle } from './getMotocycle.model';
+const getMotoPreview = (moto: TProduct): TProductCardPreview => {
   return {
     title: moto.model_name,
     subtitle: `${moto.base_price}` || '0',
-    image: uiUploadfile(moto.listing_image),
+    image: moto.listing_image,
+    href: `${moto.productType}/${moto.sku}`,
   };
 };
 
-export const getMotocycles = (moto: GMotorcycle[]): TProductListingSection => {
+export const getMotocycles = (motos: GMotorcycle[]): TProductListingSection => {
   const sectionsNav = new Map<string, TProductListingSection['nav'][0]>();
-  const sectionsMoto = moto.reduce<Map<string, TProductCardPreview[]>>(
-    (acc, cur) => {
+  const sectionsMoto = motos
+    .filter((moto): moto is GMotorcycle => !!moto)
+    .reduce<Map<string, TProductCardPreview[]>>((acc, cur) => {
       if (
         cur.__typename === 'Motorcycle' &&
         cur.bikes_type?.__typename === 'BikesType'
       ) {
-        sectionsNav.set(cur.bikes_type.type, {
-          title: cur.bikes_type.title,
-          navId: cur.bikes_type.type,
+        const prod = getMotocycle(cur);
+
+        sectionsNav.set(prod.bikes_type.type, {
+          title: prod.bikes_type.title,
+          navId: prod.bikes_type.type,
         });
 
-        if (acc.has(cur.bikes_type.type)) {
-          const card = getMotoPreview(cur);
+        if (acc.has(prod.bikes_type.type)) {
+          const card = getMotoPreview(prod);
 
-          acc.get(cur.bikes_type.type)?.push(card);
+          acc.get(prod.bikes_type.type)?.push(card);
         } else {
-          const card = getMotoPreview(cur);
-          acc.set(cur.bikes_type.type, [card]);
+          const card = getMotoPreview(prod);
+          acc.set(prod.bikes_type.type, [card]);
         }
       }
 
       return acc;
-    },
-    new Map()
-  );
+    }, new Map());
 
   const motoSectionKeys = [...sectionsNav.keys()];
 

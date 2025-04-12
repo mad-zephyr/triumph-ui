@@ -1,6 +1,6 @@
 import { ProductDetailsSection, TitleSection } from '@/common';
 import { DropDownList } from '@/common/components';
-import { getClient } from '@/libs/apollo/apolloClient';
+import { getPagesData } from '@/libs/apollo/getData';
 import { GetMotocycle } from '@/libs/graphql';
 import { getMotocycle, getProductDetailsAccordion } from '@/models';
 import { GMotorcycle } from '@/types/types';
@@ -15,13 +15,12 @@ type TPage = {
 export default async function Page({ params }: TPage) {
   const { locale, model } = await params;
 
-  const { data } = await getClient().query<{ motorcycles: [GMotorcycle] }>({
+  const { motorcycles } = await getPagesData<{ motorcycles: [GMotorcycle] }>({
     query: GetMotocycle,
     variables: { locale, sku: model },
-    fetchPolicy: 'cache-first',
   });
 
-  const [product] = getMotocycle(data.motorcycles);
+  const [product] = getMotocycle(motorcycles);
   const details = getProductDetailsAccordion(product);
 
   return (

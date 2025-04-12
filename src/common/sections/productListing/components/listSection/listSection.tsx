@@ -29,6 +29,7 @@ export const ListSection: FC<{ data: TListSection }> = ({ data }) => {
                 image={item.image}
                 title={item.title}
                 subtitle={item.subtitle}
+                href={item.href}
               />
             </div>
           ))}
