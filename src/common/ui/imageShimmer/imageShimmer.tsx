@@ -1,5 +1,5 @@
-const accentColor = '#e7816b';
-const bgColor = '#ffded6';
+const accentColor = '#e0e0e0';
+const bgColor = '#f0f0f0';
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

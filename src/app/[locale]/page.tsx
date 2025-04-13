@@ -1,4 +1,3 @@
-import { BigPromoSection, NewsListSection } from '@/common';
 import { getPagesData } from '@/libs/apollo/getData';
 import { GetPage } from '@/libs/graphql';
 import { getPageModel } from '@/models';
@@ -22,11 +21,5 @@ export default async function HomePage({ params }: THomePage) {
 
   const { sections } = getPageModel(page);
 
-  return (
-    <main>
-      {sections}
-      <BigPromoSection />
-      <NewsListSection />
-    </main>
-  );
+  return <main>{sections}</main>;
 }

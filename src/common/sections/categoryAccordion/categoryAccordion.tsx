@@ -37,6 +37,7 @@ export const CategoryAccordion: FC<TCategoryAccordion> = ({ title, cards }) => {
                 <Button
                   variant={item.button.variant}
                   title={item.button.title}
+                  url={item.button.url}
                 />
               )}
             </div>

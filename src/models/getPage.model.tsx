@@ -1,23 +1,27 @@
 import { ReactNode } from 'react';
 
 import {
+  BigPromoSection,
   BigThumbnailSection,
   CategoryAccordion,
+  ContentBlocksSection,
   HeroSection,
+  NewsListSection,
   QuickNavigation,
   SliderSection,
+  TitleSection,
 } from '@/common';
 import { ProductCardBig } from '@/common/components';
 import { TBigThumbnailCard } from '@/common/sections/bigThumbnail/bigThumbnailSection';
 import { TTCategoryAccordionCard } from '@/common/sections/categoryAccordion/categoryAccordion';
 import { TSlide } from '@/common/sections/hero/components/heroSlider/components/slide/slide';
-import { GPage } from '@/types/types';
+import { GNewsPost, GPage } from '@/types/types';
 
 import { getButtons } from './getButtons.model';
 import { getMotocycles } from './getMotocycle.model';
 import { uiUploadfile } from './uiUploadfile';
 
-export const getPageModel = (page: GPage) => {
+export const getPageModel = (page: GPage | GNewsPost) => {
   const sections: ReactNode[] = [];
 
   page?.sections?.forEach((section, i) => {
@@ -126,6 +130,48 @@ export const getPageModel = (page: GPage) => {
           </SliderSection>
         );
       }
+    }
+
+    if (section?.__typename === 'ComponentSectionBigPromoSection') {
+      sections.push(
+        <BigPromoSection
+          key={i}
+          title={section.title}
+          subtitle={section.subtitle}
+          buttons={section.buttons?.map(getButtons) || []}
+          cover={uiUploadfile(section.cover)}
+        />
+      );
+    }
+
+    if (section?.__typename === 'ComponentSectionNewsSection') {
+      if (section.show) {
+        sections.push(
+          <NewsListSection
+            key={i}
+            title={section.title}
+            button={getButtons(section.button)}
+            latestNewsCount={section?.latestNewsCount || 6}
+          />
+        );
+      }
+    }
+
+    if (section?.__typename === 'ComponentSectionTitleSection') {
+      sections.push(
+        <TitleSection
+          key={i}
+          data={{
+            title: section.title,
+            description: section.description,
+            image: uiUploadfile(section.cover),
+          }}
+        />
+      );
+    }
+
+    if (section?.__typename === 'ComponentSectionTextRedactor') {
+      sections.push(<ContentBlocksSection key={i} content={section.blocks} />);
     }
   });
 

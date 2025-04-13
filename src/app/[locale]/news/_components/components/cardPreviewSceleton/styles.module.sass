@@ -1,0 +1,55 @@
+@keyframes pulse
+    0%
+        background-color: #e0e0e0
+
+    50%
+        background-color: #f0f0f0
+
+    100%
+        background-color: #e0e0e0
+
+.news-skeleton
+    position: relative
+    display: grid
+    grid-template-columns: auto
+    grid-template-rows: 16.5rem auto
+    row-gap: 1rem
+    width: auto
+    align-content: flex-start
+
+.skeleton-image
+    position: relative
+    grid-column: 1 / span 1
+    background-color: #e0e0e0
+    animation: pulse 1.5s ease-in-out infinite
+
+.title
+    width: 70%
+    height: 1.5rem
+    border-radius: 4px
+    background-color: #e0e0e0
+    animation: pulse 1.5s ease-in-out infinite
+
+.subtitles
+    display: flex
+    flex-direction: column
+    gap: 0.25rem
+
+.line
+    height: 16px
+    border-radius: 4px
+    background-color: #e0e0e0
+    animation: pulse 1.5s ease-in-out infinite
+    width: 100%
+
+    &:not(.short):not(.medium)
+        width: 80%
+
+    &.full
+        width: 100%
+
+    &.medium
+        width: 60%
+
+    &.short
+        width: 40%

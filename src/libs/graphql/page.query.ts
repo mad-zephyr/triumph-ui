@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client';
 
 import {
+  BigPromoSectionFragment,
   BigThumbnailSectionFragment,
   CategoryAccordionFragment,
+  NewsSectionFragment,
   PromoSliderSectionFragment,
   QuickNavigationFragment,
 } from './fragments';
@@ -14,6 +16,8 @@ export const GetPage = gql`
   ${CategoryAccordionFragment}
   ${BigThumbnailSectionFragment}
   ${PromoSliderSectionFragment}
+  ${BigPromoSectionFragment}
+  ${NewsSectionFragment}
   query GET_PAGE($locale: I18NLocaleCode!, $url: String!) {
     pages(locale: $locale, filters: { url: { eq: $url } }) {
       __typename
@@ -23,6 +27,8 @@ export const GetPage = gql`
         ...CategoryAccordionFragment
         ...BigThumbnailSectionFragment
         ...PromoSliderSectionFragment
+        ...BigPromoSectionFragment
+        ...NewsSectionFragment
       }
     }
   }

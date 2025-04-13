@@ -5,11 +5,12 @@ import { FC } from 'react';
 
 import { Text } from '@/common/ui';
 import { TUploadFile } from '@/models/uiUploadfile';
+import { Maybe } from '@/types/types';
 
 import classes from './styles.module.sass';
 
 export type TTitleSection = {
-  title: string;
+  title?: Maybe<string>;
   description: any;
   image?: TUploadFile;
 };
@@ -19,12 +20,18 @@ export const TitleSection: FC<{ data: TTitleSection }> = ({ data }) => {
   return (
     <section className={classes.section}>
       <div className={classes.content}>
-        <Text tag="h1">{title}</Text>
-        <BlocksRenderer content={description} />
+        <Text tag="h1" className={classes.title}>
+          {title}
+        </Text>
+        {description && <BlocksRenderer content={description} />}
       </div>
       <figure className={classes.cover}>
         {image && (
-          <Image src={image?.url} alt={image.alternativeText || title} fill />
+          <Image
+            src={image?.url}
+            alt={image.alternativeText || title || ''}
+            fill
+          />
         )}
       </figure>
     </section>

@@ -1,0 +1,36 @@
+.main
+    display: flex
+    flex-direction: column
+    padding: 4rem 2rem
+    row-gap: 2rem
+
+    h1
+        font-size: 2.25rem
+        color: var(--color-accent)
+        margin-bottom: 1rem
+
+    p
+        &:first-of-type
+            font-weight: 600
+
+    ul
+        padding-left: 1rem
+
+    a
+        color: var(--color-accent)
+        &:hover
+            text-decoration: underline
+
+    blockquote
+        position: relative
+        padding-left: 1rem
+
+        &::before
+            content: ""
+            position: absolute
+            display: block
+            left: 0
+            top: 0
+            width: 0.25rem
+            height: 100%
+            background: var(--color-accent)

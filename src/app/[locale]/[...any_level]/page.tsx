@@ -1,4 +1,3 @@
-import { BigPromoSection, NewsListSection } from '@/common';
 import { getPagesData } from '@/libs/apollo/getData';
 import { GetPage } from '@/libs/graphql';
 import { getPageModel } from '@/models';
@@ -20,11 +19,5 @@ export default async function NotFoundCatchAll({ params }: TPage) {
 
   const { sections } = getPageModel(pages[0]);
 
-  return (
-    <main>
-      {sections}
-      <BigPromoSection />
-      <NewsListSection />
-    </main>
-  );
+  return <main>{sections}</main>;
 }

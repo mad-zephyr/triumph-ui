@@ -29,7 +29,12 @@ export const Slide: FC<TSlide> = ({ image, subtitle, title, buttons }) => {
           </Text>
           <div className={classes.controls}>
             {buttons.map((btn, i) => (
-              <Button key={i} title={btn.title} variant={btn.variant} />
+              <Button
+                key={i}
+                title={btn.title}
+                variant={btn.variant}
+                url={btn.url}
+              />
             ))}
           </div>
         </div>

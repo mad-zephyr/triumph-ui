@@ -23,9 +23,6 @@ export default async function Page({ params }: TPage) {
   const [product] = getMotocycle(motorcycles);
   const details = getProductDetailsAccordion(product);
 
-  console.log('BANER COVER: ', product?.banner?.image);
-  console.log('MAIN IMAGE: ', product?.main_image);
-
   return (
     <main>
       {!!product?.banner && <TitleSection data={{ ...product.banner }} />}

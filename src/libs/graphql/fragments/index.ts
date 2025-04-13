@@ -1,6 +1,10 @@
+export { BigPromoSectionFragment } from './bigPromoSection.fragment';
 export { BigThumbnailSectionFragment } from './bigThumbnailSection.fragment';
 export { CategoryAccordionFragment } from './categoryAccordion.fragment';
+export { NewsSectionFragment } from './newsSection.fragment';
 export { ProductDetails } from './productDetails.fragment';
 export { PromoSliderSectionFragment } from './promoSliderSection.fragment';
 export { QuickNavigationFragment } from './quickNavigationSection.fragment';
+export { TextRedactorSection } from './textRedactorSection.fragment copy';
+export { TitleSectionFragment } from './titleSection.fragment';
 export { ComponentUiLinkFragment } from './uiLink.fragments';

@@ -36,6 +36,7 @@ export type Scalars = {
   I18NLocaleCode: { input: any; output: any };
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any };
+  NewsPostSectionsDynamicZoneInput: { input: any; output: any };
   PageSectionsDynamicZoneInput: { input: any; output: any };
 };
 
@@ -379,6 +380,21 @@ export type ComponentSectionAccordionSectionCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentSectionBigPromoSection = {
+  __typename?: 'ComponentSectionBigPromoSection';
+  buttons?: Maybe<Array<Maybe<ComponentUiButton>>>;
+  cover?: Maybe<UploadFile>;
+  id: Scalars['ID']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentSectionBigPromoSectionButtonsArgs = {
+  filters?: InputMaybe<ComponentUiButtonFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ComponentSectionBigThumbnailSection = {
   __typename?: 'ComponentSectionBigThumbnailSection';
   active: Scalars['Boolean']['output'];
@@ -403,6 +419,15 @@ export type ComponentSectionHeroSliderSlideArgs = {
   filters?: InputMaybe<ComponentComponentHeroSlideFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSectionNewsSection = {
+  __typename?: 'ComponentSectionNewsSection';
+  button?: Maybe<ComponentUiButton>;
+  id: Scalars['ID']['output'];
+  latestNewsCount?: Maybe<Scalars['Int']['output']>;
+  show: Scalars['Boolean']['output'];
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentSectionPromoSliderSection = {
@@ -438,6 +463,20 @@ export type ComponentSectionQuickNavigationLinksArgs = {
   filters?: InputMaybe<ComponentUiLinkWithIconFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSectionTextRedactor = {
+  __typename?: 'ComponentSectionTextRedactor';
+  blocks?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+};
+
+export type ComponentSectionTitleSection = {
+  __typename?: 'ComponentSectionTitleSection';
+  cover?: Maybe<UploadFile>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentUiButton = {
@@ -603,16 +642,22 @@ export type GenericMorph =
   | ComponentComponentPromoBaner
   | ComponentMotorcycleMotorcycle
   | ComponentSectionAccordionSection
+  | ComponentSectionBigPromoSection
   | ComponentSectionBigThumbnailSection
   | ComponentSectionHeroSlider
+  | ComponentSectionNewsSection
   | ComponentSectionPromoSliderSection
   | ComponentSectionQuickNavigation
+  | ComponentSectionTextRedactor
+  | ComponentSectionTitleSection
   | ComponentUiButton
   | ComponentUiLink
   | ComponentUiLinkWithIcon
   | Header
   | I18NLocale
   | Motorcycle
+  | NewsPage
+  | NewsPost
   | Page
   | ReviewWorkflowsWorkflow
   | ReviewWorkflowsWorkflowStage
@@ -870,6 +915,7 @@ export type Mutation = {
   createBikeColor?: Maybe<BikeColor>;
   createBikesType?: Maybe<BikesType>;
   createMotorcycle?: Maybe<Motorcycle>;
+  createNewsPost?: Maybe<NewsPost>;
   createPage?: Maybe<Page>;
   createReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   createReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -881,6 +927,8 @@ export type Mutation = {
   deleteBikesType?: Maybe<DeleteMutationResponse>;
   deleteHeader?: Maybe<DeleteMutationResponse>;
   deleteMotorcycle?: Maybe<DeleteMutationResponse>;
+  deleteNewsPage?: Maybe<DeleteMutationResponse>;
+  deleteNewsPost?: Maybe<DeleteMutationResponse>;
   deletePage?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
@@ -902,6 +950,8 @@ export type Mutation = {
   updateBikesType?: Maybe<BikesType>;
   updateHeader?: Maybe<Header>;
   updateMotorcycle?: Maybe<Motorcycle>;
+  updateNewsPage?: Maybe<NewsPage>;
+  updateNewsPost?: Maybe<NewsPost>;
   updatePage?: Maybe<Page>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
@@ -932,6 +982,12 @@ export type MutationCreateBikesTypeArgs = {
 
 export type MutationCreateMotorcycleArgs = {
   data: MotorcycleInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type MutationCreateNewsPostArgs = {
+  data: NewsPostInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -975,6 +1031,15 @@ export type MutationDeleteHeaderArgs = {
 };
 
 export type MutationDeleteMotorcycleArgs = {
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+export type MutationDeleteNewsPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+export type MutationDeleteNewsPostArgs = {
   documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -1053,6 +1118,19 @@ export type MutationUpdateMotorcycleArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 
+export type MutationUpdateNewsPageArgs = {
+  data: NewsPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type MutationUpdateNewsPostArgs = {
+  data: NewsPostInput;
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
 export type MutationUpdatePageArgs = {
   data: PageInput;
   documentId: Scalars['ID']['input'];
@@ -1086,6 +1164,102 @@ export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID']['input'];
 };
+
+export type NewsPage = {
+  __typename?: 'NewsPage';
+  banner?: Maybe<ComponentComponentPromoBaner>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<NewsPage>>;
+  localizations_connection?: Maybe<NewsPageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type NewsPageInput = {
+  banner?: InputMaybe<ComponentComponentPromoBanerInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type NewsPageRelationResponseCollection = {
+  __typename?: 'NewsPageRelationResponseCollection';
+  nodes: Array<NewsPage>;
+};
+
+export type NewsPost = {
+  __typename?: 'NewsPost';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<NewsPost>>;
+  localizations_connection?: Maybe<NewsPostRelationResponseCollection>;
+  previewText?: Maybe<Scalars['String']['output']>;
+  preview_cover?: Maybe<UploadFile>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sections?: Maybe<Array<Maybe<NewsPostSectionsDynamicZone>>>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type NewsPostLocalizationsArgs = {
+  filters?: InputMaybe<NewsPostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type NewsPostLocalizations_ConnectionArgs = {
+  filters?: InputMaybe<NewsPostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type NewsPostEntityResponseCollection = {
+  __typename?: 'NewsPostEntityResponseCollection';
+  nodes: Array<NewsPost>;
+  pageInfo: Pagination;
+};
+
+export type NewsPostFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<NewsPostFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<NewsPostFiltersInput>;
+  not?: InputMaybe<NewsPostFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<NewsPostFiltersInput>>>;
+  previewText?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type NewsPostInput = {
+  previewText?: InputMaybe<Scalars['String']['input']>;
+  preview_cover?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sections?: InputMaybe<
+    Array<Scalars['NewsPostSectionsDynamicZoneInput']['input']>
+  >;
+  title?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NewsPostRelationResponseCollection = {
+  __typename?: 'NewsPostRelationResponseCollection';
+  nodes: Array<NewsPost>;
+};
+
+export type NewsPostSectionsDynamicZone =
+  | ComponentSectionAccordionSection
+  | ComponentSectionBigPromoSection
+  | ComponentSectionBigThumbnailSection
+  | ComponentSectionPromoSliderSection
+  | ComponentSectionTextRedactor
+  | ComponentSectionTitleSection
+  | Error;
 
 export type Page = {
   __typename?: 'Page';
@@ -1146,10 +1320,14 @@ export type PageRelationResponseCollection = {
 
 export type PageSectionsDynamicZone =
   | ComponentSectionAccordionSection
+  | ComponentSectionBigPromoSection
   | ComponentSectionBigThumbnailSection
   | ComponentSectionHeroSlider
+  | ComponentSectionNewsSection
   | ComponentSectionPromoSliderSection
   | ComponentSectionQuickNavigation
+  | ComponentSectionTextRedactor
+  | ComponentSectionTitleSection
   | Error;
 
 export type Pagination = {
@@ -1188,6 +1366,10 @@ export type Query = {
   motorcycle?: Maybe<Motorcycle>;
   motorcycles: Array<Maybe<Motorcycle>>;
   motorcycles_connection?: Maybe<MotorcycleEntityResponseCollection>;
+  newsPage?: Maybe<NewsPage>;
+  newsPost?: Maybe<NewsPost>;
+  newsPosts: Array<Maybe<NewsPost>>;
+  newsPosts_connection?: Maybe<NewsPostEntityResponseCollection>;
   page?: Maybe<Page>;
   pages: Array<Maybe<Page>>;
   pages_connection?: Maybe<PageEntityResponseCollection>;
@@ -1292,6 +1474,33 @@ export type QueryMotorcyclesArgs = {
 
 export type QueryMotorcycles_ConnectionArgs = {
   filters?: InputMaybe<MotorcycleFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type QueryNewsPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type QueryNewsPostArgs = {
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type QueryNewsPostsArgs = {
+  filters?: InputMaybe<NewsPostFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type QueryNewsPosts_ConnectionArgs = {
+  filters?: InputMaybe<NewsPostFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1803,6 +2012,39 @@ export type UsersPermissionsUserRelationResponseCollection = {
   nodes: Array<UsersPermissionsUser>;
 };
 
+export type BigPromoSectionFragmentFragment = {
+  __typename: 'ComponentSectionBigPromoSection';
+  title?: string | null;
+  subtitle?: string | null;
+  buttons?: Array<{
+    __typename: 'ComponentUiButton';
+    variant?: Enum_Componentuibutton_Variant | null;
+    title: string;
+    url: string;
+  } | null> | null;
+  cover?: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null;
+};
+
 export type BigThumbnailSectionFragmentFragment = {
   __typename: 'ComponentSectionBigThumbnailSection';
   title?: string | null;
@@ -1886,6 +2128,7 @@ export type HeroSectionFragentFragment = {
     show: boolean;
     title: string;
     subtitle: string;
+    navText: string;
     button?: Array<{
       __typename: 'ComponentUiButton';
       title: string;
@@ -1914,6 +2157,19 @@ export type HeroSectionFragentFragment = {
       publishedAt?: any | null;
     };
   } | null>;
+};
+
+export type NewsSectionFragmentFragment = {
+  __typename: 'ComponentSectionNewsSection';
+  show: boolean;
+  title?: string | null;
+  latestNewsCount?: number | null;
+  button?: {
+    __typename: 'ComponentUiButton';
+    title: string;
+    url: string;
+    variant?: Enum_Componentuibutton_Variant | null;
+  } | null;
 };
 
 export type ProductDetailsFragment = {
@@ -2047,6 +2303,38 @@ export type QuickNavigationFragmentFragment = {
   } | null>;
 };
 
+export type TextRedactorSectionFragment = {
+  __typename: 'ComponentSectionTextRedactor';
+  blocks?: any | null;
+};
+
+export type TitleSectionFragmentFragment = {
+  __typename: 'ComponentSectionTitleSection';
+  title?: string | null;
+  description?: any | null;
+  cover?: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null;
+};
+
 export type ComponentUiLinkFragmentFragment = {
   __typename: 'ComponentUiLink';
   id: string;
@@ -2147,6 +2435,200 @@ export type Get_Motocycles_By_TypeQuery = {
       } | null;
     } | null>;
   } | null>;
+};
+
+export type GetNewsPageQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
+}>;
+
+export type GetNewsPageQueryQuery = {
+  __typename?: 'Query';
+  newsPosts: Array<{
+    __typename: 'NewsPost';
+    title: string;
+    previewText?: string | null;
+    preview_cover?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+    sections?: Array<
+      | { __typename?: 'ComponentSectionAccordionSection' }
+      | { __typename?: 'ComponentSectionBigPromoSection' }
+      | { __typename?: 'ComponentSectionBigThumbnailSection' }
+      | { __typename?: 'ComponentSectionPromoSliderSection' }
+      | { __typename: 'ComponentSectionTextRedactor'; blocks?: any | null }
+      | {
+          __typename: 'ComponentSectionTitleSection';
+          title?: string | null;
+          description?: any | null;
+          cover?: {
+            __typename: 'UploadFile';
+            documentId: string;
+            name: string;
+            alternativeText?: string | null;
+            caption?: string | null;
+            width?: number | null;
+            height?: number | null;
+            formats?: any | null;
+            hash: string;
+            ext?: string | null;
+            mime: string;
+            size: number;
+            url: string;
+            previewUrl?: string | null;
+            provider: string;
+            provider_metadata?: any | null;
+            createdAt?: any | null;
+            updatedAt?: any | null;
+            publishedAt?: any | null;
+          } | null;
+        }
+      | { __typename?: 'Error' }
+      | null
+    > | null;
+  } | null>;
+};
+
+export type GetNewsPostsQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  start?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+export type GetNewsPostsQueryQuery = {
+  __typename?: 'Query';
+  newsPosts: Array<{
+    __typename: 'NewsPost';
+    title: string;
+    url: string;
+    previewText?: string | null;
+    preview_cover?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+  } | null>;
+  newsPosts_connection?: {
+    __typename?: 'NewsPostEntityResponseCollection';
+    pageInfo: {
+      __typename?: 'Pagination';
+      total: number;
+      page: number;
+      pageSize: number;
+      pageCount: number;
+    };
+  } | null;
+};
+
+export type GetPreloadedNewsPostsQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  start?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+export type GetPreloadedNewsPostsQueryQuery = {
+  __typename?: 'Query';
+  newsPage?: {
+    __typename: 'NewsPage';
+    banner?: {
+      __typename: 'ComponentComponentPromoBaner';
+      active: boolean;
+      title?: string | null;
+      description?: any | null;
+      cover?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null;
+  } | null;
+  newsPosts: Array<{
+    __typename: 'NewsPost';
+    title: string;
+    url: string;
+    previewText?: string | null;
+    preview_cover?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+  } | null>;
+  newsPosts_connection?: {
+    __typename?: 'NewsPostEntityResponseCollection';
+    pageInfo: {
+      __typename?: 'Pagination';
+      total: number;
+      page: number;
+      pageSize: number;
+      pageCount: number;
+    };
+  } | null;
 };
 
 export type Get_MotocycleQueryVariables = Exact<{
@@ -2423,6 +2905,38 @@ export type Get_PageQuery = {
           } | null> | null;
         }
       | {
+          __typename: 'ComponentSectionBigPromoSection';
+          title?: string | null;
+          subtitle?: string | null;
+          buttons?: Array<{
+            __typename: 'ComponentUiButton';
+            variant?: Enum_Componentuibutton_Variant | null;
+            title: string;
+            url: string;
+          } | null> | null;
+          cover?: {
+            __typename: 'UploadFile';
+            documentId: string;
+            name: string;
+            alternativeText?: string | null;
+            caption?: string | null;
+            width?: number | null;
+            height?: number | null;
+            formats?: any | null;
+            hash: string;
+            ext?: string | null;
+            mime: string;
+            size: number;
+            url: string;
+            previewUrl?: string | null;
+            provider: string;
+            provider_metadata?: any | null;
+            createdAt?: any | null;
+            updatedAt?: any | null;
+            publishedAt?: any | null;
+          } | null;
+        }
+      | {
           __typename: 'ComponentSectionBigThumbnailSection';
           title?: string | null;
           active: boolean;
@@ -2466,6 +2980,7 @@ export type Get_PageQuery = {
             show: boolean;
             title: string;
             subtitle: string;
+            navText: string;
             button?: Array<{
               __typename: 'ComponentUiButton';
               title: string;
@@ -2494,6 +3009,18 @@ export type Get_PageQuery = {
               publishedAt?: any | null;
             };
           } | null>;
+        }
+      | {
+          __typename: 'ComponentSectionNewsSection';
+          show: boolean;
+          title?: string | null;
+          latestNewsCount?: number | null;
+          button?: {
+            __typename: 'ComponentUiButton';
+            title: string;
+            url: string;
+            variant?: Enum_Componentuibutton_Variant | null;
+          } | null;
         }
       | {
           __typename: 'ComponentSectionPromoSliderSection';
@@ -2611,6 +3138,8 @@ export type Get_PageQuery = {
             } | null;
           } | null>;
         }
+      | { __typename?: 'ComponentSectionTextRedactor' }
+      | { __typename?: 'ComponentSectionTitleSection' }
       | { __typename?: 'Error' }
       | null
     > | null;
@@ -2675,6 +3204,85 @@ export const UploadFileFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UploadFileFragmentFragment, unknown>;
+export const BigPromoSectionFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'BigPromoSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionBigPromoSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'buttons' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'variant' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cover' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BigPromoSectionFragmentFragment, unknown>;
 export const BigThumbnailSectionFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -2893,6 +3501,7 @@ export const HeroSectionFragentFragmentDoc = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'navText' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'button' },
@@ -2965,6 +3574,41 @@ export const HeroSectionFragentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HeroSectionFragentFragment, unknown>;
+export const NewsSectionFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'NewsSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionNewsSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'show' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'latestNewsCount' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'button' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'variant' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NewsSectionFragmentFragment, unknown>;
 export const ProductDetailsFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -3213,6 +3857,92 @@ export const QuickNavigationFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<QuickNavigationFragmentFragment, unknown>;
+export const TextRedactorSectionFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TextRedactorSection' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionTextRedactor' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TextRedactorSectionFragment, unknown>;
+export const TitleSectionFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TitleSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionTitleSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cover' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TitleSectionFragmentFragment, unknown>;
 export const ComponentUiLinkFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -3460,6 +4190,718 @@ export const Get_Motocycles_By_TypeDocument = {
 } as unknown as DocumentNode<
   Get_Motocycles_By_TypeQuery,
   Get_Motocycles_By_TypeQueryVariables
+>;
+export const GetNewsPageQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetNewsPageQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'url' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'status' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'previewText' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'preview_cover' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'sections' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'TitleSectionFragment' },
+                      },
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'TextRedactorSection' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TitleSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionTitleSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cover' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TextRedactorSection' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionTextRedactor' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetNewsPageQueryQuery,
+  GetNewsPageQueryQueryVariables
+>;
+export const GetNewsPostsQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetNewsPostsQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'start' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'limit' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'status' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pagination' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'start' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'start' },
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'limit' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'limit' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'sort' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'StringValue',
+                      value: 'createdAt:desc',
+                      block: false,
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'previewText' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'preview_cover' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts_connection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pagination' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'start' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'start' },
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'limit' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'limit' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'status' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'pageInfo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'total' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'page' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'pageSize' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'pageCount' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetNewsPostsQueryQuery,
+  GetNewsPostsQueryQueryVariables
+>;
+export const GetPreloadedNewsPostsQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetPreloadedNewsPostsQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'start' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'limit' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'banner' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'active' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'cover' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'UploadFileFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'status' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pagination' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'start' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'start' },
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'limit' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'limit' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'sort' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'StringValue',
+                      value: 'createdAt:desc',
+                      block: false,
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'previewText' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'preview_cover' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts_connection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pagination' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'start' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'start' },
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'limit' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'limit' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'status' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'pageInfo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'total' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'page' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'pageSize' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'pageCount' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetPreloadedNewsPostsQueryQuery,
+  GetPreloadedNewsPostsQueryQueryVariables
 >;
 export const Get_MotocycleDocument = {
   kind: 'Document',
@@ -4134,6 +5576,17 @@ export const Get_PageDocument = {
                           value: 'PromoSliderSectionFragment',
                         },
                       },
+                      {
+                        kind: 'FragmentSpread',
+                        name: {
+                          kind: 'Name',
+                          value: 'BigPromoSectionFragment',
+                        },
+                      },
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'NewsSectionFragment' },
+                      },
                     ],
                   },
                 },
@@ -4196,6 +5649,7 @@ export const Get_PageDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'navText' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'button' },
@@ -4477,6 +5931,78 @@ export const Get_PageDocument = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'BigPromoSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionBigPromoSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'buttons' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'variant' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cover' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'NewsSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionNewsSection' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'show' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'latestNewsCount' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'button' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'variant' } },
               ],
             },
           },
