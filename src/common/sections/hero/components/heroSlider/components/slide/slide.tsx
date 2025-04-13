@@ -13,6 +13,7 @@ export type TSlide = {
   subtitle?: string;
   buttons: TButton[];
   image?: TUploadFile;
+  navTitle?: string;
 };
 
 export const Slide: FC<TSlide> = ({ image, subtitle, title, buttons }) => {

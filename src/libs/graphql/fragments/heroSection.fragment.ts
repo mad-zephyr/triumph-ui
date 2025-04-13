@@ -11,6 +11,7 @@ export const HeroSectionFragent = gql`
       __typename
       title
       subtitle
+      navText
       button {
         __typename
         title

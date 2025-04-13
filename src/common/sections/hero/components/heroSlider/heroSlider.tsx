@@ -9,52 +9,12 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import ArrorLeft from '@/assets/icons/arrow-left.svg';
 import ArrorRight from '@/assets/icons/arrow-left.svg';
-import imageOne from '@/assets/images/hero.webp';
-import imageTwo from '@/assets/images/my26-enduro-fam-01-v2-1920x1080.avif';
-import imageThree from '@/assets/images/scrambler-400-x-my24-family-multi-content-block-2-1920x1080.avif';
 
 import { Slide } from './components';
 import { TSlide } from './components/slide/slide';
 import classes from './styles.module.sass';
 
 const DURATION = 6;
-
-const sliderData = [
-  {
-    image: imageOne.src,
-    title: 'LATEST OFFERS',
-    navTitle: 'LATEST OFFERS',
-    subtitle:
-      'Take advantage of incredible Triumph Cash or Low Rate Financing offers during The Rev Up & Ride Sales Event',
-  },
-  {
-    image: imageTwo.src,
-    title: 'NEW ENDURO RANGE',
-    navTitle: 'The tougher the ride, the better it get',
-    subtitle: 'The tougher the ride, the better it gets.',
-  },
-  {
-    image: imageThree.src,
-    title: '3 THE NEW SPEED TRIPLE 1200 RS',
-    navTitle: 'New speed twin 1200 & all-new speed twin 1200 RS',
-    subtitle:
-      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
-  },
-  {
-    image: imageThree.src,
-    title: '4 THE NEW SPEED TRIPLE 1200 RS',
-    navTitle: 'hello 4',
-    subtitle:
-      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
-  },
-  {
-    image: imageThree.src,
-    title: '5 THE NEW SPEED TRIPLE 1200 RS',
-    navTitle: 'hello 5',
-    subtitle:
-      'Experience the pinnacle of triple-powered performance with the New Speed Triple 1200 RS. The original naked sportbike icon, evolved.',
-  },
-];
 
 export type THeroSlider = {
   slides: TSlide[];
@@ -67,7 +27,7 @@ export const HeroSlider: FC<THeroSlider> = ({ slides }) => {
   const splideInstanceRef = useRef<Splide | null>(null);
 
   const [navIndexes, setNavIndxes] = useState({
-    prev: sliderData.length - 1,
+    prev: slides.length - 1,
     next: 1,
   });
 
@@ -116,8 +76,8 @@ export const HeroSlider: FC<THeroSlider> = ({ slides }) => {
 
   const getPrevAndNext = (active: number) => {
     if (active === 0) {
-      setNavIndxes({ prev: sliderData.length - 1, next: 1 });
-    } else if (active === sliderData.length - 1) {
+      setNavIndxes({ prev: slides.length - 1, next: 1 });
+    } else if (active === slides.length - 1) {
       setNavIndxes({ prev: active - 1, next: 0 });
     } else {
       setNavIndxes({ prev: active - 1, next: active + 1 });
@@ -179,7 +139,7 @@ export const HeroSlider: FC<THeroSlider> = ({ slides }) => {
             )}
           >
             <div className={classes.navText}>
-              <span>{sliderData[navIndexes.next]?.navTitle}</span>
+              <span>{slides[navIndexes.next]?.navTitle}</span>
             </div>
             <ArrorRight />
           </button>
@@ -199,7 +159,7 @@ export const HeroSlider: FC<THeroSlider> = ({ slides }) => {
             )}
           >
             <div className={classes.navText}>
-              <span>{sliderData[navIndexes.prev]?.navTitle}</span>
+              <span>{slides[navIndexes.prev]?.navTitle}</span>
             </div>
             <ArrorLeft />
           </button>

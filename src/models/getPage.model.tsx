@@ -28,6 +28,7 @@ export const getPageModel = (page: GPage) => {
           subtitle: slide?.subtitle,
           image: uiUploadfile(slide?.cover),
           buttons: slide?.button?.map((btn) => getButtons(btn)) || [],
+          navTitle: slide?.navText,
         } satisfies TSlide;
       });
 
