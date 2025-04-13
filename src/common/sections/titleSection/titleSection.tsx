@@ -11,7 +11,7 @@ import classes from './styles.module.sass';
 export type TTitleSection = {
   title: string;
   description: any;
-  image: TUploadFile;
+  image?: TUploadFile;
 };
 
 export const TitleSection: FC<{ data: TTitleSection }> = ({ data }) => {
@@ -23,10 +23,8 @@ export const TitleSection: FC<{ data: TTitleSection }> = ({ data }) => {
         <BlocksRenderer content={description} />
       </div>
       <figure className={classes.cover}>
-        {image ? (
+        {image && (
           <Image src={image?.url} alt={image.alternativeText || title} fill />
-        ) : (
-          <div />
         )}
       </figure>
     </section>

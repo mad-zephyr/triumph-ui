@@ -104,6 +104,7 @@ export type BikesType = {
   localizations_connection?: Maybe<BikesTypeRelationResponseCollection>;
   motorcycles: Array<Maybe<Motorcycle>>;
   motorcycles_connection?: Maybe<MotorcycleRelationResponseCollection>;
+  promoBanner?: Maybe<ComponentComponentPromoBaner>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title: Scalars['String']['output'];
   type: Scalars['String']['output'];
@@ -149,6 +150,7 @@ export type BikesTypeFiltersInput = {
   motorcycles?: InputMaybe<MotorcycleFiltersInput>;
   not?: InputMaybe<BikesTypeFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<BikesTypeFiltersInput>>>;
+  promoBanner?: InputMaybe<ComponentComponentPromoBanerFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   type?: InputMaybe<StringFilterInput>;
@@ -157,6 +159,7 @@ export type BikesTypeFiltersInput = {
 
 export type BikesTypeInput = {
   motorcycles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  promoBanner?: InputMaybe<ComponentComponentPromoBanerInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -317,9 +320,9 @@ export type ComponentComponentHeroSlideFiltersInput = {
 export type ComponentComponentPromoBaner = {
   __typename?: 'ComponentComponentPromoBaner';
   active: Scalars['Boolean']['output'];
+  cover?: Maybe<UploadFile>;
   description?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
-  image?: Maybe<UploadFile>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -334,9 +337,9 @@ export type ComponentComponentPromoBanerFiltersInput = {
 
 export type ComponentComponentPromoBanerInput = {
   active?: InputMaybe<Scalars['Boolean']['input']>;
+  cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Scalars['ID']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2073,6 +2076,79 @@ export type UploadFileFragmentFragment = {
   publishedAt?: any | null;
 };
 
+export type Get_Motocycles_By_TypeQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  type: Scalars['String']['input'];
+}>;
+
+export type Get_Motocycles_By_TypeQuery = {
+  __typename?: 'Query';
+  bikesTypes: Array<{
+    __typename: 'BikesType';
+    type: string;
+    title: string;
+    promoBanner?: {
+      __typename?: 'ComponentComponentPromoBaner';
+      active: boolean;
+      title?: string | null;
+      description?: any | null;
+      cover?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null;
+    motorcycles: Array<{
+      __typename?: 'Motorcycle';
+      model_name: string;
+      base_price: number;
+      sku: string;
+      bikes_type?: {
+        __typename: 'BikesType';
+        type: string;
+        title: string;
+      } | null;
+      listing_image?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null>;
+  } | null>;
+};
+
 export type Get_MotocycleQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   sku?: InputMaybe<Scalars['String']['input']>;
@@ -2175,7 +2251,7 @@ export type Get_MotocycleQuery = {
       active: boolean;
       title?: string | null;
       description?: any | null;
-      image?: {
+      cover?: {
         __typename: 'UploadFile';
         documentId: string;
         name: string;
@@ -2217,7 +2293,7 @@ export type Get_MotocyclesQuery = {
     description?: any | null;
     available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
     bikes_type?: {
-      __typename?: 'BikesType';
+      __typename: 'BikesType';
       type: string;
       title: string;
     } | null;
@@ -2301,6 +2377,7 @@ export type Get_MotocyclesQuery = {
 
 export type Get_PageQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
 }>;
 
 export type Get_PageQuery = {
@@ -3158,6 +3235,232 @@ export const ComponentUiLinkFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ComponentUiLinkFragmentFragment, unknown>;
+export const Get_Motocycles_By_TypeDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GET_MOTOCYCLES_BY_TYPE' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'type' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bikesTypes' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'type' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'type' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'promoBanner' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'active' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'cover' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'UploadFileFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'motorcycles' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'model_name' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'base_price' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'bikes_type' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: '__typename' },
+                            },
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'BikesType' },
+                              },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'type' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'listing_image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'UploadFileFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  Get_Motocycles_By_TypeQuery,
+  Get_Motocycles_By_TypeQueryVariables
+>;
 export const Get_MotocycleDocument = {
   kind: 'Document',
   definitions: [
@@ -3369,7 +3672,7 @@ export const Get_MotocycleDocument = {
                       },
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'image' },
+                        name: { kind: 'Name', value: 'cover' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
@@ -3565,6 +3868,10 @@ export const Get_MotocyclesDocument = {
                           selections: [
                             {
                               kind: 'Field',
+                              name: { kind: 'Name', value: '__typename' },
+                            },
+                            {
+                              kind: 'Field',
                               name: { kind: 'Name', value: 'type' },
                             },
                             {
@@ -3731,6 +4038,17 @@ export const Get_PageDocument = {
             },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -3745,6 +4063,32 @@ export const Get_PageDocument = {
                 value: {
                   kind: 'Variable',
                   name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'url' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
               },
             ],

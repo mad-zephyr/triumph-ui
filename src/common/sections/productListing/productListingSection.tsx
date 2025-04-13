@@ -9,7 +9,7 @@ import { TNavigator } from './components/navigator/navigator';
 import classes from './styles.module.sass';
 
 export type TProductListingSection = {
-  nav: TNavigator['navItems'];
+  nav?: TNavigator['navItems'];
   sections: TListSection[];
 };
 
@@ -19,7 +19,7 @@ export const ProductListingSection: FC<TProductListingSection> = ({
 }) => {
   return (
     <section className={classes.main}>
-      <Navigator navItems={nav} />
+      {nav && <Navigator navItems={nav} />}
 
       <div className={classes.content_wrapper}>
         {sections.map((section, i) => (

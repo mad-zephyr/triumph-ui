@@ -99,6 +99,7 @@ export type GBikesType = {
   localizations_connection?: Maybe<GBikesTypeRelationResponseCollection>;
   motorcycles: Array<Maybe<GMotorcycle>>;
   motorcycles_connection?: Maybe<GMotorcycleRelationResponseCollection>;
+  promoBanner?: Maybe<GComponentComponentPromoBaner>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title: Scalars['String']['output'];
   type: Scalars['String']['output'];
@@ -144,6 +145,7 @@ export type GBikesTypeFiltersInput = {
   motorcycles?: InputMaybe<GMotorcycleFiltersInput>;
   not?: InputMaybe<GBikesTypeFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<GBikesTypeFiltersInput>>>;
+  promoBanner?: InputMaybe<GComponentComponentPromoBanerFiltersInput>;
   publishedAt?: InputMaybe<GDateTimeFilterInput>;
   title?: InputMaybe<GStringFilterInput>;
   type?: InputMaybe<GStringFilterInput>;
@@ -152,6 +154,7 @@ export type GBikesTypeFiltersInput = {
 
 export type GBikesTypeInput = {
   motorcycles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  promoBanner?: InputMaybe<GComponentComponentPromoBanerInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -314,9 +317,9 @@ export type GComponentComponentHeroSlideFiltersInput = {
 export type GComponentComponentPromoBaner = {
   __typename?: 'ComponentComponentPromoBaner';
   active: Scalars['Boolean']['output'];
+  cover?: Maybe<GUploadFile>;
   description?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
-  image?: Maybe<GUploadFile>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -333,9 +336,9 @@ export type GComponentComponentPromoBanerFiltersInput = {
 
 export type GComponentComponentPromoBanerInput = {
   active?: InputMaybe<Scalars['Boolean']['input']>;
+  cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['JSON']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Scalars['ID']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2074,6 +2077,79 @@ export type GUploadFileFragmentFragment = {
   publishedAt?: any | null;
 };
 
+export type GGGET_MOTOCYCLES_BY_TYPEQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  type: Scalars['String']['input'];
+}>;
+
+export type GGGET_MOTOCYCLES_BY_TYPEQuery = {
+  __typename?: 'Query';
+  bikesTypes: Array<{
+    __typename: 'BikesType';
+    type: string;
+    title: string;
+    promoBanner?: {
+      __typename?: 'ComponentComponentPromoBaner';
+      active: boolean;
+      title?: string | null;
+      description?: any | null;
+      cover?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null;
+    motorcycles: Array<{
+      __typename?: 'Motorcycle';
+      model_name: string;
+      base_price: number;
+      sku: string;
+      bikes_type?: {
+        __typename: 'BikesType';
+        type: string;
+        title: string;
+      } | null;
+      listing_image?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+    } | null>;
+  } | null>;
+};
+
 export type GGGET_MOTOCYCLEQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   sku?: InputMaybe<Scalars['String']['input']>;
@@ -2176,7 +2252,7 @@ export type GGGET_MOTOCYCLEQuery = {
       active: boolean;
       title?: string | null;
       description?: any | null;
-      image?: {
+      cover?: {
         __typename: 'UploadFile';
         documentId: string;
         name: string;
@@ -2218,7 +2294,7 @@ export type GGGET_MOTOCYCLESQuery = {
     description?: any | null;
     available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
     bikes_type?: {
-      __typename?: 'BikesType';
+      __typename: 'BikesType';
       type: string;
       title: string;
     } | null;
@@ -2302,6 +2378,7 @@ export type GGGET_MOTOCYCLESQuery = {
 
 export type GGGET_PAGEQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
 }>;
 
 export type GGGET_PAGEQuery = {

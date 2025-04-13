@@ -1,4 +1,5 @@
 import { TProductCardPreview } from '@/common/components/productPreview/productCardPreview';
+import { TNavigatorNavItem } from '@/common/sections/productListing/components/navigator/navigator';
 import { TProductListingSection } from '@/common/sections/productListing/productListingSection';
 import { TProduct } from '@/types/entity';
 import { GMotorcycle } from '@/types/types';
@@ -9,12 +10,12 @@ const getMotoPreview = (moto: TProduct): TProductCardPreview => {
     title: moto.model_name,
     subtitle: `${moto.base_price}` || '0',
     image: moto.listing_image,
-    href: `${moto.productType}/${moto.sku}`,
+    href: `/${moto.productType}/${moto.bikes_type.type}/${moto.sku}`,
   };
 };
 
 export const getMotocycles = (motos: GMotorcycle[]): TProductListingSection => {
-  const sectionsNav = new Map<string, TProductListingSection['nav'][0]>();
+  const sectionsNav = new Map<string, TNavigatorNavItem>();
   const sectionsMoto = motos
     .filter((moto): moto is GMotorcycle => !!moto)
     .reduce<Map<string, TProductCardPreview[]>>((acc, cur) => {

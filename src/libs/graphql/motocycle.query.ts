@@ -44,6 +44,9 @@ export const GetMotocycle = gql`
         active
         title
         description
+        cover {
+          ...UploadFileFragment
+        }
       }
     }
   }

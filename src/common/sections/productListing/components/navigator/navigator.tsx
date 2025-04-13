@@ -3,36 +3,15 @@
 import { FC, useCallback } from 'react';
 
 import { Text } from '@/common/ui';
-// const data = {
-//   title: 'Categorii de motociclete',
-//   list: [
-//     {
-//       title: 'Adventure',
-//     },
-//     {
-//       title: 'Roadsters',
-//     },
-//     {
-//       title: 'Modern Classics',
-//     },
-//     {
-//       title: 'Rocket 3',
-//     },
-//     {
-//       title: 'Special edition',
-//     },
-//     {
-//       title: 'Sport',
-//     },
-//   ],
-// };
+
+export type TNavigatorNavItem = {
+  title: string;
+  navId: string;
+};
 
 export type TNavigator = {
   title?: string;
-  navItems: {
-    title: string;
-    navId: string;
-  }[];
+  navItems: TNavigatorNavItem[];
 };
 
 import classes from './styles.module.sass';

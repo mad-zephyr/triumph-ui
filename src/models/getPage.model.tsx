@@ -116,7 +116,7 @@ export const getPageModel = (page: GPage) => {
                   title: card.model_name,
                   cta: {
                     title: section.cta_title || 'more',
-                    url: `/${card.productType?.toLowerCase()}/${card.sku}`,
+                    url: `/${card.productType?.toLowerCase()}/${card.bikes_type.type}/${card.sku}`,
                   },
                 }}
               />
