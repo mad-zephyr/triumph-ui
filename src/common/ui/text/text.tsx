@@ -31,6 +31,10 @@ export const Text: FC<PropsWithChildren<TText>> = ({
   ...props
 }) => {
   const classNames = cn(classes[tag], classes[align], className);
+
+  if (!children) {
+    return <></>;
+  }
   switch (tag) {
     case 'h1': {
       return (

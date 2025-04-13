@@ -13,12 +13,14 @@ type THomePage = {
 export default async function HomePage({ params }: THomePage) {
   const { locale } = await params;
 
-  const { pages } = await getPagesData<{ pages: GPage[] }>({
+  const {
+    pages: [page],
+  } = await getPagesData<{ pages: GPage[] }>({
     query: GetPage,
     variables: { locale, url: 'main' },
   });
 
-  const { sections } = getPageModel(pages[0]);
+  const { sections } = getPageModel(page);
 
   return (
     <main>
