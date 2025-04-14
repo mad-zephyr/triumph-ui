@@ -4,6 +4,7 @@
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { FC, useMemo } from 'react';
 import { SplideSlide } from 'react-splide-ts';
 
@@ -27,6 +28,7 @@ export const ProductDetailsSection: FC<TProductDetailsSection> = ({
   description,
   images,
 }) => {
+  const t = useTranslations('technical');
   const navigation = useMemo(() => {
     return (
       <div className={clsx('splide__arrows', classes.controls)}>
@@ -44,7 +46,7 @@ export const ProductDetailsSection: FC<TProductDetailsSection> = ({
     <section className={classes.main}>
       <div className={classes.intro}>
         <Text tag="h4">{title}</Text>
-        <Text tag="p">{subtitile}</Text>
+        <Text tag="p">{t('priceFrom', { price: subtitile })}</Text>
       </div>
       <div className={classes.slider}>
         <Slider

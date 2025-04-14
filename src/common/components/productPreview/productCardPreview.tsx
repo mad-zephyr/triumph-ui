@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { FC } from 'react';
 
 import { Text } from '@/common/ui';
@@ -20,6 +23,7 @@ export const ProductCardPreview: FC<TProductCardPreview> = ({
   href,
   image,
 }) => {
+  const t = useTranslations('technical');
   return (
     <Link href={href.toLowerCase()} className={classes.card}>
       <div className={classes.card}>
@@ -28,7 +32,7 @@ export const ProductCardPreview: FC<TProductCardPreview> = ({
         </figure>
         <div className={classes.content}>
           <Text tag={'h5'}>{title}</Text>
-          <Text tag={'p'}>{subtitle}</Text>
+          <Text tag={'p'}>{t('priceFrom', { price: subtitle })}</Text>
         </div>
       </div>
     </Link>

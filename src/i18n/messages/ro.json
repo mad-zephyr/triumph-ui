@@ -10,6 +10,7 @@
     "error": {
       "title": "Hopa, ceva a mers prost",
       "subtitle": "Îmi pare rău pentru neplăcerile create! Lucrăm deja la remedierea problemei și o vom rezolva cât mai curând posibil. Încercați să reîmprospătați pagina sau reveniți mai târziu."
-    }
+    },
+    "priceFrom": "Pret de la {price} Euro"
   }
 }
