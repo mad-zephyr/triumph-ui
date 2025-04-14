@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/assets/styles/')],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   /* config options here */
 };
 

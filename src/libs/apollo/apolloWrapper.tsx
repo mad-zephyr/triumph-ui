@@ -1,5 +1,4 @@
 'use client';
-// ^ this file needs the "use client" pragma
 
 import { ApolloLink, HttpLink } from '@apollo/client';
 import {
@@ -14,12 +13,12 @@ import { getBasePath } from '../helpers';
 function makeClient() {
   const httpLink = new HttpLink({
     uri: `${getBasePath()}/graphql`,
-    headers: {
-      'Cache-Control': 'no-cache',
-    },
-    fetchOptions: {
-      next: { revalidate: 0 },
-    },
+    // headers: {
+    //   'Cache-Control': 'no-cache',
+    // },
+    // fetchOptions: {
+    //   next: { revalidate: 60 },
+    // },
   });
 
   // use the `ApolloClient` from "@apollo/client-integration-nextjs"

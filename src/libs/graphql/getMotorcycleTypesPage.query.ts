@@ -12,6 +12,7 @@ export const getMotorcycleTypesPage = gql`
         title
         type
         motorcycles {
+          __typename
           model_name
           base_price
           sku

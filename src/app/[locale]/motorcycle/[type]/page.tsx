@@ -15,6 +15,8 @@ type TPage = {
   }>;
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata({ params }: TPage): Promise<Metadata> {
   const { locale, type } = await params;
   const response = await fetchRawMetadata<{
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: TPage): Promise<Metadata> {
 
   if (response?.bikesTypes) {
     const [page] = response.bikesTypes;
-    return await generateSeo(page.seo);
+    return await generateSeo(page?.seo);
   }
   return await generateSeo();
 }
@@ -37,6 +39,7 @@ export default async function Page({ params }: TPage) {
   const { bikesTypes } = await getPagesData<{ bikesTypes: GBikesType[] }>({
     query: getMotorcyclesByType,
     variables: { locale, type },
+    tags: type,
   });
 
   const [motoTypes] = bikesTypes;

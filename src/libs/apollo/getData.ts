@@ -6,19 +6,23 @@ import { getClient } from './apolloClient';
 export async function getPagesData<T>({
   variables,
   query,
-  fetchPolicy = 'no-cache',
+  tags = 'tag',
+  // fetchPolicy = 'cache-first',
 }: {
   variables: OperationVariables;
   query: DocumentNode;
+  tags?: string;
   fetchPolicy?: FetchPolicy;
 }): Promise<T> {
   try {
     const response = await getClient().query<T>({
       query,
       variables,
-      fetchPolicy,
-      errorPolicy: 'all',
+      tags,
     });
+
+    // fetchPolicy,
+    // errorPolicy: 'all',
 
     if (!response.data) {
       notFound();

@@ -11,6 +11,7 @@ import {
   getTTagFromTitleTagEnum,
 } from '@/models';
 import { uiUploadfile } from '@/models/uiUploadfile';
+import { RevalidateTags } from '@/types/entity';
 import { GNewsPage, GNewsPost } from '@/types/types';
 
 import { NewsListWrapper } from './_components/newsListWrapper';
@@ -20,6 +21,8 @@ type THomePage = {
     locale: string;
   }>;
 };
+
+export const dynamic = 'force-static';
 
 export async function generateMetadata({
   params,
@@ -48,6 +51,7 @@ export default async function HomePage({ params }: THomePage) {
   }>({
     query: GetPreloadedNewsPostsQuery,
     variables: { locale, start: 0, limit: 6 },
+    tags: RevalidateTags.NewsPage as unknown as string,
   });
 
   const { newsPosts, newsPosts_connection, newsPage } = data;

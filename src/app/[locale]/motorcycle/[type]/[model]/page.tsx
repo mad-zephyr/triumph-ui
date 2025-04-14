@@ -19,6 +19,8 @@ type TPage = {
   }>;
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata({ params }: TPage): Promise<Metadata> {
   const { locale, model } = await params;
   const response = await fetchRawMetadata<{ motorcycles: GMotorcycle[] }>({
@@ -26,9 +28,9 @@ export async function generateMetadata({ params }: TPage): Promise<Metadata> {
     variables: { locale, sku: model },
   });
 
-  if (response?.motorcycles) {
+  if (response?.motorcycles && response?.motorcycles.length) {
     const [page] = response.motorcycles;
-    return await generateSeo(page.seo);
+    return await generateSeo(page?.seo);
   }
 
   return await generateSeo();
@@ -40,7 +42,14 @@ export default async function Page({ params }: TPage) {
   const { motorcycles } = await getPagesData<{ motorcycles: [GMotorcycle] }>({
     query: GetMotocycle,
     variables: { locale, sku: model },
+    tags: model,
   });
+
+  // const { motorcycles } = await getPageData<{ motorcycles: [GMotorcycle] }>({
+  //   query: GetMotocycle,
+  //   variables: { locale, sku: model },
+  //   tags: `motorcycle-${model}`,
+  // });
 
   const [product] = getMotocycle(motorcycles);
   const details = getProductDetailsAccordion(product);

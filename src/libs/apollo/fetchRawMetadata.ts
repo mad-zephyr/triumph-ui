@@ -5,7 +5,7 @@ import { getClient } from './apolloClient';
 export async function fetchRawMetadata<T>({
   variables,
   query,
-  fetchPolicy = 'no-cache',
+  // fetchPolicy = 'no-cache',
 }: {
   variables: OperationVariables;
   query: DocumentNode;
@@ -15,7 +15,6 @@ export async function fetchRawMetadata<T>({
     const response = await getClient().query<T>({
       query,
       variables,
-      fetchPolicy,
     });
 
     return response.data;

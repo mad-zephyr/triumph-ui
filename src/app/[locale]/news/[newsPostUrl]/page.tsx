@@ -13,6 +13,8 @@ type THomePage = {
   }>;
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata({
   params,
 }: THomePage): Promise<Metadata> {
@@ -38,6 +40,7 @@ export default async function HomePage({ params }: THomePage) {
   } = await getPagesData<{ newsPosts: GNewsPost[] }>({
     query: getNewsPage,
     variables: { locale, url: newsPostUrl },
+    tags: newsPostUrl,
   });
 
   const { sections } = getPageModel(newsPost);

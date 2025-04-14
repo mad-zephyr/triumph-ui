@@ -28,3 +28,9 @@ export type TProduct = {
     titleHtmlTag: TTag;
   };
 };
+
+export enum RevalidateTags {
+  NewsPage,
+  BikeTypesPage,
+  Header,
+}
