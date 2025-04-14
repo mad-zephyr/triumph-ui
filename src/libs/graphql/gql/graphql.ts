@@ -2545,6 +2545,67 @@ export type QuickNavigationFragmentFragment = {
   } | null>;
 };
 
+export type SeoFragmentFragment = {
+  __typename: 'ComponentSharedSeo';
+  metaTitle: string;
+  metaDescription: string;
+  keywords?: string | null;
+  canonicalURL?: string | null;
+  metaRobots?: string | null;
+  metaViewport?: string | null;
+  structuredData?: any | null;
+  metaImage?: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null;
+  openGraph?: {
+    __typename: 'ComponentSharedOpenGraph';
+    id: string;
+    ogTitle: string;
+    ogType?: string | null;
+    ogUrl?: string | null;
+    ogDescription: string;
+    ogImage?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+  } | null;
+};
+
 export type TextRedactorSectionFragment = {
   __typename: 'ComponentSectionTextRedactor';
   blocks?: any | null;
@@ -2605,6 +2666,221 @@ export type UploadFileFragmentFragment = {
   createdAt?: any | null;
   updatedAt?: any | null;
   publishedAt?: any | null;
+};
+
+export type GetBikeTypePageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  type: Scalars['String']['input'];
+}>;
+
+export type GetBikeTypePageSeoQuery = {
+  __typename?: 'Query';
+  bikesTypes: Array<{
+    __typename?: 'BikesType';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
+};
+
+export type GetBikesTypesPageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GetBikesTypesPageSeoQuery = {
+  __typename?: 'Query';
+  bikeTypesPage?: {
+    __typename?: 'BikeTypesPage';
+    seo?: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type GetMotorcyclePageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  sku: Scalars['String']['input'];
+}>;
+
+export type GetMotorcyclePageSeoQuery = {
+  __typename?: 'Query';
+  motorcycles: Array<{
+    __typename?: 'Motorcycle';
+    seo?: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null>;
 };
 
 export type Get_Motocycles_By_TypeQueryVariables = Exact<{
@@ -2800,6 +3076,149 @@ export type GetNewsPageQueryQuery = {
   } | null>;
 };
 
+export type GetNewsPageSeoQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GetNewsPageSeoQueryQuery = {
+  __typename?: 'Query';
+  newsPage?: {
+    __typename?: 'NewsPage';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null;
+};
+
+export type GetNewsPostSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
+}>;
+
+export type GetNewsPostSeoQuery = {
+  __typename?: 'Query';
+  newsPosts: Array<{
+    __typename?: 'NewsPost';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
+};
+
 export type GetNewsPostsQueryQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   start?: InputMaybe<Scalars['Int']['input']>;
@@ -2845,6 +3264,78 @@ export type GetNewsPostsQueryQuery = {
       pageCount: number;
     };
   } | null;
+};
+
+export type GetPageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
+}>;
+
+export type GetPageSeoQuery = {
+  __typename?: 'Query';
+  pages: Array<{
+    __typename?: 'Page';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
 };
 
 export type GetPreloadedNewsPostsQueryQueryVariables = Exact<{
@@ -4353,6 +4844,108 @@ export const QuickNavigationFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<QuickNavigationFragmentFragment, unknown>;
+export const SeoFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SeoFragmentFragment, unknown>;
 export const TextRedactorSectionFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -4462,6 +5055,569 @@ export const ComponentUiLinkFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ComponentUiLinkFragmentFragment, unknown>;
+export const GetBikeTypePageSeoDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetBikeTypePageSeo' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'type' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bikesTypes' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'type' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'type' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetBikeTypePageSeoQuery,
+  GetBikeTypePageSeoQueryVariables
+>;
+export const GetBikesTypesPageSeoDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetBikesTypesPageSeo' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bikeTypesPage' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetBikesTypesPageSeoQuery,
+  GetBikesTypesPageSeoQueryVariables
+>;
+export const GetMotorcyclePageSeoDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetMotorcyclePageSeo' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'sku' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'motorcycles' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'sku' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'sku' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMotorcyclePageSeoQuery,
+  GetMotorcyclePageSeoQueryVariables
+>;
 export const Get_Motocycles_By_TypeDocument = {
   kind: 'Document',
   definitions: [
@@ -5070,6 +6226,366 @@ export const GetNewsPageQueryDocument = {
   GetNewsPageQueryQuery,
   GetNewsPageQueryQueryVariables
 >;
+export const GetNewsPageSeoQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetNewsPageSeoQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPage' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetNewsPageSeoQueryQuery,
+  GetNewsPageSeoQueryQueryVariables
+>;
+export const GetNewsPostSeoDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetNewsPostSeo' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'newsPosts' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'url' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetNewsPostSeoQuery, GetNewsPostSeoQueryVariables>;
 export const GetNewsPostsQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -5300,6 +6816,203 @@ export const GetNewsPostsQueryDocument = {
   GetNewsPostsQueryQuery,
   GetNewsPostsQueryQueryVariables
 >;
+export const GetPageSeoDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetPageSeo' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pages' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'url' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'seo' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SeoFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'SeoFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSharedSeo' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'keywords' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonicalURL' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'metaImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'metaViewport' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'structuredData' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'openGraph' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogType' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'ogUrl' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogDescription' },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'ogImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'UploadFileFragment' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPageSeoQuery, GetPageSeoQueryVariables>;
 export const GetPreloadedNewsPostsQueryDocument = {
   kind: 'Document',
   definitions: [

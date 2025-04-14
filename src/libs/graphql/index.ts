@@ -1,7 +1,13 @@
+export { getBikesTypesPageSeo } from './getBikesTypesPageSeo.query';
+export { getBikeTypePageSeo } from './getBikeTypePageSeo.query';
+export { GetMotorcyclePageSeo } from './getMotocyclePageSeo.query';
 export { getMotorcyclesByType } from './getMotorcycleByType.query';
 export { getMotorcycleTypesPage } from './getMotorcycleTypesPage.query';
 export { getNewsPage } from './getNewsPage.query';
+export { getNewsPageSeo } from './getNewsPageSeo.query';
 export { GetNewsPostsQuery } from './getNewsPosts.query';
+export { getNewsPostSeo } from './getNewsPostSeo.query';
+export { GetPageSeo } from './getPageSeo';
 export { GetPreloadedNewsPostsQuery } from './getPreloadedNewsPosts.query';
 export { GetMotocycle } from './motocycle.query';
 export { GetMotocycles } from './motocycles.query';

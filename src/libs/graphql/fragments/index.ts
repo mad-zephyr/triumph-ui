@@ -6,6 +6,7 @@ export { NewsSectionFragment } from './newsSection.fragment';
 export { ProductDetails } from './productDetails.fragment';
 export { PromoSliderSectionFragment } from './promoSliderSection.fragment';
 export { QuickNavigationFragment } from './quickNavigationSection.fragment';
+export { SeoFragment } from './seo.fragment';
 export { TextRedactorSection } from './textRedactorSection.fragment copy';
 export { TitleSectionFragment } from './titleSection.fragment';
 export { ComponentUiLinkFragment } from './uiLink.fragments';

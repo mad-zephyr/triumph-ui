@@ -1,7 +1,10 @@
+import { Metadata } from 'next';
+
 import { ProductListingSection, TitleSection } from '@/common';
+import { fetchRawMetadata } from '@/libs/apollo/fetchRawMetadata';
 import { getPagesData } from '@/libs/apollo/getData';
-import { getMotorcyclesByType } from '@/libs/graphql';
-import { getMotocycles, getTTagFromTitleTagEnum } from '@/models';
+import { getBikeTypePageSeo, getMotorcyclesByType } from '@/libs/graphql';
+import { generateSeo, getMotocycles, getTTagFromTitleTagEnum } from '@/models';
 import { uiUploadfile } from '@/models/uiUploadfile';
 import { GBikesType, GMotorcycle } from '@/types/types';
 
@@ -11,6 +14,23 @@ type TPage = {
     type: string;
   }>;
 };
+
+export async function generateMetadata({ params }: TPage): Promise<Metadata> {
+  const { locale, type } = await params;
+  const response = await fetchRawMetadata<{
+    data: { bikesTypes: GBikesType[] };
+  }>({
+    query: getBikeTypePageSeo,
+    variables: { locale, type },
+  });
+
+  if (response?.data.bikesTypes) {
+    const [page] = response.data.bikesTypes;
+    return await generateSeo(page.seo);
+  }
+
+  return await generateSeo();
+}
 
 export default async function Page({ params }: TPage) {
   const { locale, type } = await params;

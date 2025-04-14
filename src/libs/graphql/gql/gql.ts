@@ -23,14 +23,21 @@ type Documents = {
   '\n  fragment ProductDetails on ComponentComponentAttribute {\n    __typename\n    attribute {\n      __typename\n      group_name\n      item {\n        __typename\n        key\n        value\n      }\n    }\n  }\n': typeof types.ProductDetailsFragmentDoc;
   '\n  \n  fragment PromoSliderSectionFragment on ComponentSectionPromoSliderSection {\n    __typename\n    title\n    cta_title\n    active\n    motocycles {\n      documentId\n      __typename\n      sku\n      availability_status\n      bikes_type {\n        title\n        type\n      }\n      year\n      base_price\n      model_name\n      description\n      listing_image {\n        ...UploadFileFragment\n      }\n      main_image {\n        ...UploadFileFragment\n      }\n      gallery {\n        ...UploadFileFragment\n      }\n    }\n  }\n': typeof types.PromoSliderSectionFragmentFragmentDoc;
   '\n  \n  fragment QuickNavigationFragment on ComponentSectionQuickNavigation {\n    __typename\n    active\n    links {\n      __typename\n      active\n      show\n      title\n      url\n      icon {\n        ...UploadFileFragment\n      }\n    }\n  }\n': typeof types.QuickNavigationFragmentFragmentDoc;
+  '\n  \n  fragment SeoFragment on ComponentSharedSeo {\n    __typename\n    metaTitle\n    metaDescription\n    keywords\n    canonicalURL\n    metaImage {\n      ...UploadFileFragment\n    }\n    metaRobots\n    metaViewport\n    structuredData\n    openGraph {\n      __typename\n      id\n      ogTitle\n      ogType\n      ogUrl\n      ogDescription\n      ogImage {\n        ...UploadFileFragment\n      }\n    }\n  }\n': typeof types.SeoFragmentFragmentDoc;
   '\n  \n  fragment TextRedactorSection on ComponentSectionTextRedactor {\n    __typename\n    blocks\n  }\n': typeof types.TextRedactorSectionFragmentDoc;
   '\n  \n  fragment TitleSectionFragment on ComponentSectionTitleSection {\n    __typename\n    title\n    description\n    title_html_tag\n    cover {\n      ...UploadFileFragment\n    }\n  }\n': typeof types.TitleSectionFragmentFragmentDoc;
   '\n  fragment ComponentUiLinkFragment on ComponentUiLink {\n    __typename\n    id\n    title\n    url\n  }\n': typeof types.ComponentUiLinkFragmentFragmentDoc;
   '\n  fragment UploadFileFragment on UploadFile {\n    __typename\n    documentId\n    name\n    alternativeText\n    caption\n    width\n    height\n    formats\n    hash\n    ext\n    mime\n    size\n    url\n    previewUrl\n    provider\n    provider_metadata\n    createdAt\n    updatedAt\n    publishedAt\n  }\n': typeof types.UploadFileFragmentFragmentDoc;
+  '\n  \n  query GetBikeTypePageSeo($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetBikeTypePageSeoDocument;
+  '\n  \n  query GetBikesTypesPageSeo($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetBikesTypesPageSeoDocument;
+  '\n  \n  query GetMotorcyclePageSeo($locale: I18NLocaleCode!, $sku: String!) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetMotorcyclePageSeoDocument;
   '\n  \n  query GET_MOTOCYCLES_BY_TYPE($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      __typename\n      type\n      title\n      promoBanner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n      motorcycles {\n        model_name\n        base_price\n        sku\n        bikes_type {\n          __typename\n          ... on BikesType {\n            type\n            title\n          }\n        }\n        listing_image {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n': typeof types.Get_Motocycles_By_TypeDocument;
   '\n  \n  query GET_MOTOCYCLE_PAGE($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      navigator_title\n      __typename\n      displayed_bike_types {\n        title\n        type\n        motorcycles {\n          model_name\n          base_price\n          sku\n          bikes_type {\n            __typename\n            ... on BikesType {\n              type\n              title\n            }\n          }\n          listing_image {\n            ...UploadFileFragment\n          }\n        }\n      }\n    }\n  }\n': typeof types.Get_Motocycle_PageDocument;
   '\n  \n  \n  \n  query GetNewsPageQuery($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(\n      locale: $locale\n      filters: { url: { eq: $url } }\n      status: PUBLISHED\n    ) {\n      __typename\n      title\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n      sections {\n        ...TitleSectionFragment\n        ...TextRedactorSection\n      }\n    }\n  }\n': typeof types.GetNewsPageQueryDocument;
+  '\n  \n  query GetNewsPageSeoQuery($locale: I18NLocaleCode!) {\n    newsPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetNewsPageSeoQueryDocument;
+  '\n  \n  query GetNewsPostSeo($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetNewsPostSeoDocument;
   '\n  \n  query GetNewsPostsQuery($locale: I18NLocaleCode!, $start: Int, $limit: Int) {\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n': typeof types.GetNewsPostsQueryDocument;
+  '\n  \n  query GetPageSeo($locale: I18NLocaleCode!, $url: String!) {\n    pages(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n': typeof types.GetPageSeoDocument;
   '\n  \n  query GetPreloadedNewsPostsQuery(\n    $locale: I18NLocaleCode!\n    $start: Int\n    $limit: Int\n  ) {\n    newsPage {\n      __typename\n      banner {\n        __typename\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n    }\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n': typeof types.GetPreloadedNewsPostsQueryDocument;
   '\n  \n  \n  query GET_MOTOCYCLE($locale: I18NLocaleCode!, $sku: String) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      __typename\n      category\n      model_name\n      sku\n      year\n      availability_status\n      base_price\n      description\n      available_colors {\n        ... on BikeColor {\n          __typename\n          color\n        }\n      }\n      bikes_type {\n        ... on BikesType {\n          type\n          title\n        }\n      }\n      listing_image {\n        ...UploadFileFragment\n      }\n      main_image {\n        ...UploadFileFragment\n      }\n      gallery {\n        ...UploadFileFragment\n      }\n      details {\n        ...ProductDetails\n      }\n      banner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n': typeof types.Get_MotocycleDocument;
   '\n  \n  \n  query GET_MOTOCYCLES($locale: I18NLocaleCode!) {\n    motorcycles(locale: $locale) {\n      __typename\n      category\n      model_name\n      sku\n      year\n      availability_status\n      base_price\n      description\n      available_colors {\n        ... on BikeColor {\n          __typename\n          color\n        }\n      }\n      bikes_type {\n        ... on BikesType {\n          __typename\n          type\n          title\n        }\n      }\n      listing_image {\n        ...UploadFileFragment\n      }\n      main_image {\n        ...UploadFileFragment\n      }\n      gallery {\n        ...UploadFileFragment\n      }\n      details {\n        ...ProductDetails\n      }\n    }\n  }\n': typeof types.Get_MotocyclesDocument;
@@ -56,6 +63,8 @@ const documents: Documents = {
     types.PromoSliderSectionFragmentFragmentDoc,
   '\n  \n  fragment QuickNavigationFragment on ComponentSectionQuickNavigation {\n    __typename\n    active\n    links {\n      __typename\n      active\n      show\n      title\n      url\n      icon {\n        ...UploadFileFragment\n      }\n    }\n  }\n':
     types.QuickNavigationFragmentFragmentDoc,
+  '\n  \n  fragment SeoFragment on ComponentSharedSeo {\n    __typename\n    metaTitle\n    metaDescription\n    keywords\n    canonicalURL\n    metaImage {\n      ...UploadFileFragment\n    }\n    metaRobots\n    metaViewport\n    structuredData\n    openGraph {\n      __typename\n      id\n      ogTitle\n      ogType\n      ogUrl\n      ogDescription\n      ogImage {\n        ...UploadFileFragment\n      }\n    }\n  }\n':
+    types.SeoFragmentFragmentDoc,
   '\n  \n  fragment TextRedactorSection on ComponentSectionTextRedactor {\n    __typename\n    blocks\n  }\n':
     types.TextRedactorSectionFragmentDoc,
   '\n  \n  fragment TitleSectionFragment on ComponentSectionTitleSection {\n    __typename\n    title\n    description\n    title_html_tag\n    cover {\n      ...UploadFileFragment\n    }\n  }\n':
@@ -64,14 +73,26 @@ const documents: Documents = {
     types.ComponentUiLinkFragmentFragmentDoc,
   '\n  fragment UploadFileFragment on UploadFile {\n    __typename\n    documentId\n    name\n    alternativeText\n    caption\n    width\n    height\n    formats\n    hash\n    ext\n    mime\n    size\n    url\n    previewUrl\n    provider\n    provider_metadata\n    createdAt\n    updatedAt\n    publishedAt\n  }\n':
     types.UploadFileFragmentFragmentDoc,
+  '\n  \n  query GetBikeTypePageSeo($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetBikeTypePageSeoDocument,
+  '\n  \n  query GetBikesTypesPageSeo($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetBikesTypesPageSeoDocument,
+  '\n  \n  query GetMotorcyclePageSeo($locale: I18NLocaleCode!, $sku: String!) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetMotorcyclePageSeoDocument,
   '\n  \n  query GET_MOTOCYCLES_BY_TYPE($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      __typename\n      type\n      title\n      promoBanner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n      motorcycles {\n        model_name\n        base_price\n        sku\n        bikes_type {\n          __typename\n          ... on BikesType {\n            type\n            title\n          }\n        }\n        listing_image {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n':
     types.Get_Motocycles_By_TypeDocument,
   '\n  \n  query GET_MOTOCYCLE_PAGE($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      navigator_title\n      __typename\n      displayed_bike_types {\n        title\n        type\n        motorcycles {\n          model_name\n          base_price\n          sku\n          bikes_type {\n            __typename\n            ... on BikesType {\n              type\n              title\n            }\n          }\n          listing_image {\n            ...UploadFileFragment\n          }\n        }\n      }\n    }\n  }\n':
     types.Get_Motocycle_PageDocument,
   '\n  \n  \n  \n  query GetNewsPageQuery($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(\n      locale: $locale\n      filters: { url: { eq: $url } }\n      status: PUBLISHED\n    ) {\n      __typename\n      title\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n      sections {\n        ...TitleSectionFragment\n        ...TextRedactorSection\n      }\n    }\n  }\n':
     types.GetNewsPageQueryDocument,
+  '\n  \n  query GetNewsPageSeoQuery($locale: I18NLocaleCode!) {\n    newsPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetNewsPageSeoQueryDocument,
+  '\n  \n  query GetNewsPostSeo($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetNewsPostSeoDocument,
   '\n  \n  query GetNewsPostsQuery($locale: I18NLocaleCode!, $start: Int, $limit: Int) {\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n':
     types.GetNewsPostsQueryDocument,
+  '\n  \n  query GetPageSeo($locale: I18NLocaleCode!, $url: String!) {\n    pages(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n':
+    types.GetPageSeoDocument,
   '\n  \n  query GetPreloadedNewsPostsQuery(\n    $locale: I18NLocaleCode!\n    $start: Int\n    $limit: Int\n  ) {\n    newsPage {\n      __typename\n      banner {\n        __typename\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n    }\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n':
     types.GetPreloadedNewsPostsQueryDocument,
   '\n  \n  \n  query GET_MOTOCYCLE($locale: I18NLocaleCode!, $sku: String) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      __typename\n      category\n      model_name\n      sku\n      year\n      availability_status\n      base_price\n      description\n      available_colors {\n        ... on BikeColor {\n          __typename\n          color\n        }\n      }\n      bikes_type {\n        ... on BikesType {\n          type\n          title\n        }\n      }\n      listing_image {\n        ...UploadFileFragment\n      }\n      main_image {\n        ...UploadFileFragment\n      }\n      gallery {\n        ...UploadFileFragment\n      }\n      details {\n        ...ProductDetails\n      }\n      banner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n':
@@ -156,6 +177,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  \n  fragment SeoFragment on ComponentSharedSeo {\n    __typename\n    metaTitle\n    metaDescription\n    keywords\n    canonicalURL\n    metaImage {\n      ...UploadFileFragment\n    }\n    metaRobots\n    metaViewport\n    structuredData\n    openGraph {\n      __typename\n      id\n      ogTitle\n      ogType\n      ogUrl\n      ogDescription\n      ogImage {\n        ...UploadFileFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  fragment SeoFragment on ComponentSharedSeo {\n    __typename\n    metaTitle\n    metaDescription\n    keywords\n    canonicalURL\n    metaImage {\n      ...UploadFileFragment\n    }\n    metaRobots\n    metaViewport\n    structuredData\n    openGraph {\n      __typename\n      id\n      ogTitle\n      ogType\n      ogUrl\n      ogDescription\n      ogImage {\n        ...UploadFileFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  \n  fragment TextRedactorSection on ComponentSectionTextRedactor {\n    __typename\n    blocks\n  }\n'
 ): (typeof documents)['\n  \n  fragment TextRedactorSection on ComponentSectionTextRedactor {\n    __typename\n    blocks\n  }\n'];
 /**
@@ -180,6 +207,24 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  \n  query GetBikeTypePageSeo($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetBikeTypePageSeo($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  \n  query GetBikesTypesPageSeo($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetBikesTypesPageSeo($locale: I18NLocaleCode!) {\n    bikeTypesPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  \n  query GetMotorcyclePageSeo($locale: I18NLocaleCode!, $sku: String!) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetMotorcyclePageSeo($locale: I18NLocaleCode!, $sku: String!) {\n    motorcycles(locale: $locale, filters: { sku: { eq: $sku } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  \n  query GET_MOTOCYCLES_BY_TYPE($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      __typename\n      type\n      title\n      promoBanner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n      motorcycles {\n        model_name\n        base_price\n        sku\n        bikes_type {\n          __typename\n          ... on BikesType {\n            type\n            title\n          }\n        }\n        listing_image {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n'
 ): (typeof documents)['\n  \n  query GET_MOTOCYCLES_BY_TYPE($locale: I18NLocaleCode!, $type: String!) {\n    bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {\n      __typename\n      type\n      title\n      promoBanner {\n        active\n        title\n        description\n        cover {\n          ...UploadFileFragment\n        }\n      }\n      motorcycles {\n        model_name\n        base_price\n        sku\n        bikes_type {\n          __typename\n          ... on BikesType {\n            type\n            title\n          }\n        }\n        listing_image {\n          ...UploadFileFragment\n        }\n      }\n    }\n  }\n'];
 /**
@@ -198,8 +243,26 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  \n  query GetNewsPageSeoQuery($locale: I18NLocaleCode!) {\n    newsPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetNewsPageSeoQuery($locale: I18NLocaleCode!) {\n    newsPage(locale: $locale) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  \n  query GetNewsPostSeo($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetNewsPostSeo($locale: I18NLocaleCode!, $url: String!) {\n    newsPosts(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  \n  query GetNewsPostsQuery($locale: I18NLocaleCode!, $start: Int, $limit: Int) {\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n'
 ): (typeof documents)['\n  \n  query GetNewsPostsQuery($locale: I18NLocaleCode!, $start: Int, $limit: Int) {\n    newsPosts(\n      locale: $locale\n      status: PUBLISHED\n      pagination: { start: $start, limit: $limit }\n      sort: ["createdAt:desc"]\n    ) {\n      __typename\n      title\n      url\n      previewText\n      preview_cover {\n        ...UploadFileFragment\n      }\n    }\n    newsPosts_connection(\n      locale: $locale\n      pagination: { start: $start, limit: $limit }\n      status: PUBLISHED\n    ) {\n      pageInfo {\n        total\n        page\n        pageSize\n        pageCount\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  \n  query GetPageSeo($locale: I18NLocaleCode!, $url: String!) {\n    pages(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'
+): (typeof documents)['\n  \n  query GetPageSeo($locale: I18NLocaleCode!, $url: String!) {\n    pages(locale: $locale, filters: { url: { eq: $url } }) {\n      seo {\n        ...SeoFragment\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

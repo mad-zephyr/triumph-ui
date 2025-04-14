@@ -1,6 +1,9 @@
+import { Metadata } from 'next';
+
+import { fetchRawMetadata } from '@/libs/apollo/fetchRawMetadata';
 import { getPagesData } from '@/libs/apollo/getData';
-import { getNewsPage } from '@/libs/graphql';
-import { getPageModel } from '@/models';
+import { getNewsPage, getNewsPostSeo } from '@/libs/graphql';
+import { generateSeo, getPageModel } from '@/models';
 import { GNewsPost } from '@/types/types';
 
 type THomePage = {
@@ -9,6 +12,25 @@ type THomePage = {
     newsPostUrl: string;
   }>;
 };
+
+export async function generateMetadata({
+  params,
+}: THomePage): Promise<Metadata> {
+  const { locale, newsPostUrl } = await params;
+  const response = await fetchRawMetadata<{ data: { newsPosts: GNewsPost[] } }>(
+    {
+      query: getNewsPostSeo,
+      variables: { locale, url: newsPostUrl },
+    }
+  );
+
+  if (response?.data.newsPosts) {
+    const [page] = response.data.newsPosts;
+    return await generateSeo(page?.seo);
+  }
+
+  return await generateSeo();
+}
 
 export default async function HomePage({ params }: THomePage) {
   const { locale, newsPostUrl } = await params;

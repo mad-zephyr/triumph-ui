@@ -2546,6 +2546,67 @@ export type GQuickNavigationFragmentFragment = {
   } | null>;
 };
 
+export type GSeoFragmentFragment = {
+  __typename: 'ComponentSharedSeo';
+  metaTitle: string;
+  metaDescription: string;
+  keywords?: string | null;
+  canonicalURL?: string | null;
+  metaRobots?: string | null;
+  metaViewport?: string | null;
+  structuredData?: any | null;
+  metaImage?: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null;
+  openGraph?: {
+    __typename: 'ComponentSharedOpenGraph';
+    id: string;
+    ogTitle: string;
+    ogType?: string | null;
+    ogUrl?: string | null;
+    ogDescription: string;
+    ogImage?: {
+      __typename: 'UploadFile';
+      documentId: string;
+      name: string;
+      alternativeText?: string | null;
+      caption?: string | null;
+      width?: number | null;
+      height?: number | null;
+      formats?: any | null;
+      hash: string;
+      ext?: string | null;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl?: string | null;
+      provider: string;
+      provider_metadata?: any | null;
+      createdAt?: any | null;
+      updatedAt?: any | null;
+      publishedAt?: any | null;
+    } | null;
+  } | null;
+};
+
 export type GTextRedactorSectionFragment = {
   __typename: 'ComponentSectionTextRedactor';
   blocks?: any | null;
@@ -2606,6 +2667,221 @@ export type GUploadFileFragmentFragment = {
   createdAt?: any | null;
   updatedAt?: any | null;
   publishedAt?: any | null;
+};
+
+export type GGGetBikeTypePageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  type: Scalars['String']['input'];
+}>;
+
+export type GGGetBikeTypePageSeoQuery = {
+  __typename?: 'Query';
+  bikesTypes: Array<{
+    __typename?: 'BikesType';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
+};
+
+export type GGGetBikesTypesPageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GGGetBikesTypesPageSeoQuery = {
+  __typename?: 'Query';
+  bikeTypesPage?: {
+    __typename?: 'BikeTypesPage';
+    seo?: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type GGGetMotorcyclePageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  sku: Scalars['String']['input'];
+}>;
+
+export type GGGetMotorcyclePageSeoQuery = {
+  __typename?: 'Query';
+  motorcycles: Array<{
+    __typename?: 'Motorcycle';
+    seo?: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null>;
 };
 
 export type GGGET_MOTOCYCLES_BY_TYPEQueryVariables = Exact<{
@@ -2801,6 +3077,149 @@ export type GGGetNewsPageQueryQuery = {
   } | null>;
 };
 
+export type GGGetNewsPageSeoQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GGGetNewsPageSeoQueryQuery = {
+  __typename?: 'Query';
+  newsPage?: {
+    __typename?: 'NewsPage';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null;
+};
+
+export type GGGetNewsPostSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
+}>;
+
+export type GGGetNewsPostSeoQuery = {
+  __typename?: 'Query';
+  newsPosts: Array<{
+    __typename?: 'NewsPost';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
+};
+
 export type GGGetNewsPostsQueryQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   start?: InputMaybe<Scalars['Int']['input']>;
@@ -2846,6 +3265,78 @@ export type GGGetNewsPostsQueryQuery = {
       pageCount: number;
     };
   } | null;
+};
+
+export type GGGetPageSeoQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  url: Scalars['String']['input'];
+}>;
+
+export type GGGetPageSeoQuery = {
+  __typename?: 'Query';
+  pages: Array<{
+    __typename?: 'Page';
+    seo: {
+      __typename: 'ComponentSharedSeo';
+      metaTitle: string;
+      metaDescription: string;
+      keywords?: string | null;
+      canonicalURL?: string | null;
+      metaRobots?: string | null;
+      metaViewport?: string | null;
+      structuredData?: any | null;
+      metaImage?: {
+        __typename: 'UploadFile';
+        documentId: string;
+        name: string;
+        alternativeText?: string | null;
+        caption?: string | null;
+        width?: number | null;
+        height?: number | null;
+        formats?: any | null;
+        hash: string;
+        ext?: string | null;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl?: string | null;
+        provider: string;
+        provider_metadata?: any | null;
+        createdAt?: any | null;
+        updatedAt?: any | null;
+        publishedAt?: any | null;
+      } | null;
+      openGraph?: {
+        __typename: 'ComponentSharedOpenGraph';
+        id: string;
+        ogTitle: string;
+        ogType?: string | null;
+        ogUrl?: string | null;
+        ogDescription: string;
+        ogImage?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null;
+    };
+  } | null>;
 };
 
 export type GGGetPreloadedNewsPostsQueryQueryVariables = Exact<{
