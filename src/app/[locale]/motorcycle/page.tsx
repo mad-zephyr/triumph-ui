@@ -25,7 +25,7 @@ export default async function Page({ params }: TPage) {
   return (
     <main>
       <ProductListingSection
-        navTitle={bikeTypesPage.navigator_title}
+        navTitle={bikeTypesPage?.navigator_title}
         nav={listing.nav}
         sections={listing.sections}
       />

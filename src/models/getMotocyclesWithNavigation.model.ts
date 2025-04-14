@@ -19,7 +19,7 @@ export const getMotocyclesWithNavigation = (
 ): TProductListingSection => {
   const sectionsNav = new Map<string, TNavigatorNavItem>();
 
-  const sectionsMoto = bikeTypesPage.displayed_bike_types
+  const sectionsMoto = bikeTypesPage?.displayed_bike_types
     .filter((bikeType): bikeType is GBikesType => !!bikeType)
 
     .reduce<Map<string, TProductCardPreview[]>>((acc, cur) => {

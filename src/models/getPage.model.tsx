@@ -120,7 +120,6 @@ export const getPageModel = (page: GPage | GNewsPost) => {
             }}
           >
             {motos.map((card, k) => {
-              // console.log('CARD====', card, card.bikes_type?.type);
               return (
                 <ProductCardBig
                   key={k}
