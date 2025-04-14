@@ -10,16 +10,18 @@ import classes from './styles.module.sass';
 
 export type TProductListingSection = {
   nav?: TNavigator['navItems'];
+  navTitle?: string;
   sections: TListSection[];
 };
 
 export const ProductListingSection: FC<TProductListingSection> = ({
   nav,
+  navTitle,
   sections,
 }) => {
   return (
     <section className={classes.main}>
-      {nav && <Navigator navItems={nav} />}
+      {nav && <Navigator navItems={nav} title={navTitle} />}
 
       <div className={classes.content_wrapper}>
         {sections.map((section, i) => (

@@ -1,4 +1,5 @@
 export { getMotorcyclesByType } from './getMotorcycleByType.query';
+export { getMotorcycleTypesPage } from './getMotorcycleTypesPage.query';
 export { getNewsPage } from './getNewsPage.query';
 export { GetNewsPostsQuery } from './getNewsPosts.query';
 export { GetPreloadedNewsPostsQuery } from './getPreloadedNewsPosts.query';

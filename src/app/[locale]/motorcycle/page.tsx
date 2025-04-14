@@ -1,8 +1,8 @@
 import { ProductListingSection } from '@/common';
 import { getPagesData } from '@/libs/apollo/getData';
-import { GetMotocycles } from '@/libs/graphql';
-import { getMotocycles } from '@/models';
-import { GMotorcycle } from '@/types/types';
+import { getMotorcycleTypesPage } from '@/libs/graphql';
+import { getMotocyclesWithNavigation } from '@/models/getMotocyclesWithNavigation.model';
+import { GBikeTypesPage } from '@/types/types';
 
 type TPage = {
   params: Promise<{
@@ -13,16 +13,22 @@ type TPage = {
 export default async function Page({ params }: TPage) {
   const { locale } = await params;
 
-  const { motorcycles } = await getPagesData<{ motorcycles: GMotorcycle[] }>({
-    query: GetMotocycles,
+  const { bikeTypesPage } = await getPagesData<{
+    bikeTypesPage: GBikeTypesPage;
+  }>({
+    query: getMotorcycleTypesPage,
     variables: { locale },
   });
 
-  const listing = getMotocycles(motorcycles);
+  const listing = getMotocyclesWithNavigation(bikeTypesPage);
 
   return (
     <main>
-      <ProductListingSection nav={listing.nav} sections={listing.sections} />
+      <ProductListingSection
+        navTitle={bikeTypesPage.navigator_title}
+        nav={listing.nav}
+        sections={listing.sections}
+      />
     </main>
   );
 }

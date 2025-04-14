@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes, PropsWithChildren, Ref } from 'react';
 
-type TTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+export type TTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 import cn from 'clsx';
 
 export type TagMap = {

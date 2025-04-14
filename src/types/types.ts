@@ -91,6 +91,47 @@ export type GBikeColorRelationResponseCollection = {
   nodes: Array<GBikeColor>;
 };
 
+export type GBikeTypesPage = {
+  __typename?: 'BikeTypesPage';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  displayed_bike_types: Array<Maybe<GBikesType>>;
+  displayed_bike_types_connection?: Maybe<GBikesTypeRelationResponseCollection>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<GBikeTypesPage>>;
+  localizations_connection?: Maybe<GBikeTypesPageRelationResponseCollection>;
+  navigator_title: Scalars['String']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<GComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type GBikeTypesPageGDisplayed_bike_typesArgs = {
+  filters?: InputMaybe<GBikesTypeFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GBikeTypesPageGDisplayed_bike_types_connectionArgs = {
+  filters?: InputMaybe<GBikesTypeFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GBikeTypesPageInput = {
+  displayed_bike_types?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  navigator_title?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GBikeTypesPageRelationResponseCollection = {
+  __typename?: 'BikeTypesPageRelationResponseCollection';
+  nodes: Array<GBikeTypesPage>;
+};
+
 export type GBikesType = {
   __typename?: 'BikesType';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -102,6 +143,7 @@ export type GBikesType = {
   motorcycles_connection?: Maybe<GMotorcycleRelationResponseCollection>;
   promoBanner?: Maybe<GComponentComponentPromoBaner>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo: GComponentSharedSeo;
   title: Scalars['String']['output'];
   type: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -148,6 +190,7 @@ export type GBikesTypeFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<GBikesTypeFiltersInput>>>;
   promoBanner?: InputMaybe<GComponentComponentPromoBanerFiltersInput>;
   publishedAt?: InputMaybe<GDateTimeFilterInput>;
+  seo?: InputMaybe<GComponentSharedSeoFiltersInput>;
   title?: InputMaybe<GStringFilterInput>;
   type?: InputMaybe<GStringFilterInput>;
   updatedAt?: InputMaybe<GDateTimeFilterInput>;
@@ -157,6 +200,7 @@ export type GBikesTypeInput = {
   motorcycles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   promoBanner?: InputMaybe<GComponentComponentPromoBanerInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
@@ -476,6 +520,77 @@ export type GComponentSectionTitleSection = {
   description?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   title?: Maybe<Scalars['String']['output']>;
+  title_html_tag: GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG;
+};
+
+export type GComponentSharedOpenGraph = {
+  __typename?: 'ComponentSharedOpenGraph';
+  id: Scalars['ID']['output'];
+  ogDescription: Scalars['String']['output'];
+  ogImage?: Maybe<GUploadFile>;
+  ogTitle: Scalars['String']['output'];
+  ogType?: Maybe<Scalars['String']['output']>;
+  ogUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export type GComponentSharedOpenGraphFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GComponentSharedOpenGraphFiltersInput>>>;
+  not?: InputMaybe<GComponentSharedOpenGraphFiltersInput>;
+  ogDescription?: InputMaybe<GStringFilterInput>;
+  ogTitle?: InputMaybe<GStringFilterInput>;
+  ogType?: InputMaybe<GStringFilterInput>;
+  ogUrl?: InputMaybe<GStringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentSharedOpenGraphFiltersInput>>>;
+};
+
+export type GComponentSharedOpenGraphInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  ogDescription?: InputMaybe<Scalars['String']['input']>;
+  ogImage?: InputMaybe<Scalars['ID']['input']>;
+  ogTitle?: InputMaybe<Scalars['String']['input']>;
+  ogType?: InputMaybe<Scalars['String']['input']>;
+  ogUrl?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GComponentSharedSeo = {
+  __typename?: 'ComponentSharedSeo';
+  canonicalURL?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  keywords?: Maybe<Scalars['String']['output']>;
+  metaDescription: Scalars['String']['output'];
+  metaImage?: Maybe<GUploadFile>;
+  metaRobots?: Maybe<Scalars['String']['output']>;
+  metaTitle: Scalars['String']['output'];
+  metaViewport?: Maybe<Scalars['String']['output']>;
+  openGraph?: Maybe<GComponentSharedOpenGraph>;
+  structuredData?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type GComponentSharedSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GComponentSharedSeoFiltersInput>>>;
+  canonicalURL?: InputMaybe<GStringFilterInput>;
+  keywords?: InputMaybe<GStringFilterInput>;
+  metaDescription?: InputMaybe<GStringFilterInput>;
+  metaRobots?: InputMaybe<GStringFilterInput>;
+  metaTitle?: InputMaybe<GStringFilterInput>;
+  metaViewport?: InputMaybe<GStringFilterInput>;
+  not?: InputMaybe<GComponentSharedSeoFiltersInput>;
+  openGraph?: InputMaybe<GComponentSharedOpenGraphFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GComponentSharedSeoFiltersInput>>>;
+  structuredData?: InputMaybe<GJSONFilterInput>;
+};
+
+export type GComponentSharedSeoInput = {
+  canonicalURL?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  keywords?: InputMaybe<Scalars['String']['input']>;
+  metaDescription?: InputMaybe<Scalars['String']['input']>;
+  metaImage?: InputMaybe<Scalars['ID']['input']>;
+  metaRobots?: InputMaybe<Scalars['String']['input']>;
+  metaTitle?: InputMaybe<Scalars['String']['input']>;
+  metaViewport?: InputMaybe<Scalars['String']['input']>;
+  openGraph?: InputMaybe<GComponentSharedOpenGraphInput>;
+  structuredData?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type GComponentUiButton = {
@@ -577,6 +692,13 @@ export type GDeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export enum GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG {
+  H1 = 'h1',
+  H2 = 'h2',
+  H3 = 'h3',
+  H4 = 'h4',
+}
+
 export enum GENUM_COMPONENTUIBUTTON_VARIANT {
   Outline = 'outline',
   Primary = 'primary',
@@ -632,6 +754,7 @@ export type GFloatFilterInput = {
 
 export type GGenericMorph =
   | GBikeColor
+  | GBikeTypesPage
   | GBikesType
   | GComponentComponentAccordionCard
   | GComponentComponentAttribute
@@ -649,6 +772,8 @@ export type GGenericMorph =
   | GComponentSectionQuickNavigation
   | GComponentSectionTextRedactor
   | GComponentSectionTitleSection
+  | GComponentSharedOpenGraph
+  | GComponentSharedSeo
   | GComponentUiButton
   | GComponentUiLink
   | GComponentUiLinkWithIcon
@@ -814,6 +939,7 @@ export type GMotorcycle = {
   main_image: GUploadFile;
   model_name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<GComponentSharedSeo>;
   sku: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   year: Scalars['Date']['output'];
@@ -879,6 +1005,7 @@ export type GMotorcycleFiltersInput = {
   not?: InputMaybe<GMotorcycleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<GMotorcycleFiltersInput>>>;
   publishedAt?: InputMaybe<GDateTimeFilterInput>;
+  seo?: InputMaybe<GComponentSharedSeoFiltersInput>;
   sku?: InputMaybe<GStringFilterInput>;
   updatedAt?: InputMaybe<GDateTimeFilterInput>;
   year?: InputMaybe<GDateFilterInput>;
@@ -898,6 +1025,7 @@ export type GMotorcycleInput = {
   main_image?: InputMaybe<Scalars['ID']['input']>;
   model_name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
   sku?: InputMaybe<Scalars['String']['input']>;
   year?: InputMaybe<Scalars['Date']['input']>;
 };
@@ -923,6 +1051,7 @@ export type GMutation = {
   /** Create a new user */
   createUsersPermissionsUser: GUsersPermissionsUserEntityResponse;
   deleteBikeColor?: Maybe<GDeleteMutationResponse>;
+  deleteBikeTypesPage?: Maybe<GDeleteMutationResponse>;
   deleteBikesType?: Maybe<GDeleteMutationResponse>;
   deleteHeader?: Maybe<GDeleteMutationResponse>;
   deleteMotorcycle?: Maybe<GDeleteMutationResponse>;
@@ -946,6 +1075,7 @@ export type GMutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<GUsersPermissionsLoginPayload>;
   updateBikeColor?: Maybe<GBikeColor>;
+  updateBikeTypesPage?: Maybe<GBikeTypesPage>;
   updateBikesType?: Maybe<GBikesType>;
   updateHeader?: Maybe<GHeader>;
   updateMotorcycle?: Maybe<GMotorcycle>;
@@ -1017,6 +1147,10 @@ export type GMutationGCreateUsersPermissionsUserArgs = {
 
 export type GMutationGDeleteBikeColorArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+export type GMutationGDeleteBikeTypesPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1097,6 +1231,12 @@ export type GMutationGUpdateBikeColorArgs = {
   status?: InputMaybe<GPublicationStatus>;
 };
 
+export type GMutationGUpdateBikeTypesPageArgs = {
+  data: GBikeTypesPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<GPublicationStatus>;
+};
+
 export type GMutationGUpdateBikesTypeArgs = {
   data: GBikesTypeInput;
   documentId: Scalars['ID']['input'];
@@ -1173,12 +1313,14 @@ export type GNewsPage = {
   localizations: Array<Maybe<GNewsPage>>;
   localizations_connection?: Maybe<GNewsPageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo: GComponentSharedSeo;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type GNewsPageInput = {
   banner?: InputMaybe<GComponentComponentPromoBanerInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
 };
 
 export type GNewsPageRelationResponseCollection = {
@@ -1197,6 +1339,7 @@ export type GNewsPost = {
   preview_cover?: Maybe<GUploadFile>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   sections?: Maybe<Array<Maybe<GNewsPostSectionsDynamicZone>>>;
+  seo: GComponentSharedSeo;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   url: Scalars['String']['output'];
@@ -1230,6 +1373,7 @@ export type GNewsPostFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<GNewsPostFiltersInput>>>;
   previewText?: InputMaybe<GStringFilterInput>;
   publishedAt?: InputMaybe<GDateTimeFilterInput>;
+  seo?: InputMaybe<GComponentSharedSeoFiltersInput>;
   title?: InputMaybe<GStringFilterInput>;
   updatedAt?: InputMaybe<GDateTimeFilterInput>;
   url?: InputMaybe<GStringFilterInput>;
@@ -1242,6 +1386,7 @@ export type GNewsPostInput = {
   sections?: InputMaybe<
     Array<Scalars['NewsPostSectionsDynamicZoneInput']['input']>
   >;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1269,6 +1414,7 @@ export type GPage = {
   localizations_connection?: Maybe<GPageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   sections?: Maybe<Array<Maybe<GPageSectionsDynamicZone>>>;
+  seo: GComponentSharedSeo;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   url: Scalars['String']['output'];
 };
@@ -1300,6 +1446,7 @@ export type GPageFiltersInput = {
   not?: InputMaybe<GPageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<GPageFiltersInput>>>;
   publishedAt?: InputMaybe<GDateTimeFilterInput>;
+  seo?: InputMaybe<GComponentSharedSeoFiltersInput>;
   updatedAt?: InputMaybe<GDateTimeFilterInput>;
   url?: InputMaybe<GStringFilterInput>;
 };
@@ -1309,6 +1456,7 @@ export type GPageInput = {
   sections?: InputMaybe<
     Array<Scalars['PageSectionsDynamicZoneInput']['input']>
   >;
+  seo?: InputMaybe<GComponentSharedSeoInput>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1354,6 +1502,7 @@ export type GQuery = {
   bikeColor?: Maybe<GBikeColor>;
   bikeColors: Array<Maybe<GBikeColor>>;
   bikeColors_connection?: Maybe<GBikeColorEntityResponseCollection>;
+  bikeTypesPage?: Maybe<GBikeTypesPage>;
   bikesType?: Maybe<GBikesType>;
   bikesTypes: Array<Maybe<GBikesType>>;
   bikesTypes_connection?: Maybe<GBikesTypeEntityResponseCollection>;
@@ -1408,6 +1557,11 @@ export type GQueryGBikeColors_connectionArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   pagination?: InputMaybe<GPaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<GPublicationStatus>;
+};
+
+export type GQueryGBikeTypesPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<GPublicationStatus>;
 };
 
@@ -2160,6 +2314,94 @@ export type GHeroSectionFragentFragment = {
   } | null>;
 };
 
+export type GMotorcycleFragmentFragment = {
+  __typename: 'Motorcycle';
+  category: GENUM_MOTORCYCLE_CATEGORY;
+  model_name: string;
+  sku: string;
+  year: any;
+  availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
+  base_price: number;
+  description?: any | null;
+  available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
+  bikes_type?: { __typename: 'BikesType'; type: string; title: string } | null;
+  listing_image?: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null;
+  main_image: {
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  };
+  gallery: Array<{
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
+  } | null>;
+  details?: {
+    __typename: 'ComponentComponentAttribute';
+    attribute?: Array<{
+      __typename: 'ComponentComponentDetail';
+      group_name: string;
+      item?: Array<{
+        __typename: 'ComponentComponentDetailItem';
+        key?: string | null;
+        value?: string | null;
+      } | null> | null;
+    } | null> | null;
+  } | null;
+};
+
 export type GNewsSectionFragmentFragment = {
   __typename: 'ComponentSectionNewsSection';
   show: boolean;
@@ -2313,6 +2555,7 @@ export type GTitleSectionFragmentFragment = {
   __typename: 'ComponentSectionTitleSection';
   title?: string | null;
   description?: any | null;
+  title_html_tag: GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG;
   cover?: {
     __typename: 'UploadFile';
     documentId: string;
@@ -2438,6 +2681,55 @@ export type GGGET_MOTOCYCLES_BY_TYPEQuery = {
   } | null>;
 };
 
+export type GGGET_MOTOCYCLE_PAGEQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GGGET_MOTOCYCLE_PAGEQuery = {
+  __typename?: 'Query';
+  bikeTypesPage?: {
+    __typename: 'BikeTypesPage';
+    navigator_title: string;
+    displayed_bike_types: Array<{
+      __typename?: 'BikesType';
+      title: string;
+      type: string;
+      motorcycles: Array<{
+        __typename?: 'Motorcycle';
+        model_name: string;
+        base_price: number;
+        sku: string;
+        bikes_type?: {
+          __typename: 'BikesType';
+          type: string;
+          title: string;
+        } | null;
+        listing_image?: {
+          __typename: 'UploadFile';
+          documentId: string;
+          name: string;
+          alternativeText?: string | null;
+          caption?: string | null;
+          width?: number | null;
+          height?: number | null;
+          formats?: any | null;
+          hash: string;
+          ext?: string | null;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl?: string | null;
+          provider: string;
+          provider_metadata?: any | null;
+          createdAt?: any | null;
+          updatedAt?: any | null;
+          publishedAt?: any | null;
+        } | null;
+      } | null>;
+    } | null>;
+  } | null;
+};
+
 export type GGGetNewsPageQueryQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   url: Scalars['String']['input'];
@@ -2480,6 +2772,7 @@ export type GGGetNewsPageQueryQuery = {
           __typename: 'ComponentSectionTitleSection';
           title?: string | null;
           description?: any | null;
+          title_html_tag: GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG;
           cover?: {
             __typename: 'UploadFile';
             documentId: string;

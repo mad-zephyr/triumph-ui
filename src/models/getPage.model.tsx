@@ -15,7 +15,12 @@ import { ProductCardBig } from '@/common/components';
 import { TBigThumbnailCard } from '@/common/sections/bigThumbnail/bigThumbnailSection';
 import { TTCategoryAccordionCard } from '@/common/sections/categoryAccordion/categoryAccordion';
 import { TSlide } from '@/common/sections/hero/components/heroSlider/components/slide/slide';
-import { GNewsPost, GPage } from '@/types/types';
+import { TTag } from '@/common/ui/text/text';
+import {
+  GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG,
+  GNewsPost,
+  GPage,
+} from '@/types/types';
 
 import { getButtons } from './getButtons.model';
 import { getMotocycles } from './getMotocycle.model';
@@ -114,19 +119,22 @@ export const getPageModel = (page: GPage | GNewsPost) => {
               pagination: true,
             }}
           >
-            {motos.map((card, k) => (
-              <ProductCardBig
-                key={k}
-                data={{
-                  image: card.listing_image,
-                  title: card.model_name,
-                  cta: {
-                    title: section.cta_title || 'more',
-                    url: `/${card.productType?.toLowerCase()}/${card.bikes_type.type}/${card.sku}`,
-                  },
-                }}
-              />
-            ))}
+            {motos.map((card, k) => {
+              // console.log('CARD====', card, card.bikes_type?.type);
+              return (
+                <ProductCardBig
+                  key={k}
+                  data={{
+                    image: card.listing_image,
+                    title: card.model_name,
+                    cta: {
+                      title: section.cta_title || 'more',
+                      url: `/${card.productType?.toLowerCase()}/${card.bikes_type?.type}/${card.sku}`,
+                    },
+                  }}
+                />
+              );
+            })}
           </SliderSection>
         );
       }
@@ -165,6 +173,7 @@ export const getPageModel = (page: GPage | GNewsPost) => {
             title: section.title,
             description: section.description,
             image: uiUploadfile(section.cover),
+            titleHtmlTag: getTTagFromTitleTagEnum(section.title_html_tag),
           }}
         />
       );
@@ -179,3 +188,25 @@ export const getPageModel = (page: GPage | GNewsPost) => {
     sections,
   };
 };
+
+function getTTagFromTitleTagEnum(
+  tagEnum: GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG
+): TTag {
+  switch (tagEnum) {
+    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H1: {
+      return 'h1';
+    }
+    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H2: {
+      return 'h2';
+    }
+    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H3: {
+      return 'h3';
+    }
+    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H4: {
+      return 'h4';
+    }
+    default: {
+      return 'h2';
+    }
+  }
+}

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FC } from 'react';
 
 import { Text } from '@/common/ui';
+import { TTag } from '@/common/ui/text/text';
 import { TUploadFile } from '@/models/uiUploadfile';
 import { Maybe } from '@/types/types';
 
@@ -11,16 +12,17 @@ import classes from './styles.module.sass';
 
 export type TTitleSection = {
   title?: Maybe<string>;
+  titleHtmlTag: TTag;
   description: any;
   image?: TUploadFile;
 };
 
 export const TitleSection: FC<{ data: TTitleSection }> = ({ data }) => {
-  const { title, description, image } = data;
+  const { title, description, image, titleHtmlTag } = data;
   return (
     <section className={classes.section}>
       <div className={classes.content}>
-        <Text tag="h1" className={classes.title}>
+        <Text tag={titleHtmlTag} className={classes.title}>
           {title}
         </Text>
         {description && <BlocksRenderer content={description} />}

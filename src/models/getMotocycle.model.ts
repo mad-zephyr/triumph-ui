@@ -16,6 +16,9 @@ export function getMotocycles(motos: Maybe<GMotorcycle>[]): TProduct[] {
 }
 
 export function getMotocycle(moto: GMotorcycle): TProduct {
+  if (!moto?.bikes_type) {
+    console.log('BIKE TYPE: ', moto.sku, moto?.bikes_type);
+  }
   return {
     sku: moto.sku,
     productType: moto.__typename,

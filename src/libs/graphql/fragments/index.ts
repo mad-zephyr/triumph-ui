@@ -1,6 +1,7 @@
 export { BigPromoSectionFragment } from './bigPromoSection.fragment';
 export { BigThumbnailSectionFragment } from './bigThumbnailSection.fragment';
 export { CategoryAccordionFragment } from './categoryAccordion.fragment';
+export { MotorcycleFragment } from './motorcycle.fragment';
 export { NewsSectionFragment } from './newsSection.fragment';
 export { ProductDetails } from './productDetails.fragment';
 export { PromoSliderSectionFragment } from './promoSliderSection.fragment';

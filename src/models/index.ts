@@ -1,3 +1,4 @@
+export { getButtons } from './getButtons.model';
 export { getHeaderData } from './getHeaderData.model';
 export { getMotocycles as getMotocycle } from './getMotocycle.model';
 export { getMotocycles } from './getMotocycles.model';

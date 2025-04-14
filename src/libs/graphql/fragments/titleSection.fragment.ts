@@ -8,6 +8,7 @@ export const TitleSectionFragment = gql`
     __typename
     title
     description
+    title_html_tag
     cover {
       ...UploadFileFragment
     }
