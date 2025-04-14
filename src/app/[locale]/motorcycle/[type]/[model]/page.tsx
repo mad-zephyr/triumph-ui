@@ -21,15 +21,13 @@ type TPage = {
 
 export async function generateMetadata({ params }: TPage): Promise<Metadata> {
   const { locale, model } = await params;
-  const response = await fetchRawMetadata<{
-    data: { motorcycles: GMotorcycle[] };
-  }>({
+  const response = await fetchRawMetadata<{ motorcycles: GMotorcycle[] }>({
     query: GetMotorcyclePageSeo,
     variables: { locale, sku: model },
   });
 
-  if (response?.data?.motorcycles) {
-    const [page] = response.data.motorcycles;
+  if (response?.motorcycles) {
+    const [page] = response.motorcycles;
     return await generateSeo(page.seo);
   }
 
