@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: TPage): Promise<Metadata> {
     variables: { locale },
   });
 
-  if (response?.data.bikeTypesPage) {
+  if (response?.data?.bikeTypesPage) {
     const page = response.data.bikeTypesPage;
     return await generateSeo(page?.seo);
   }

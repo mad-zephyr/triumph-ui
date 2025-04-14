@@ -24,7 +24,7 @@ export async function generateMetadata({
     }
   );
 
-  if (response?.data.newsPosts) {
+  if (response?.data?.newsPosts) {
     const [page] = response.data.newsPosts;
     return await generateSeo(page?.seo);
   }
