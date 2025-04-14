@@ -62,14 +62,43 @@ const getRevalidateTag = (req: RevalidateRequest) => {
   }
 };
 
+const allowedOrigins = [
+  'https://triumphmotorcycles.nx.md',
+  'http://localhost:3000',
+];
+
+function getOrigin(req: Request): string {
+  const origin = req.headers.get('origin') ?? '';
+  return allowedOrigins.includes(origin) ? origin : '';
+}
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': 'https://triumphmotorcycles.nx.md',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
+
 export async function POST(request: Request) {
   const requestData = (await request.json()) satisfies RevalidateRequest;
+  const origin = getOrigin(request);
 
   const revTag = getRevalidateTag(requestData) as string;
 
   revalidateTag(revTag);
 
-  return Response.json({ revalidated: true, now: Date.now() });
+  // return Response.json({ revalidated: true, now: Date.now() });
+
+  return new Response(JSON.stringify({ revalidated: true, now: Date.now() }), {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': origin,
+    },
+  });
 
   // try {
   //   const text = await request.text();

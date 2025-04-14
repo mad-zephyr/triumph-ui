@@ -6,7 +6,7 @@ import { getClient } from './apolloClient';
 export async function getPagesData<T>({
   variables,
   query,
-  tags = 'tag',
+  // tags = 'tag',
   // fetchPolicy = 'cache-first',
 }: {
   variables: OperationVariables;
@@ -18,7 +18,9 @@ export async function getPagesData<T>({
     const response = await getClient().query<T>({
       query,
       variables,
-      tags,
+      context: {
+        arguments: {},
+      },
     });
 
     // fetchPolicy,
