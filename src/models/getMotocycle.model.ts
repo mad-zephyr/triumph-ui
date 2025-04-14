@@ -1,6 +1,7 @@
 import { TProduct } from '@/types/entity';
 import { GMotorcycle, Maybe } from '@/types/types';
 
+import { getTTagFromTitleTagEnum } from './getTTag.model';
 import { TUploadFile, uiUploadfile } from './uiUploadfile';
 
 export function getMotocycles(motos: Maybe<GMotorcycle>[]): TProduct[] {
@@ -16,9 +17,6 @@ export function getMotocycles(motos: Maybe<GMotorcycle>[]): TProduct[] {
 }
 
 export function getMotocycle(moto: GMotorcycle): TProduct {
-  if (!moto?.bikes_type) {
-    console.log('BIKE TYPE: ', moto.sku, moto?.bikes_type);
-  }
   return {
     sku: moto.sku,
     productType: moto.__typename,
@@ -40,7 +38,11 @@ export function getMotocycle(moto: GMotorcycle): TProduct {
     ...(moto?.description && { description: moto.description }),
     ...(moto?.banner &&
       moto.banner.active && {
-        banner: { ...moto.banner, image: uiUploadfile(moto.banner.cover) },
+        banner: {
+          ...moto.banner,
+          image: uiUploadfile(moto.banner.cover),
+          titleHtmlTag: getTTagFromTitleTagEnum(),
+        },
       }),
   };
 }

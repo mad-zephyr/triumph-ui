@@ -2,7 +2,7 @@ import { TitleSection } from '@/common';
 import { getPagesData } from '@/libs/apollo/getData';
 import { GetPreloadedNewsPostsQuery } from '@/libs/graphql';
 import { NewsPostEntityResponseCollection } from '@/libs/graphql/gql/graphql';
-import { getNewsPreviewCards } from '@/models';
+import { getNewsPreviewCards, getTTagFromTitleTagEnum } from '@/models';
 import { uiUploadfile } from '@/models/uiUploadfile';
 import { GNewsPage, GNewsPost } from '@/types/types';
 
@@ -56,6 +56,7 @@ function getNewsPageTitleSection(page: GNewsPage) {
           title: banner.title,
           description: banner.description,
           image: uiUploadfile(banner.cover),
+          titleHtmlTag: getTTagFromTitleTagEnum(),
         }}
       />
     );

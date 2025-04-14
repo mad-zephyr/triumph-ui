@@ -1,7 +1,7 @@
 import { ProductListingSection, TitleSection } from '@/common';
 import { getPagesData } from '@/libs/apollo/getData';
 import { getMotorcyclesByType } from '@/libs/graphql';
-import { getMotocycles } from '@/models';
+import { getMotocycles, getTTagFromTitleTagEnum } from '@/models';
 import { uiUploadfile } from '@/models/uiUploadfile';
 import { GBikesType, GMotorcycle } from '@/types/types';
 
@@ -35,6 +35,7 @@ export default async function Page({ params }: TPage) {
             title: motoTypes.promoBanner.title || '',
             description: motoTypes.promoBanner.description,
             image: uiUploadfile(motoTypes.promoBanner.cover),
+            titleHtmlTag: getTTagFromTitleTagEnum(),
           }}
         />
       )}

@@ -1,3 +1,4 @@
+import { TTag } from '@/common/ui/text/text';
 import { TUploadFile } from '@/models/uiUploadfile';
 
 import {
@@ -24,5 +25,6 @@ export type TProduct = {
     title: string;
     description: unknown;
     image: TUploadFile;
+    titleHtmlTag: TTag;
   };
 };

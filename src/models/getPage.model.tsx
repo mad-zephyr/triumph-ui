@@ -15,15 +15,11 @@ import { ProductCardBig } from '@/common/components';
 import { TBigThumbnailCard } from '@/common/sections/bigThumbnail/bigThumbnailSection';
 import { TTCategoryAccordionCard } from '@/common/sections/categoryAccordion/categoryAccordion';
 import { TSlide } from '@/common/sections/hero/components/heroSlider/components/slide/slide';
-import { TTag } from '@/common/ui/text/text';
-import {
-  GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG,
-  GNewsPost,
-  GPage,
-} from '@/types/types';
+import { GNewsPost, GPage } from '@/types/types';
 
 import { getButtons } from './getButtons.model';
 import { getMotocycles } from './getMotocycle.model';
+import { getTTagFromTitleTagEnum } from './getTTag.model';
 import { uiUploadfile } from './uiUploadfile';
 
 export const getPageModel = (page: GPage | GNewsPost) => {
@@ -187,25 +183,3 @@ export const getPageModel = (page: GPage | GNewsPost) => {
     sections,
   };
 };
-
-function getTTagFromTitleTagEnum(
-  tagEnum: GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG
-): TTag {
-  switch (tagEnum) {
-    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H1: {
-      return 'h1';
-    }
-    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H2: {
-      return 'h2';
-    }
-    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H3: {
-      return 'h3';
-    }
-    case GENUM_COMPONENTSECTIONTITLESECTION_TITLE_HTML_TAG.H4: {
-      return 'h4';
-    }
-    default: {
-      return 'h2';
-    }
-  }
-}
