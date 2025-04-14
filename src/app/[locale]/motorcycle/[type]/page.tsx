@@ -15,7 +15,7 @@ type TPage = {
   }>;
 };
 
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 
 export async function generateMetadata({ params }: TPage): Promise<Metadata> {
   const { locale, type } = await params;
