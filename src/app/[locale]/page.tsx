@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { fetchRawMetadata } from '@/libs/apollo/fetchRawMetadata';
-// import { getClient } from '@/libs/apollo/apolloClient';
 import { getPagesData } from '@/libs/apollo/getData';
 import { GetPage, GetPageSeo } from '@/libs/graphql';
 import { generateSeo, getPageModel } from '@/models';
@@ -17,13 +16,13 @@ export async function generateMetadata({
   params,
 }: THomePage): Promise<Metadata> {
   const { locale } = await params;
-  const response = await fetchRawMetadata<{ data: { pages: [GPage] } }>({
+  const response = await fetchRawMetadata<{ pages: [GPage] }>({
     query: GetPageSeo,
     variables: { locale, url: 'main' },
   });
 
-  if (response?.data?.pages) {
-    const [page] = response.data.pages;
+  if (response?.pages) {
+    const [page] = response.pages;
     return await generateSeo(page?.seo);
   }
 

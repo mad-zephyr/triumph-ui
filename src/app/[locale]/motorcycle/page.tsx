@@ -17,14 +17,14 @@ type TPage = {
 export async function generateMetadata({ params }: TPage): Promise<Metadata> {
   const { locale } = await params;
   const response = await fetchRawMetadata<{
-    data: { bikeTypesPage: GBikeTypesPage };
+    bikeTypesPage: GBikeTypesPage;
   }>({
     query: getBikesTypesPageSeo,
     variables: { locale },
   });
 
-  if (response?.data?.bikeTypesPage) {
-    const page = response.data.bikeTypesPage;
+  if (response?.bikeTypesPage) {
+    const page = response.bikeTypesPage;
     return await generateSeo(page?.seo);
   }
 

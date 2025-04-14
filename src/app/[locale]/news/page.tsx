@@ -25,13 +25,13 @@ export async function generateMetadata({
   params,
 }: THomePage): Promise<Metadata> {
   const { locale } = await params;
-  const response = await fetchRawMetadata<{ data: { newsPage: GNewsPage } }>({
+  const response = await fetchRawMetadata<{ newsPage: GNewsPage }>({
     query: getNewsPageSeo,
     variables: { locale },
   });
 
-  if (response?.data?.newsPage) {
-    const page = response.data.newsPage;
+  if (response?.newsPage) {
+    const page = response.newsPage;
     return await generateSeo(page?.seo);
   }
 

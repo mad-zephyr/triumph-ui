@@ -17,15 +17,13 @@ export async function generateMetadata({
   params,
 }: THomePage): Promise<Metadata> {
   const { locale, newsPostUrl } = await params;
-  const response = await fetchRawMetadata<{ data: { newsPosts: GNewsPost[] } }>(
-    {
-      query: getNewsPostSeo,
-      variables: { locale, url: newsPostUrl },
-    }
-  );
+  const response = await fetchRawMetadata<{ newsPosts: GNewsPost[] }>({
+    query: getNewsPostSeo,
+    variables: { locale, url: newsPostUrl },
+  });
 
-  if (response?.data?.newsPosts) {
-    const [page] = response.data.newsPosts;
+  if (response?.newsPosts) {
+    const [page] = response.newsPosts;
     return await generateSeo(page?.seo);
   }
 
