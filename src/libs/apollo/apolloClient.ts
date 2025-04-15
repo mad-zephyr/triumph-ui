@@ -12,7 +12,27 @@ import { getBasePath } from '../helpers';
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     // cache: new InMemoryCache({ resultCaching: false }),
-    cache: new InMemoryCache({ resultCaching: true }),
+    cache: new InMemoryCache({
+      resultCaching: true,
+      typePolicies: {
+        Query: {
+          fields: {
+            bikeTypesPage: {
+              merge: false,
+            },
+          },
+        },
+        BikesType: {
+          keyFields: ['type'], // если "type" уникален
+        },
+        Motorcycle: {
+          keyFields: ['sku'], // если "sku" уникален
+        },
+        UploadFile: {
+          keyFields: ['documentId'], // если у тебя так устроены медиа
+        },
+      },
+    }),
     connectToDevTools: true,
     link: new HttpLink({
       uri: `${getBasePath()}/graphql`,

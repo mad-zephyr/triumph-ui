@@ -6,8 +6,8 @@ export const getMotorcycleTypesPage = gql`
   ${UploadFileFragment}
   query GET_MOTOCYCLE_PAGE($locale: I18NLocaleCode!) {
     bikeTypesPage(locale: $locale) {
-      navigator_title
       __typename
+      navigator_title
       displayed_bike_types {
         title
         type
