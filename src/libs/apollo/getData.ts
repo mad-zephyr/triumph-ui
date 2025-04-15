@@ -6,7 +6,7 @@ import { getClient } from './apolloClient';
 export async function getPagesData<T>({
   variables,
   query,
-  tags = 'tag',
+  // tags = 'tag',
   // fetchPolicy = 'cache-first',
 }: {
   variables: OperationVariables;
@@ -20,11 +20,11 @@ export async function getPagesData<T>({
       variables,
       // fetchPolicy,
       errorPolicy: 'all',
-      context: {
-        fetchOptions: {
-          next: { tags: Array.isArray(tags) ? tags : [tags] },
-        },
-      },
+      // context: {
+      //   fetchOptions: {
+      //     next: { tags: Array.isArray(tags) ? tags : [tags] },
+      //   },
+      // },
     });
 
     console.log('RESPONSE: ', response);

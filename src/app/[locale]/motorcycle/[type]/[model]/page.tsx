@@ -42,7 +42,7 @@ export default async function Page({ params }: TPage) {
   const { motorcycles } = await getPagesData<{ motorcycles: [GMotorcycle] }>({
     query: GetMotocycle,
     variables: { locale, sku: model },
-    tags: model,
+    // tags: model,
   });
 
   // const { motorcycles } = await getPageData<{ motorcycles: [GMotorcycle] }>({

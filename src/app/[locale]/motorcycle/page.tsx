@@ -6,7 +6,6 @@ import { getPagesData } from '@/libs/apollo/getData';
 import { getBikesTypesPageSeo, getMotorcycleTypesPage } from '@/libs/graphql';
 import { generateSeo } from '@/models';
 import { getMotocyclesWithNavigation } from '@/models/getMotocyclesWithNavigation.model';
-import { RevalidateTags } from '@/types/entity';
 import { GBikeTypesPage } from '@/types/types';
 
 type TPage = {
@@ -42,7 +41,7 @@ export default async function Page({ params }: TPage) {
   }>({
     query: getMotorcycleTypesPage,
     variables: { locale },
-    tags: RevalidateTags.BikeTypesPage,
+    // tags: RevalidateTags.BikeTypesPage,
   });
 
   const listing = getMotocyclesWithNavigation(bikeTypesPage);

@@ -11,7 +11,7 @@ import {
   getTTagFromTitleTagEnum,
 } from '@/models';
 import { uiUploadfile } from '@/models/uiUploadfile';
-import { RevalidateTags } from '@/types/entity';
+// import { RevalidateTags } from '@/types/entity';
 import { GNewsPage, GNewsPost } from '@/types/types';
 
 import { NewsListWrapper } from './_components/newsListWrapper';
@@ -51,7 +51,7 @@ export default async function HomePage({ params }: THomePage) {
   }>({
     query: GetPreloadedNewsPostsQuery,
     variables: { locale, start: 0, limit: 6 },
-    tags: RevalidateTags.NewsPage,
+    // tags: RevalidateTags.NewsPage,
   });
 
   const { newsPosts, newsPosts_connection, newsPage } = data;

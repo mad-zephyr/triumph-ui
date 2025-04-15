@@ -39,7 +39,7 @@ export default async function Page({ params }: TPage) {
   const { bikesTypes } = await getPagesData<{ bikesTypes: GBikesType[] }>({
     query: getMotorcyclesByType,
     variables: { locale, type },
-    tags: type,
+    // tags: type,
   });
 
   const [motoTypes] = bikesTypes;
