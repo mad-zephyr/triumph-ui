@@ -5,7 +5,6 @@ import { Footer, Header } from '@/common';
 import { getClient } from '@/libs/apollo/apolloClient';
 import { GET_HEADER } from '@/libs/graphql';
 import { getHeaderData } from '@/models';
-import { RevalidateTags } from '@/types/entity';
 import type { GHeader } from '@/types/types';
 
 type TTechncalData = {
