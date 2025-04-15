@@ -27,6 +27,8 @@ export async function getPagesData<T>({
       },
     });
 
+    console.log('RESPONSE: ', response);
+
     if (!response.data) {
       notFound();
     }
@@ -35,6 +37,8 @@ export async function getPagesData<T>({
   } catch (e: unknown) {
     if (typeof e === 'undefined') {
     }
+
+    console.log('ERROR: ', e);
 
     notFound();
   }

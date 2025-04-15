@@ -31,6 +31,9 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
         Page: {
           keyFields: ['url'],
         },
+        NewsPost: {
+          keyFields: ['url'],
+        },
         Motorcycle: {
           keyFields: ['sku'], // если "sku" уникален
         },

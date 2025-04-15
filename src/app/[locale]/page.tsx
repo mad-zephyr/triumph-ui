@@ -12,8 +12,6 @@ type THomePage = {
   }>;
 };
 
-// export const dynamic = 'force-static';
-
 export async function generateMetadata({
   params,
 }: THomePage): Promise<Metadata> {
