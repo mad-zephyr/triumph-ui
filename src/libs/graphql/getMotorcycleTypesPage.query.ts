@@ -2,9 +2,9 @@ import { gql } from '@apollo/client';
 
 import { UploadFileFragment } from './fragments/uploadFile.fragment';
 
-export const getMotorcycleTypesPage = gql`
+export const getBikesTypePage = gql`
   ${UploadFileFragment}
-  query GET_MOTOCYCLE_PAGE($locale: I18NLocaleCode!) {
+  query GET_BIKES_TYPE_PAGE($locale: I18NLocaleCode!) {
     bikeTypesPage(locale: $locale) {
       __typename
       navigator_title

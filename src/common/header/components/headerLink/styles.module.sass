@@ -1,3 +1,18 @@
 .link
+    position: relative
     span
         white-space: nowrap
+
+    &:after
+        content: ""
+        position: absolute
+        width: 100%
+        left: 0
+        bottom: 0
+        height: 4px
+        background: #ff000000
+        transition: 0.3s background ease-in-out
+
+    &:hover
+        &:after
+            background: var(--color-accent)

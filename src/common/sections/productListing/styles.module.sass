@@ -51,3 +51,27 @@
     min-width: 33.33%
     min-height: 300px
     width: 100%
+
+.withPadding
+    display: grid
+    grid-template-columns: repeat(12, 1fr)
+    padding: 0 0rem 2.25rem 0rem
+
+    .content_wrapper
+        grid-column: 2 / span 10
+
+@media screen and (max-width: 40rem)
+
+    .main
+        padding: 0 1rem 2.25rem 1rem
+        margin-bottom: 3rem
+
+    .title
+        & > h4
+            font-size: xx-large!important
+
+    .withPadding
+        padding: 0 1rem 1rem 1rem
+
+        .content_wrapper
+            grid-column: 1 / span 12

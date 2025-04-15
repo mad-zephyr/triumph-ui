@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 
+import { TextRedactorSection } from './fragments';
 import { UploadFileFragment } from './fragments/uploadFile.fragment';
 
 export const getMotorcyclesByType = gql`
   ${UploadFileFragment}
+  ${TextRedactorSection}
   query GET_MOTOCYCLES_BY_TYPE($locale: I18NLocaleCode!, $type: String!) {
     bikesTypes(locale: $locale, filters: { type: { eq: $type } }) {
       __typename
@@ -17,6 +19,9 @@ export const getMotorcyclesByType = gql`
         cover {
           ...UploadFileFragment
         }
+      }
+      sections {
+        ...TextRedactorSection
       }
       motorcycles {
         model_name

@@ -3,18 +3,19 @@ import { PropsWithChildren } from 'react';
 
 import { Footer, Header } from '@/common';
 import { getClient } from '@/libs/apollo/apolloClient';
-import { GET_HEADER } from '@/libs/graphql';
+import { GET_TECHNICAL } from '@/libs/graphql';
 import { getHeaderData } from '@/models';
-import type { GHeader } from '@/types/types';
+import type { GFooter, GHeader } from '@/types/types';
 
 type TTechncalData = {
   header: GHeader;
+  footer: GFooter;
 };
 
 export default async function Template({ children }: PropsWithChildren) {
   const locale = await getLocale();
   const { data } = await getClient().query<TTechncalData>({
-    query: GET_HEADER,
+    query: GET_TECHNICAL,
     variables: { locale },
     errorPolicy: 'ignore',
   });
@@ -25,7 +26,7 @@ export default async function Template({ children }: PropsWithChildren) {
     <>
       <Header links={headerLinks} />
       {children}
-      <Footer />
+      <Footer data={data.footer} />
     </>
   );
 }

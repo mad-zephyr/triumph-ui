@@ -1,12 +1,42 @@
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { FC } from 'react';
 
 import Logo from '@/assets/images/logo.svg';
 import { Link } from '@/i18n/navigation';
+import { GComponentUiLink, GFooter, Maybe } from '@/types/types';
 
 import { Text } from '../ui';
 import classes from './styles.module.sass';
 
-export const Footer: FC = () => {
+type TLink = {
+  title: string;
+  url: string;
+};
+
+type FooterContacts = {
+  title?: Maybe<string>;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
+};
+
+type FooterColumn = {
+  title?: Maybe<string>;
+  links: { title?: string; url?: string }[];
+};
+
+type TFooter = {
+  data: GFooter;
+};
+
+export const Footer: FC<TFooter> = ({ data }) => {
+  const { contacts, column1, column2, column3 } = getFooter(data);
+
+  const getLink = (link: Partial<TLink>, i: number) => (
+    <Link key={i} href={link?.url || ''}>
+      {link.title}
+    </Link>
+  );
   return (
     <footer className={classes.main}>
       <Link href={'/'} className={classes.logo}>
@@ -14,35 +44,25 @@ export const Footer: FC = () => {
       </Link>
 
       <div className={classes.column}>
-        <Text tag="h5">CONTACT</Text>
+        <Text tag="h5">{contacts.title}</Text>
 
-        <Text tag="p">Triumph Chisinau Sos. Calea Orheiului, 200</Text>
-        <Text tag="p">0373 797 44 777 info@triumphmoldova.md</Text>
+        {contacts.data && <BlocksRenderer content={contacts.data} />}
       </div>
       <div className={classes.column}>
-        <Text tag="h5">Servicii Clienți</Text>
+        <Text tag="h5">{column1.title}</Text>
 
-        <Text tag="p">Motociclete</Text>
-        <Text tag="p">Promoții</Text>
-        <Text tag="p">Finanțare </Text>
-        <Text tag="p">Service Test Ride </Text>
+        {column1.links.map(getLink)}
       </div>
       <div className={classes.column}>
-        <Text tag="h5">Informații</Text>
+        <Text tag="h5">{column2.title}</Text>
 
-        <Text tag="p">Inside Triumph</Text>
-        <Text tag="p">Povestea Triumph</Text>
-        <Text tag="p">Termeni și Condiții </Text>
-        <Text tag="p">Confidențialitate </Text>
-        <Text tag="p">Contact </Text>
+        {column2.links.map(getLink)}
       </div>
 
       <div className={classes.column}>
-        <Text tag="h5">Social</Text>
+        <Text tag="h5">{column3.title}</Text>
 
-        <Text tag="p">Facebook</Text>
-        <Text tag="p">Instagram</Text>
-        <Text tag="p">YouTube</Text>
+        {column3.links.map(getLink)}
       </div>
 
       <div className={classes.bottom}>
@@ -53,3 +73,37 @@ export const Footer: FC = () => {
     </footer>
   );
 };
+
+function getFooter(footer: GFooter) {
+  const contacts: FooterContacts = {
+    title: footer?.contacts?.title,
+    data: footer?.contacts?.contact_text,
+  };
+
+  function getLink(link: Maybe<GComponentUiLink>) {
+    return {
+      ...(link?.url && { url: link.url }),
+      ...(link?.title && { title: link.title }),
+    };
+  }
+
+  const column1: FooterColumn = {
+    title: footer?.column1?.title,
+    links: footer?.column1?.link?.map(getLink) || [],
+  };
+  const column2: FooterColumn = {
+    title: footer?.column2?.title,
+    links: footer?.column2?.link?.map(getLink) || [],
+  };
+  const column3: FooterColumn = {
+    title: footer?.column3?.title,
+    links: footer?.column3?.link?.map(getLink) || [],
+  };
+
+  return {
+    contacts,
+    column1,
+    column2,
+    column3,
+  };
+}

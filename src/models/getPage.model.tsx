@@ -15,14 +15,14 @@ import { ProductCardBig } from '@/common/components';
 import { TBigThumbnailCard } from '@/common/sections/bigThumbnail/bigThumbnailSection';
 import { TTCategoryAccordionCard } from '@/common/sections/categoryAccordion/categoryAccordion';
 import { TSlide } from '@/common/sections/hero/components/heroSlider/components/slide/slide';
-import { GNewsPost, GPage } from '@/types/types';
+import { GBikesType, GNewsPost, GPage } from '@/types/types';
 
 import { getButtons } from './getButtons.model';
 import { getMotocycles } from './getMotocycle.model';
 import { getTTagFromTitleTagEnum } from './getTTag.model';
 import { uiUploadfile } from './uiUploadfile';
 
-export const getPageModel = (page: GPage | GNewsPost) => {
+export const getPageModel = (page: GPage | GNewsPost | GBikesType) => {
   const sections: ReactNode[] = [];
 
   page?.sections?.forEach((section, i) => {
@@ -175,7 +175,13 @@ export const getPageModel = (page: GPage | GNewsPost) => {
     }
 
     if (section?.__typename === 'ComponentSectionTextRedactor') {
-      sections.push(<ContentBlocksSection key={i} content={section.blocks} />);
+      sections.push(
+        <ContentBlocksSection
+          theme={section.theme}
+          key={i}
+          content={section.blocks}
+        />
+      );
     }
   });
 

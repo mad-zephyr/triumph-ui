@@ -1,8 +1,5 @@
-'use client';
+import { AnchorHTMLAttributes, FC } from 'react';
 
-import { AnchorHTMLAttributes, FC, useEffect, useRef } from 'react';
-
-import { useTextAnimator } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 
 import classes from './styles.module.sass';
@@ -10,25 +7,25 @@ import classes from './styles.module.sass';
 export type THeaderLink = {} & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const HeaderLink: FC<THeaderLink> = ({ href, title }) => {
-  const target = useRef<HTMLAnchorElement>(null);
-  const {
-    animateV4: [animateIn, animateOut],
-  } = useTextAnimator(target);
+  // const target = useRef<HTMLAnchorElement>(null);
+  // const {
+  //   animateV4: [animateIn, animateOut],
+  // } = useTextAnimator(target);
 
-  useEffect(() => {
-    const currentTarget = target.current;
+  // useEffect(() => {
+  //   const currentTarget = target.current;
 
-    currentTarget?.addEventListener('mouseenter', animateIn);
-    currentTarget?.addEventListener('mouseleave', animateOut);
+  //   currentTarget?.addEventListener('mouseenter', animateIn);
+  //   currentTarget?.addEventListener('mouseleave', animateOut);
 
-    return () => {
-      currentTarget?.removeEventListener('mouseenter', animateIn);
-      currentTarget?.removeEventListener('mouseleave', animateOut);
-    };
-  }, [animateIn, animateOut, target]);
+  //   return () => {
+  //     currentTarget?.removeEventListener('mouseenter', animateIn);
+  //     currentTarget?.removeEventListener('mouseleave', animateOut);
+  //   };
+  // }, [animateIn, animateOut, target]);
 
   return href ? (
-    <Link href={href} ref={target} className={classes.link}>
+    <Link href={href} className={classes.link}>
       <span>{title}</span>
     </Link>
   ) : (

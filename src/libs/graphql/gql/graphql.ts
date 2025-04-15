@@ -27,10 +27,12 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean };
   Int: { input: number; output: number };
   Float: { input: number; output: number };
+  BikesTypeSectionsDynamicZoneInput: { input: any; output: any };
   /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: { input: any; output: any };
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: { input: any; output: any };
+  FooterBottomDynamicZoneInput: { input: any; output: any };
   HeaderLinksDynamicZoneInput: { input: any; output: any };
   /** A string used to identify an i18n locale */
   I18NLocaleCode: { input: any; output: any };
@@ -148,6 +150,7 @@ export type BikesType = {
   motorcycles_connection?: Maybe<MotorcycleRelationResponseCollection>;
   promoBanner?: Maybe<ComponentComponentPromoBaner>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sections?: Maybe<Array<Maybe<BikesTypeSectionsDynamicZone>>>;
   seo: ComponentSharedSeo;
   title: Scalars['String']['output'];
   type: Scalars['String']['output'];
@@ -205,6 +208,9 @@ export type BikesTypeInput = {
   motorcycles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   promoBanner?: InputMaybe<ComponentComponentPromoBanerInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sections?: InputMaybe<
+    Array<Scalars['BikesTypeSectionsDynamicZoneInput']['input']>
+  >;
   seo?: InputMaybe<ComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -214,6 +220,8 @@ export type BikesTypeRelationResponseCollection = {
   __typename?: 'BikesTypeRelationResponseCollection';
   nodes: Array<BikesType>;
 };
+
+export type BikesTypeSectionsDynamicZone = ComponentSectionTextRedactor | Error;
 
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -286,6 +294,19 @@ export type ComponentComponentAttributeInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type ComponentComponentContacts = {
+  __typename?: 'ComponentComponentContacts';
+  contact_text?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentComponentContactsInput = {
+  contact_text?: InputMaybe<Scalars['JSON']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentComponentDetail = {
   __typename?: 'ComponentComponentDetail';
   group_name: Scalars['String']['output'];
@@ -332,6 +353,25 @@ export type ComponentComponentDetailItemInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
   key?: InputMaybe<Scalars['String']['input']>;
   value?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentComponentFooterColumn = {
+  __typename?: 'ComponentComponentFooterColumn';
+  id: Scalars['ID']['output'];
+  link?: Maybe<Array<Maybe<ComponentUiLink>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentComponentFooterColumnLinkArgs = {
+  filters?: InputMaybe<ComponentUiLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentComponentFooterColumnInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  link?: InputMaybe<Array<InputMaybe<ComponentUiLinkInput>>>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentComponentHeroSlide = {
@@ -513,6 +553,8 @@ export type ComponentSectionTextRedactor = {
   __typename?: 'ComponentSectionTextRedactor';
   blocks?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
+  show: Scalars['Boolean']['output'];
+  theme: Enum_Componentsectiontextredactor_Theme;
 };
 
 export type ComponentSectionTitleSection = {
@@ -618,6 +660,20 @@ export type ComponentUiLink = {
   url: Scalars['String']['output'];
 };
 
+export type ComponentUiLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentUiLinkFiltersInput>>>;
+  not?: InputMaybe<ComponentUiLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentUiLinkFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentUiLinkInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentUiLinkWithIcon = {
   __typename?: 'ComponentUiLinkWithIcon';
   active: Scalars['Boolean']['output'];
@@ -693,6 +749,11 @@ export type DeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export enum Enum_Componentsectiontextredactor_Theme {
+  Dark = 'dark',
+  Light = 'light',
+}
+
 export enum Enum_Componentsectiontitlesection_Title_Html_Tag {
   H1 = 'h1',
   H2 = 'h2',
@@ -753,14 +814,50 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type Footer = {
+  __typename?: 'Footer';
+  bottom?: Maybe<Array<Maybe<FooterBottomDynamicZone>>>;
+  column1?: Maybe<ComponentComponentFooterColumn>;
+  column2?: Maybe<ComponentComponentFooterColumn>;
+  column3?: Maybe<ComponentComponentFooterColumn>;
+  contacts?: Maybe<ComponentComponentContacts>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<Footer>>;
+  localizations_connection?: Maybe<FooterRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  show: Scalars['Boolean']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type FooterBottomDynamicZone = ComponentUiLink | Error;
+
+export type FooterInput = {
+  bottom?: InputMaybe<Array<Scalars['FooterBottomDynamicZoneInput']['input']>>;
+  column1?: InputMaybe<ComponentComponentFooterColumnInput>;
+  column2?: InputMaybe<ComponentComponentFooterColumnInput>;
+  column3?: InputMaybe<ComponentComponentFooterColumnInput>;
+  contacts?: InputMaybe<ComponentComponentContactsInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  show?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FooterRelationResponseCollection = {
+  __typename?: 'FooterRelationResponseCollection';
+  nodes: Array<Footer>;
+};
+
 export type GenericMorph =
   | BikeColor
   | BikeTypesPage
   | BikesType
   | ComponentComponentAccordionCard
   | ComponentComponentAttribute
+  | ComponentComponentContacts
   | ComponentComponentDetail
   | ComponentComponentDetailItem
+  | ComponentComponentFooterColumn
   | ComponentComponentHeroSlide
   | ComponentComponentPromoBaner
   | ComponentMotorcycleMotorcycle
@@ -778,6 +875,7 @@ export type GenericMorph =
   | ComponentUiButton
   | ComponentUiLink
   | ComponentUiLinkWithIcon
+  | Footer
   | Header
   | I18NLocale
   | Motorcycle
@@ -1054,6 +1152,7 @@ export type Mutation = {
   deleteBikeColor?: Maybe<DeleteMutationResponse>;
   deleteBikeTypesPage?: Maybe<DeleteMutationResponse>;
   deleteBikesType?: Maybe<DeleteMutationResponse>;
+  deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteHeader?: Maybe<DeleteMutationResponse>;
   deleteMotorcycle?: Maybe<DeleteMutationResponse>;
   deleteNewsPage?: Maybe<DeleteMutationResponse>;
@@ -1078,6 +1177,7 @@ export type Mutation = {
   updateBikeColor?: Maybe<BikeColor>;
   updateBikeTypesPage?: Maybe<BikeTypesPage>;
   updateBikesType?: Maybe<BikesType>;
+  updateFooter?: Maybe<Footer>;
   updateHeader?: Maybe<Header>;
   updateMotorcycle?: Maybe<Motorcycle>;
   updateNewsPage?: Maybe<NewsPage>;
@@ -1157,6 +1257,10 @@ export type MutationDeleteBikeTypesPageArgs = {
 
 export type MutationDeleteBikesTypeArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+export type MutationDeleteFooterArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1241,6 +1345,12 @@ export type MutationUpdateBikeTypesPageArgs = {
 export type MutationUpdateBikesTypeArgs = {
   data: BikesTypeInput;
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type MutationUpdateFooterArgs = {
+  data: FooterInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1507,6 +1617,7 @@ export type Query = {
   bikesType?: Maybe<BikesType>;
   bikesTypes: Array<Maybe<BikesType>>;
   bikesTypes_connection?: Maybe<BikesTypeEntityResponseCollection>;
+  footer?: Maybe<Footer>;
   header?: Maybe<Header>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<Maybe<I18NLocale>>;
@@ -1585,6 +1696,11 @@ export type QueryBikesTypes_ConnectionArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type QueryFooterArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -2608,6 +2724,9 @@ export type SeoFragmentFragment = {
 
 export type TextRedactorSectionFragment = {
   __typename: 'ComponentSectionTextRedactor';
+  id: string;
+  theme: Enum_Componentsectiontextredactor_Theme;
+  show: boolean;
   blocks?: any | null;
 };
 
@@ -2811,6 +2930,74 @@ export type GetBikesTypesPageSeoQuery = {
   } | null;
 };
 
+export type GetFooterQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+}>;
+
+export type GetFooterQuery = {
+  __typename?: 'Query';
+  footer?: {
+    __typename: 'Footer';
+    documentId: string;
+    contacts?: {
+      __typename: 'ComponentComponentContacts';
+      id: string;
+      title?: string | null;
+      contact_text?: any | null;
+    } | null;
+    column1?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    column2?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    column3?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    bottom?: Array<
+      | {
+          __typename: 'ComponentUiLink';
+          id: string;
+          title: string;
+          url: string;
+        }
+      | { __typename?: 'Error' }
+      | null
+    > | null;
+  } | null;
+};
+
+export type ComponentUiLinkFragment = {
+  __typename: 'ComponentUiLink';
+  id: string;
+  title: string;
+  url: string;
+};
+
 export type GetMotorcyclePageSeoQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   sku: Scalars['String']['input'];
@@ -2922,6 +3109,17 @@ export type Get_Motocycles_By_TypeQuery = {
         publishedAt?: any | null;
       } | null;
     } | null;
+    sections?: Array<
+      | {
+          __typename: 'ComponentSectionTextRedactor';
+          id: string;
+          theme: Enum_Componentsectiontextredactor_Theme;
+          show: boolean;
+          blocks?: any | null;
+        }
+      | { __typename?: 'Error' }
+      | null
+    > | null;
     motorcycles: Array<{
       __typename?: 'Motorcycle';
       model_name: string;
@@ -2958,11 +3156,11 @@ export type Get_Motocycles_By_TypeQuery = {
   } | null>;
 };
 
-export type Get_Motocycle_PageQueryVariables = Exact<{
+export type Get_Bikes_Type_PageQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
 }>;
 
-export type Get_Motocycle_PageQuery = {
+export type Get_Bikes_Type_PageQuery = {
   __typename?: 'Query';
   bikeTypesPage?: {
     __typename: 'BikeTypesPage';
@@ -3047,7 +3245,13 @@ export type GetNewsPageQueryQuery = {
       | { __typename?: 'ComponentSectionBigPromoSection' }
       | { __typename?: 'ComponentSectionBigThumbnailSection' }
       | { __typename?: 'ComponentSectionPromoSliderSection' }
-      | { __typename: 'ComponentSectionTextRedactor'; blocks?: any | null }
+      | {
+          __typename: 'ComponentSectionTextRedactor';
+          id: string;
+          theme: Enum_Componentsectiontextredactor_Theme;
+          show: boolean;
+          blocks?: any | null;
+        }
       | {
           __typename: 'ComponentSectionTitleSection';
           title?: string | null;
@@ -3948,6 +4152,59 @@ export type HeaderQuery = {
   header?: {
     __typename: 'Header';
     links?: Array<
+      | {
+          __typename: 'ComponentUiLink';
+          id: string;
+          title: string;
+          url: string;
+        }
+      | { __typename?: 'Error' }
+      | null
+    > | null;
+  } | null;
+  footer?: {
+    __typename: 'Footer';
+    documentId: string;
+    contacts?: {
+      __typename: 'ComponentComponentContacts';
+      id: string;
+      title?: string | null;
+      contact_text?: any | null;
+    } | null;
+    column1?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    column2?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    column3?: {
+      __typename: 'ComponentComponentFooterColumn';
+      id: string;
+      title?: string | null;
+      link?: Array<{
+        __typename: 'ComponentUiLink';
+        id: string;
+        title: string;
+        url: string;
+      } | null> | null;
+    } | null;
+    bottom?: Array<
       | {
           __typename: 'ComponentUiLink';
           id: string;
@@ -4969,6 +5226,9 @@ export const TextRedactorSectionFragmentDoc = {
         kind: 'SelectionSet',
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'theme' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'show' } },
           { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
         ],
       },
@@ -5064,6 +5324,28 @@ export const ComponentUiLinkFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ComponentUiLinkFragmentFragment, unknown>;
+export const ComponentUiLinkFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'ComponentUiLink' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentUiLink' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ComponentUiLinkFragment, unknown>;
 export const GetBikeTypePageSeoDocument = {
   kind: 'Document',
   definitions: [
@@ -5427,6 +5709,191 @@ export const GetBikesTypesPageSeoDocument = {
   GetBikesTypesPageSeoQuery,
   GetBikesTypesPageSeoQueryVariables
 >;
+export const GetFooterDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetFooter' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'footer' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'contacts' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contact_text' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column1' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: { kind: 'Name', value: 'ComponentUiLink' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column2' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: { kind: 'Name', value: 'ComponentUiLink' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column3' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: { kind: 'Name', value: 'ComponentUiLink' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'bottom' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'ComponentUiLink' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'ComponentUiLink' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentUiLink' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetFooterQuery, GetFooterQueryVariables>;
 export const GetMotorcyclePageSeoDocument = {
   kind: 'Document',
   definitions: [
@@ -5750,6 +6217,19 @@ export const Get_Motocycles_By_TypeDocument = {
                 },
                 {
                   kind: 'Field',
+                  name: { kind: 'Name', value: 'sections' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'TextRedactorSection' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'motorcycles' },
                   selectionSet: {
                     kind: 'SelectionSet',
@@ -5858,18 +6338,36 @@ export const Get_Motocycles_By_TypeDocument = {
         ],
       },
     },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TextRedactorSection' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionTextRedactor' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'theme' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'show' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+        ],
+      },
+    },
   ],
 } as unknown as DocumentNode<
   Get_Motocycles_By_TypeQuery,
   Get_Motocycles_By_TypeQueryVariables
 >;
-export const Get_Motocycle_PageDocument = {
+export const Get_Bikes_Type_PageDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'GET_MOTOCYCLE_PAGE' },
+      name: { kind: 'Name', value: 'GET_BIKES_TYPE_PAGE' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -6042,8 +6540,8 @@ export const Get_Motocycle_PageDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  Get_Motocycle_PageQuery,
-  Get_Motocycle_PageQueryVariables
+  Get_Bikes_Type_PageQuery,
+  Get_Bikes_Type_PageQueryVariables
 >;
 export const GetNewsPageQueryDocument = {
   kind: 'Document',
@@ -6247,6 +6745,9 @@ export const GetNewsPageQueryDocument = {
         kind: 'SelectionSet',
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'theme' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'show' } },
           { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
         ],
       },
@@ -8491,6 +8992,155 @@ export const HeaderDocument = {
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'links' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: {
+                          kind: 'Name',
+                          value: 'ComponentUiLinkFragment',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'footer' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'contacts' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contact_text' },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column1' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'ComponentUiLinkFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column2' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'ComponentUiLinkFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'column3' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'link' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'ComponentUiLinkFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'bottom' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

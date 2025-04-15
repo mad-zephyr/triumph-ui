@@ -1,16 +1,7 @@
 import { gql } from '@apollo/client';
 
-import { ComponentUiLinkFragment } from './fragments/uiLink.fragments';
-
-export const GET_TECHNICAL = gql`
-  ${ComponentUiLinkFragment}
-  query Header($locale: I18NLocaleCode!) {
-    header(locale: $locale) {
-      __typename
-      links {
-        ...ComponentUiLinkFragment
-      }
-    }
+export const GetFooter = gql`
+  query GetFooter($locale: I18NLocaleCode!) {
     footer(locale: $locale) {
       __typename
       documentId
@@ -25,7 +16,7 @@ export const GET_TECHNICAL = gql`
         id
         title
         link {
-          ...ComponentUiLinkFragment
+          ...ComponentUiLink
         }
       }
       column2 {
@@ -33,7 +24,7 @@ export const GET_TECHNICAL = gql`
         id
         title
         link {
-          ...ComponentUiLinkFragment
+          ...ComponentUiLink
         }
       }
       column3 {
@@ -41,12 +32,19 @@ export const GET_TECHNICAL = gql`
         id
         title
         link {
-          ...ComponentUiLinkFragment
+          ...ComponentUiLink
         }
       }
       bottom {
-        ...ComponentUiLinkFragment
+        ...ComponentUiLink
       }
     }
+  }
+
+  fragment ComponentUiLink on ComponentUiLink {
+    __typename
+    id
+    title
+    url
   }
 `;

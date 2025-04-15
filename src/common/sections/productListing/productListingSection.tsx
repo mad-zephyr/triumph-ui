@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { FC } from 'react';
 
 import { Navigator } from './components';
@@ -12,15 +13,21 @@ export type TProductListingSection = {
   nav?: TNavigator['navItems'];
   navTitle?: string;
   sections: TListSection[];
+  withPadding?: boolean;
 };
 
 export const ProductListingSection: FC<TProductListingSection> = ({
   nav,
   navTitle,
   sections,
+  withPadding,
+  ...props
 }) => {
   return (
-    <section className={classes.main}>
+    <section
+      className={clsx(classes.main, { [classes.withPadding]: withPadding })}
+      {...props}
+    >
       {nav && <Navigator navItems={nav} title={navTitle} />}
 
       <div className={classes.content_wrapper}>

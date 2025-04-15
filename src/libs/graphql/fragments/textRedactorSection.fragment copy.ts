@@ -6,6 +6,9 @@ export const TextRedactorSection = gql`
   ${UploadFileFragment}
   fragment TextRedactorSection on ComponentSectionTextRedactor {
     __typename
+    id
+    theme
+    show
     blocks
   }
 `;
