@@ -9,15 +9,12 @@ import { getBasePath } from '../helpers';
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
-    cache: new InMemoryCache({ resultCaching: false }),
+    cache: new InMemoryCache({ resultCaching: true }),
     connectToDevTools: true,
     link: new HttpLink({
       uri: `${getBasePath()}/graphql`,
       headers: {
         'Cache-Control': 'no-cache',
-      },
-      fetchOptions: {
-        next: { revalidate: 0 },
       },
 
       // you can disable result caching here if you want to

@@ -2895,6 +2895,7 @@ export type GGGET_MOTOCYCLES_BY_TYPEQuery = {
     __typename: 'BikesType';
     type: string;
     title: string;
+    id: string;
     promoBanner?: {
       __typename?: 'ComponentComponentPromoBaner';
       active: boolean;
@@ -2927,6 +2928,7 @@ export type GGGET_MOTOCYCLES_BY_TYPEQuery = {
       model_name: string;
       base_price: number;
       sku: string;
+      id: string;
       bikes_type?: {
         __typename: 'BikesType';
         type: string;
@@ -2966,6 +2968,7 @@ export type GGGET_MOTOCYCLE_PAGEQuery = {
   bikeTypesPage?: {
     __typename: 'BikeTypesPage';
     navigator_title: string;
+    id: string;
     displayed_bike_types: Array<{
       __typename?: 'BikesType';
       title: string;
@@ -3017,6 +3020,8 @@ export type GGGetNewsPageQueryQuery = {
     __typename: 'NewsPost';
     title: string;
     previewText?: string | null;
+    url: string;
+    id: string;
     preview_cover?: {
       __typename: 'UploadFile';
       documentId: string;
@@ -3349,6 +3354,7 @@ export type GGGetPreloadedNewsPostsQueryQuery = {
   __typename?: 'Query';
   newsPage?: {
     __typename: 'NewsPage';
+    id: string;
     banner?: {
       __typename: 'ComponentComponentPromoBaner';
       active: boolean;
@@ -3432,6 +3438,7 @@ export type GGGET_MOTOCYCLEQuery = {
     availability_status: GENUM_MOTORCYCLE_AVAILABILITY_STATUS;
     base_price: number;
     description?: any | null;
+    id: string;
     available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
     bikes_type?: {
       __typename?: 'BikesType';
@@ -3651,6 +3658,8 @@ export type GGGET_PAGEQuery = {
   __typename?: 'Query';
   pages: Array<{
     __typename: 'Page';
+    url: string;
+    id: string;
     sections?: Array<
       | {
           __typename: 'ComponentSectionAccordionSection';

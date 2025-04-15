@@ -10,6 +10,7 @@ export const GetPreloadedNewsPostsQuery = gql`
   ) {
     newsPage {
       __typename
+      id: documentId
       banner {
         __typename
         active

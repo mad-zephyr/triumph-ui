@@ -9,6 +9,7 @@ export const getMotorcyclesByType = gql`
       __typename
       type
       title
+      id: documentId
       promoBanner {
         active
         title
@@ -21,6 +22,7 @@ export const getMotorcyclesByType = gql`
         model_name
         base_price
         sku
+        id: documentId
         bikes_type {
           __typename
           ... on BikesType {

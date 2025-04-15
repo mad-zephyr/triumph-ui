@@ -12,6 +12,7 @@ export const GetMotocycle = gql`
       category
       model_name
       sku
+      id: documentId
       year
       availability_status
       base_price

@@ -21,6 +21,8 @@ export const GetPage = gql`
   query GET_PAGE($locale: I18NLocaleCode!, $url: String!) {
     pages(locale: $locale, filters: { url: { eq: $url } }) {
       __typename
+      url
+      id: documentId
       sections {
         ...HeroSectionFragent
         ...QuickNavigationFragment

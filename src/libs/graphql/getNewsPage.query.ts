@@ -15,6 +15,8 @@ export const getNewsPage = gql`
       __typename
       title
       previewText
+      url
+      id: documentId
       preview_cover {
         ...UploadFileFragment
       }

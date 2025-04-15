@@ -2894,6 +2894,7 @@ export type Get_Motocycles_By_TypeQuery = {
     __typename: 'BikesType';
     type: string;
     title: string;
+    id: string;
     promoBanner?: {
       __typename?: 'ComponentComponentPromoBaner';
       active: boolean;
@@ -2926,6 +2927,7 @@ export type Get_Motocycles_By_TypeQuery = {
       model_name: string;
       base_price: number;
       sku: string;
+      id: string;
       bikes_type?: {
         __typename: 'BikesType';
         type: string;
@@ -2965,6 +2967,7 @@ export type Get_Motocycle_PageQuery = {
   bikeTypesPage?: {
     __typename: 'BikeTypesPage';
     navigator_title: string;
+    id: string;
     displayed_bike_types: Array<{
       __typename?: 'BikesType';
       title: string;
@@ -3016,6 +3019,8 @@ export type GetNewsPageQueryQuery = {
     __typename: 'NewsPost';
     title: string;
     previewText?: string | null;
+    url: string;
+    id: string;
     preview_cover?: {
       __typename: 'UploadFile';
       documentId: string;
@@ -3348,6 +3353,7 @@ export type GetPreloadedNewsPostsQueryQuery = {
   __typename?: 'Query';
   newsPage?: {
     __typename: 'NewsPage';
+    id: string;
     banner?: {
       __typename: 'ComponentComponentPromoBaner';
       active: boolean;
@@ -3431,6 +3437,7 @@ export type Get_MotocycleQuery = {
     availability_status: Enum_Motorcycle_Availability_Status;
     base_price: number;
     description?: any | null;
+    id: string;
     available_colors: Array<{ __typename: 'BikeColor'; color: string } | null>;
     bikes_type?: {
       __typename?: 'BikesType';
@@ -3650,6 +3657,8 @@ export type Get_PageQuery = {
   __typename?: 'Query';
   pages: Array<{
     __typename: 'Page';
+    url: string;
+    id: string;
     sections?: Array<
       | {
           __typename: 'ComponentSectionAccordionSection';
@@ -5702,6 +5711,11 @@ export const Get_Motocycles_By_TypeDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 {
                   kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'promoBanner' },
                   selectionSet: {
                     kind: 'SelectionSet',
@@ -5749,6 +5763,11 @@ export const Get_Motocycles_By_TypeDocument = {
                         name: { kind: 'Name', value: 'base_price' },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                      {
+                        kind: 'Field',
+                        alias: { kind: 'Name', value: 'id' },
+                        name: { kind: 'Name', value: 'documentId' },
+                      },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'bikes_type' },
@@ -5886,11 +5905,16 @@ export const Get_Motocycle_PageDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'navigator_title' },
                 },
-                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                {
+                  kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'displayed_bike_types' },
@@ -6108,6 +6132,12 @@ export const GetNewsPageQueryDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'previewText' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                {
+                  kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'preview_cover' },
@@ -7064,6 +7094,11 @@ export const GetPreloadedNewsPostsQueryDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 {
                   kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'banner' },
                   selectionSet: {
                     kind: 'SelectionSet',
@@ -7368,6 +7403,11 @@ export const Get_MotocycleDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'category' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'model_name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                {
+                  kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
                 { kind: 'Field', name: { kind: 'Name', value: 'year' } },
                 {
                   kind: 'Field',
@@ -7926,6 +7966,12 @@ export const Get_PageDocument = {
               kind: 'SelectionSet',
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                {
+                  kind: 'Field',
+                  alias: { kind: 'Name', value: 'id' },
+                  name: { kind: 'Name', value: 'documentId' },
+                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'sections' },

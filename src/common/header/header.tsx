@@ -7,25 +7,6 @@ import { Link } from '@/i18n/navigation';
 import { HeaderLink, LocaleLink, MenuOpener, THeaderLink } from './components';
 import classes from './header.module.sass';
 
-// const links = [
-//   {
-//     title: 'Motocycles',
-//     path: '/motocycles',
-//   },
-//   {
-//     title: 'Accessorii',
-//     path: '/accessorii',
-//   },
-//   {
-//     title: 'Imbracominte',
-//     path: '/Imbracominte',
-//   },
-//   {
-//     title: 'Inside triumph',
-//     path: '/about-triumph',
-//   },
-// ];
-
 type THeader = {
   links: THeaderLink[];
 };
