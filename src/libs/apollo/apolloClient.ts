@@ -16,12 +16,12 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     connectToDevTools: true,
     link: new HttpLink({
       uri: `${getBasePath()}/graphql`,
-      headers: {
-        'Cache-Control': 'no-cache',
-      },
-      fetchOptions: {
-        next: { revalidate: 60 },
-      },
+      // headers: {
+      //   'Cache-Control': 'no-cache',
+      // },
+      // fetchOptions: {
+      //   next: { revalidate: 60 },
+      // },
 
       // you can disable result caching here if you want to
       // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
