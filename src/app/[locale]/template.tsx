@@ -18,8 +18,8 @@ export default async function Template({ children }: PropsWithChildren) {
   const locale = await getLocale();
   const { data } = await getClient().query<TTechncalData>({
     query: GET_HEADER,
-    variables: { locale, tags: RevalidateTags.Header },
-    // errorPolicy: 'ignore',
+    variables: { locale },
+    errorPolicy: 'all',
   });
 
   const headerLinks = getHeaderData(data.header);
