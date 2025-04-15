@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: TPage): Promise<Metadata> {
 
   if (response?.motorcycles) {
     const [page] = response.motorcycles;
-    return await generateSeo(page.seo);
+    return await generateSeo(page?.seo);
   }
 
   return await generateSeo();
