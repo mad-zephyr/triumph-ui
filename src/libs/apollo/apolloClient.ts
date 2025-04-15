@@ -13,34 +13,34 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     // cache: new InMemoryCache({ resultCaching: false }),
     cache: new InMemoryCache({
-      resultCaching: true,
-      typePolicies: {
-        Query: {
-          fields: {
-            bikeTypesPage: {
-              merge: false,
-            },
-          },
-        },
-        BikesTypePage: {
-          keyFields: ['url'], // если "type" уникален
-        },
-        BikesType: {
-          keyFields: ['type'], // если "type" уникален
-        },
-        Page: {
-          keyFields: ['url'],
-        },
-        NewsPost: {
-          keyFields: ['url'],
-        },
-        Motorcycle: {
-          keyFields: ['sku'], // если "sku" уникален
-        },
-        UploadFile: {
-          keyFields: ['documentId'], // если у тебя так устроены медиа
-        },
-      },
+      resultCaching: false,
+      // typePolicies: {
+      //   Query: {
+      //     fields: {
+      //       bikeTypesPage: {
+      //         merge: false,
+      //       },
+      //     },
+      //   },
+      //   BikesTypePage: {
+      //     keyFields: ['url'], // если "type" уникален
+      //   },
+      //   BikesType: {
+      //     keyFields: ['type'], // если "type" уникален
+      //   },
+      //   Page: {
+      //     keyFields: ['url'],
+      //   },
+      //   NewsPost: {
+      //     keyFields: ['url'],
+      //   },
+      //   Motorcycle: {
+      //     keyFields: ['sku'], // если "sku" уникален
+      //   },
+      //   UploadFile: {
+      //     keyFields: ['documentId'], // если у тебя так устроены медиа
+      //   },
+      // },
     }),
     connectToDevTools: true,
     link: new HttpLink({
