@@ -42,7 +42,7 @@ export default async function Page({ params }: TPage) {
   }>({
     query: getMotorcycleTypesPage,
     variables: { locale },
-    tags: RevalidateTags.BikeTypesPage as unknown as string,
+    tags: RevalidateTags.BikeTypesPage,
   });
 
   const listing = getMotocyclesWithNavigation(bikeTypesPage);

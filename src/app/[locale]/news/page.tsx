@@ -51,7 +51,7 @@ export default async function HomePage({ params }: THomePage) {
   }>({
     query: GetPreloadedNewsPostsQuery,
     variables: { locale, start: 0, limit: 6 },
-    tags: RevalidateTags.NewsPage as unknown as string,
+    tags: RevalidateTags.NewsPage,
   });
 
   const { newsPosts, newsPosts_connection, newsPage } = data;

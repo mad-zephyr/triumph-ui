@@ -29,8 +29,8 @@ export type TProduct = {
   };
 };
 
-export enum RevalidateTags {
-  NewsPage,
-  BikeTypesPage,
-  Header,
-}
+export const RevalidateTags = {
+  NewsPage: 'NewsPage',
+  BikeTypesPage: 'motorcycle',
+  Header: 'Header',
+};

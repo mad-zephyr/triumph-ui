@@ -22,8 +22,14 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
             },
           },
         },
+        BikesTypePage: {
+          keyFields: ['url'], // если "type" уникален
+        },
         BikesType: {
           keyFields: ['type'], // если "type" уникален
+        },
+        Page: {
+          keyFields: ['url'],
         },
         Motorcycle: {
           keyFields: ['sku'], // если "sku" уникален

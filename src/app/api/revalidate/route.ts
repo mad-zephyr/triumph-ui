@@ -25,7 +25,7 @@ type RevalidateRequest =
     } & Base)
   | ({
       model: 'bike-types-page';
-      entry: NewsPage;
+      entry: Page;
     } & Base)
   | ({
       model: 'page';
@@ -33,7 +33,7 @@ type RevalidateRequest =
     } & Base)
   | ({
       model: 'header';
-      entry: NewsPage;
+      entry: Page;
     } & Base);
 
 const getRevalidateTag = (req: RevalidateRequest) => {
@@ -51,7 +51,7 @@ const getRevalidateTag = (req: RevalidateRequest) => {
       return RevalidateTags.NewsPage;
     }
     case 'bike-types-page': {
-      return RevalidateTags.BikeTypesPage;
+      return req.entry.url;
     }
     case 'header': {
       return RevalidateTags.Header;
@@ -86,6 +86,8 @@ export async function OPTIONS() {
 export async function POST(request: Request) {
   const requestData = (await request.json()) satisfies RevalidateRequest;
   const origin = getOrigin(request);
+
+  console.log('DATa: ', requestData);
 
   const revTag = getRevalidateTag(requestData) as string;
 

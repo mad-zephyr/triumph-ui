@@ -7,8 +7,10 @@ export const getMotorcycleTypesPage = gql`
   query GET_MOTOCYCLE_PAGE($locale: I18NLocaleCode!) {
     bikeTypesPage(locale: $locale) {
       __typename
+      url
       navigator_title
       displayed_bike_types {
+        documentId
         title
         type
         motorcycles {
