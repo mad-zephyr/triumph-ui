@@ -11,6 +11,7 @@ import { SplideSlide } from 'react-splide-ts';
 import ArrowRight from '@/assets/icons/arrow_thin_right.svg';
 import { Text } from '@/common/ui';
 import { Slider } from '@/common/ui/slider/slider';
+import { formatNumberWithDots } from '@/libs/helpers';
 import { TUploadFile } from '@/models/uiUploadfile';
 
 import classes from './styles.module.sass';
@@ -46,7 +47,9 @@ export const ProductDetailsSection: FC<TProductDetailsSection> = ({
     <section className={classes.main}>
       <div className={classes.intro}>
         <Text tag="h4">{title}</Text>
-        <Text tag="p">{t('priceFrom', { price: subtitile })}</Text>
+        <Text tag="p">
+          {t('priceFrom', { price: formatNumberWithDots(subtitile) })}
+        </Text>
       </div>
       <div className={classes.slider}>
         <Slider
