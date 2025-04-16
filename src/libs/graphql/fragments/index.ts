@@ -1,5 +1,6 @@
 export { BigPromoSectionFragment } from './bigPromoSection.fragment';
 export { BigThumbnailSectionFragment } from './bigThumbnailSection.fragment';
+export { CarouselSectionFragment } from './carouselSection.fragment_';
 export { CategoryAccordionFragment } from './categoryAccordion.fragment';
 export { MotorcycleFragment } from './motorcycle.fragment';
 export { NewsSectionFragment } from './newsSection.fragment';
@@ -7,6 +8,6 @@ export { ProductDetails } from './productDetails.fragment';
 export { PromoSliderSectionFragment } from './promoSliderSection.fragment';
 export { QuickNavigationFragment } from './quickNavigationSection.fragment';
 export { SeoFragment } from './seo.fragment';
-export { TextRedactorSection } from './textRedactorSection.fragment copy';
+export { TextRedactorSection } from './textRedactorSection.fragment';
 export { TitleSectionFragment } from './titleSection.fragment';
 export { ComponentUiLinkFragment } from './uiLink.fragments';

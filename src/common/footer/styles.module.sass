@@ -53,6 +53,22 @@
         &:first-of-type
             margin-right: auto
 
+.subfooter
+    grid-column: 1 / span 12
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+
+    a
+        padding: 1rem 0
+        color: #ffffff54
+        text-decoration: none
+        transition: 0.3s color ease-in-out
+
+        &:hover
+            color: #ffffff
+
 @media screen and (max-width: 40rem)
     .main
         display: flex

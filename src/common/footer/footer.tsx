@@ -33,7 +33,11 @@ export const Footer: FC<TFooter> = ({ data }) => {
   const { contacts, column1, column2, column3 } = getFooter(data);
 
   const getLink = (link: Partial<TLink>, i: number) => (
-    <Link key={i} href={link?.url || ''}>
+    <Link
+      key={i}
+      href={link?.url || ''}
+      target={link?.url?.startsWith('https://') ? '_blank' : '_self'}
+    >
       {link.title}
     </Link>
   );
@@ -67,8 +71,14 @@ export const Footer: FC<TFooter> = ({ data }) => {
 
       <div className={classes.bottom}>
         <Text tag="p">COPYRIGHT © 2025 MotocicleteTriumph.md</Text>
+
         <Text tag="p">Politica de confidențialitate </Text>
         <Text tag="p">Termeni și condiți</Text>
+      </div>
+      <div className={classes.subfooter}>
+        <Link href={'https://nx.md'} target="_blank">
+          Designed and developed in <strong>NX.md</strong>
+        </Link>
       </div>
     </footer>
   );

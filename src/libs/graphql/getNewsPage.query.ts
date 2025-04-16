@@ -1,11 +1,16 @@
 import { gql } from '@apollo/client';
 
-import { TextRedactorSection, TitleSectionFragment } from './fragments';
+import {
+  CarouselSectionFragment,
+  TextRedactorSection,
+  TitleSectionFragment,
+} from './fragments';
 import { UploadFileFragment } from './fragments/uploadFile.fragment';
 export const getNewsPage = gql`
   ${TitleSectionFragment}
   ${TextRedactorSection}
   ${UploadFileFragment}
+  ${CarouselSectionFragment}
   query GetNewsPageQuery($locale: I18NLocaleCode!, $url: String!) {
     newsPosts(
       locale: $locale
@@ -23,6 +28,7 @@ export const getNewsPage = gql`
       sections {
         ...TitleSectionFragment
         ...TextRedactorSection
+        ...CarouselSectionFragment
       }
     }
   }

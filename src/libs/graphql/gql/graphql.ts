@@ -493,6 +493,25 @@ export type ComponentSectionBigThumbnailSectionCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentSectionCarousel = {
+  __typename?: 'ComponentSectionCarousel';
+  id: Scalars['ID']['output'];
+  image: Array<Maybe<UploadFile>>;
+  image_connection?: Maybe<UploadFileRelationResponseCollection>;
+};
+
+export type ComponentSectionCarouselImageArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentSectionCarouselImage_ConnectionArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ComponentSectionHeroSlider = {
   __typename?: 'ComponentSectionHeroSlider';
   Slide: Array<Maybe<ComponentComponentHeroSlide>>;
@@ -864,6 +883,7 @@ export type GenericMorph =
   | ComponentSectionAccordionSection
   | ComponentSectionBigPromoSection
   | ComponentSectionBigThumbnailSection
+  | ComponentSectionCarousel
   | ComponentSectionHeroSlider
   | ComponentSectionNewsSection
   | ComponentSectionPromoSliderSection
@@ -1511,6 +1531,7 @@ export type NewsPostSectionsDynamicZone =
   | ComponentSectionAccordionSection
   | ComponentSectionBigPromoSection
   | ComponentSectionBigThumbnailSection
+  | ComponentSectionCarousel
   | ComponentSectionPromoSliderSection
   | ComponentSectionTextRedactor
   | ComponentSectionTitleSection
@@ -2350,6 +2371,32 @@ export type BigThumbnailSectionFragmentFragment = {
       updatedAt?: any | null;
       publishedAt?: any | null;
     };
+  } | null>;
+};
+
+export type CarouselSectionFragmentFragment = {
+  __typename: 'ComponentSectionCarousel';
+  id: string;
+  image: Array<{
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
   } | null>;
 };
 
@@ -3244,6 +3291,31 @@ export type GetNewsPageQueryQuery = {
       | { __typename?: 'ComponentSectionAccordionSection' }
       | { __typename?: 'ComponentSectionBigPromoSection' }
       | { __typename?: 'ComponentSectionBigThumbnailSection' }
+      | {
+          __typename: 'ComponentSectionCarousel';
+          id: string;
+          image: Array<{
+            __typename: 'UploadFile';
+            documentId: string;
+            name: string;
+            alternativeText?: string | null;
+            caption?: string | null;
+            width?: number | null;
+            height?: number | null;
+            formats?: any | null;
+            hash: string;
+            ext?: string | null;
+            mime: string;
+            size: number;
+            url: string;
+            previewUrl?: string | null;
+            provider: string;
+            provider_metadata?: any | null;
+            createdAt?: any | null;
+            updatedAt?: any | null;
+            publishedAt?: any | null;
+          } | null>;
+        }
       | { __typename?: 'ComponentSectionPromoSliderSection' }
       | {
           __typename: 'ComponentSectionTextRedactor';
@@ -4430,6 +4502,71 @@ export const BigThumbnailSectionFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BigThumbnailSectionFragmentFragment, unknown>;
+export const CarouselSectionFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CarouselSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionCarousel' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'image' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadFileFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'UploadFile' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'documentId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'alternativeText' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'caption' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'formats' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'hash' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ext' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'mime' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'previewUrl' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'provider_metadata' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CarouselSectionFragmentFragment, unknown>;
 export const CategoryAccordionFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6663,6 +6800,13 @@ export const GetNewsPageQueryDocument = {
                         kind: 'FragmentSpread',
                         name: { kind: 'Name', value: 'TextRedactorSection' },
                       },
+                      {
+                        kind: 'FragmentSpread',
+                        name: {
+                          kind: 'Name',
+                          value: 'CarouselSectionFragment',
+                        },
+                      },
                     ],
                   },
                 },
@@ -6749,6 +6893,34 @@ export const GetNewsPageQueryDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'theme' } },
           { kind: 'Field', name: { kind: 'Name', value: 'show' } },
           { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CarouselSectionFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ComponentSectionCarousel' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'image' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadFileFragment' },
+                },
+              ],
+            },
+          },
         ],
       },
     },

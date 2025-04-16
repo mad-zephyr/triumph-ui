@@ -1,0 +1,39 @@
+.main
+    width: 100%
+    min-height: 300px
+
+    display: flex
+    flex-direction: column
+    padding: 0rem 2rem 4rem
+    row-gap: 1.6rem
+
+.track
+    display: flex
+    min-height: 300px
+    overflow: auto
+    scroll-snap-type: x mandatory
+
+    scrollbar-width: none
+
+    &::-webkit-scrollbar
+        display: none
+
+.slide
+    position: relative
+    height: 20rem
+    flex-grow: 1
+    min-width: calc(33.33% - 0.5rem)
+
+    padding: 1rem
+    scroll-snap-align: start
+
+    figcaption
+        position: relative
+        z-index: 2
+
+    img
+        object-fit: cover
+
+@media screen and (max-width: 40rem)
+    .slide
+        min-width: calc(100% - 2rem)

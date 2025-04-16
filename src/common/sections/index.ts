@@ -1,5 +1,6 @@
 export { BigPromoSection } from './bigPromo/bigPromoSection';
 export { BigThumbnailSection } from './bigThumbnail/bigThumbnailSection';
+export { CarouselSection } from './carousel/carouselSection';
 export { CategoryAccordion } from './categoryAccordion/categoryAccordion';
 export { ContentBlocksSection } from './contentBlocks/contentBlocks';
 export { HeroSection } from './hero/hero';

@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import {
   BigPromoSection,
   BigThumbnailSection,
+  CarouselSection,
   CategoryAccordion,
   ContentBlocksSection,
   HeroSection,
@@ -20,7 +21,7 @@ import { GBikesType, GNewsPost, GPage } from '@/types/types';
 import { getButtons } from './getButtons.model';
 import { getMotocycles } from './getMotocycle.model';
 import { getTTagFromTitleTagEnum } from './getTTag.model';
-import { uiUploadfile } from './uiUploadfile';
+import { TUploadFile, uiUploadfile } from './uiUploadfile';
 
 export const getPageModel = (page: GPage | GNewsPost | GBikesType) => {
   const sections: ReactNode[] = [];
@@ -182,6 +183,14 @@ export const getPageModel = (page: GPage | GNewsPost | GBikesType) => {
           content={section.blocks}
         />
       );
+    }
+
+    if (section?.__typename === 'ComponentSectionCarousel') {
+      const carouselImages = section.image
+        .map(uiUploadfile)
+        .filter((image): image is TUploadFile => !!image);
+
+      sections.push(<CarouselSection key={i} images={carouselImages} />);
     }
   });
 

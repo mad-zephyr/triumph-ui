@@ -494,6 +494,25 @@ export type GComponentSectionBigThumbnailSectionGCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type GComponentSectionCarousel = {
+  __typename?: 'ComponentSectionCarousel';
+  id: Scalars['ID']['output'];
+  image: Array<Maybe<GUploadFile>>;
+  image_connection?: Maybe<GUploadFileRelationResponseCollection>;
+};
+
+export type GComponentSectionCarouselGImageArgs = {
+  filters?: InputMaybe<GUploadFileFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type GComponentSectionCarouselGImage_connectionArgs = {
+  filters?: InputMaybe<GUploadFileFiltersInput>;
+  pagination?: InputMaybe<GPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type GComponentSectionHeroSlider = {
   __typename?: 'ComponentSectionHeroSlider';
   Slide: Array<Maybe<GComponentComponentHeroSlide>>;
@@ -865,6 +884,7 @@ export type GGenericMorph =
   | GComponentSectionAccordionSection
   | GComponentSectionBigPromoSection
   | GComponentSectionBigThumbnailSection
+  | GComponentSectionCarousel
   | GComponentSectionHeroSlider
   | GComponentSectionNewsSection
   | GComponentSectionPromoSliderSection
@@ -1512,6 +1532,7 @@ export type GNewsPostSectionsDynamicZone =
   | GComponentSectionAccordionSection
   | GComponentSectionBigPromoSection
   | GComponentSectionBigThumbnailSection
+  | GComponentSectionCarousel
   | GComponentSectionPromoSliderSection
   | GComponentSectionTextRedactor
   | GComponentSectionTitleSection
@@ -2353,6 +2374,32 @@ export type GBigThumbnailSectionFragmentFragment = {
       updatedAt?: any | null;
       publishedAt?: any | null;
     };
+  } | null>;
+};
+
+export type GCarouselSectionFragmentFragment = {
+  __typename: 'ComponentSectionCarousel';
+  id: string;
+  image: Array<{
+    __typename: 'UploadFile';
+    documentId: string;
+    name: string;
+    alternativeText?: string | null;
+    caption?: string | null;
+    width?: number | null;
+    height?: number | null;
+    formats?: any | null;
+    hash: string;
+    ext?: string | null;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string | null;
+    provider: string;
+    provider_metadata?: any | null;
+    createdAt?: any | null;
+    updatedAt?: any | null;
+    publishedAt?: any | null;
   } | null>;
 };
 
@@ -3247,6 +3294,31 @@ export type GGGetNewsPageQueryQuery = {
       | { __typename?: 'ComponentSectionAccordionSection' }
       | { __typename?: 'ComponentSectionBigPromoSection' }
       | { __typename?: 'ComponentSectionBigThumbnailSection' }
+      | {
+          __typename: 'ComponentSectionCarousel';
+          id: string;
+          image: Array<{
+            __typename: 'UploadFile';
+            documentId: string;
+            name: string;
+            alternativeText?: string | null;
+            caption?: string | null;
+            width?: number | null;
+            height?: number | null;
+            formats?: any | null;
+            hash: string;
+            ext?: string | null;
+            mime: string;
+            size: number;
+            url: string;
+            previewUrl?: string | null;
+            provider: string;
+            provider_metadata?: any | null;
+            createdAt?: any | null;
+            updatedAt?: any | null;
+            publishedAt?: any | null;
+          } | null>;
+        }
       | { __typename?: 'ComponentSectionPromoSliderSection' }
       | {
           __typename: 'ComponentSectionTextRedactor';
