@@ -28,7 +28,14 @@ export const ProductCardPreview: FC<TProductCardPreview> = ({
     <Link href={href.toLowerCase()} className={classes.card}>
       <div className={classes.card}>
         <figure className={classes.cover}>
-          {image && <Image src={image.url} alt={title} fill />}
+          {image && (
+            <Image
+              placeholder={image.placeholder}
+              src={image.url}
+              alt={title}
+              fill
+            />
+          )}
         </figure>
         <div className={classes.content}>
           <Text tag={'h5'}>{title}</Text>
